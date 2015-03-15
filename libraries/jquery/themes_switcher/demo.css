@@ -1,0 +1,46 @@
+body {
+ 	font-size: 72%;
+  	overflow: hidden;
+  	margin: 0 0 0 0;
+  	padding: 0 0 0 0;
+}
+
+/**  ---------------------------------------------------- */
+#demo_table {
+	position: absolute;
+    width:100%;
+	height:100%; 
+	margin: 0 0 0 0;
+  	padding: 0 0 0 0;
+}
+
+
+#demo_top{
+	position: absolute;
+    width:100%;
+    height: 28px;
+    top: 0px;
+    display: block;
+}
+
+#demo_frame{
+	position: absolute;
+    width:100%;
+	height:48px;
+    top: 30px;
+  }
+
+
+#demo_content{
+	position: absolute;
+    width:100%;
+    top: 80px;
+  }
+
+#demo_opt_Test, #demo_opt_Theme, #demo_from {
+	margin-top: 4px;
+	margin-left: 5px;
+	text-align: center;
+}
+
+
