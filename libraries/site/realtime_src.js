@@ -593,20 +593,40 @@ this.UpdateGrid=function(tvar){
 
 
 this.CreateMarker=function(tobj){
+	//Marker
 	var richMarkerContent=$('<div/>', {id: 'marker'+tobj.gm_unit});
-	
+	/*
+		Modified by: Rhalf Wendel D. Caacbay
+		Modified on: 20150316
+
+		before: 
+			var arrowImage=$('<img/>', {
+			id: 'arrow'+tobj.gm_unit,
+			src:tobj.img,
+			height:'25px',
+			width:'25px'
+			});	
+		if (tobj.alarmimg!="none"){
+			var AlarmImage=$('<img/>', {
+				id: 'alarm'+tobj.gm_unit,
+				src:tobj.alarmimg,
+				height:'25px',
+				width:'25px'
+			}).css(get_alarmImageStyles());
+		}
+	*/
 	var arrowImage=$('<img/>', {
 		id: 'arrow'+tobj.gm_unit,
 		src:tobj.img,
-		height:'35px',
-		width:'35px'
+		height:'25px',
+		width:'25px'
 		});	
 	if (tobj.alarmimg!="none"){
 		var AlarmImage=$('<img/>', {
 			id: 'alarm'+tobj.gm_unit,
 			src:tobj.alarmimg,
-			height:'35px',
-			width:'35px'
+			height:'25px',
+			width:'25px'
 		}).css(get_alarmImageStyles());
 	}	
 	var rotationElement=$('<div/>', {id: 'rotation'+tobj.gm_unit}).css(get_rotationStyles(tobj.gm_deg));
@@ -777,7 +797,14 @@ this.osm_gotoLocation=function(tobj) {
 	
 	if (this.MarkerExists(tobj.gm_unit)==false){
 		var richMarkerContent =this.CreateMarker(tobj);	 
-		var size = new OpenLayers.Size(50,50);
+		/*
+			Modified by: Rhalf Wendel D. Caacbay
+			Modified on: 20150316
+
+			before: 
+			var size = new OpenLayers.Size(50,50);
+		*/
+		var size = new OpenLayers.Size(40,40);
 		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 		var icon = new OpenLayers.Icon(null, size, offset);   
 		icon.imageDiv=richMarkerContent.get(0);
@@ -786,13 +813,37 @@ this.osm_gotoLocation=function(tobj) {
 		var marker=new OpenLayers.Marker(lonlat,icon);	
 		var osmMarker=new RealTimeMarker();
 		osmMarker.Marker=marker;
-		
+ 
 		osmMarker.PopupWindow = new OpenLayers.Popup("live"+tobj.gm_unit,
 			lonlat,
-			new OpenLayers.Size(225,100),
+			/*
+				Modified by: Rhalf Wendel D. Caacbay
+				Modified on: 20150316
+
+				before: 
+				new OpenLayers.Size(255,110)
+			*/
+			new OpenLayers.Size(255,110),
 			ContentInfo,
 			true
 		);
+		/*
+			Added by: Rhalf Wendel D. Caacbay
+			Added on: 20150316
+		*/
+		osmMarker.PopupWindow.setBorder("1px solid black");
+		osmMarker.PopupWindow.setOpacity(0.8);
+		/*
+			Note:
+			autoSize() function from Popup class not working!
+			
+			//osmMarker.PopupWindow.autoSize = true;
+			//osmMarker.PopupWindow.minSize = new OpenLayers.Size(200,55);
+			//osmMarker.PopupWindow.maxSize = new OpenLayers.Size(255,110);
+			//osmMarker.PopupWindow.fixPadding();
+			//osmMarker.PopupWindow.updateSize();
+
+		*/	
 		osmMarker.PopupWindow.hide();			   
 		osmmaps[tobj.map].addPopup(osmMarker.PopupWindow);	
 		
@@ -801,14 +852,21 @@ this.osm_gotoLocation=function(tobj) {
 				function(){
 					osmMarker.PopupWindow.show()
 				}
-			);	
+			);	 
+
+			//MessageBox for OSMap
 			if($('#vehicles').val()==marker.Unit){
 				$("#info").html(ContentInfo);
 			}
 		}else{
+		marker.events.register("mouseout", marker,
+			function(){
+				osmMarker.PopupWindow.hide();
+			}
+		);	
 		marker.events.register("mousedown", marker,
 			function(){
-				osmMarker.PopupWindow.show()
+				osmMarker.PopupWindow.show();
 			}
 		);		
 		}

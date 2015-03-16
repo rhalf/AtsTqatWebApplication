@@ -2,6 +2,8 @@
 include_once("../settings.php");
 include_once("../scripts.php");
 
+
+ 
 if (filter_input(INPUT_GET, 'id')===NULL) {
     die;
 }

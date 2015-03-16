@@ -5,6 +5,7 @@
 </script>
 <?php
 header("Cache-Control: no-cache, must-revalidate");
+
 include_once('../settings.php');
 include(ROOT_DIR . "/libraries/classes/system_boot.php");
 include_once(ROOT_DIR . "/connect/func.php");
@@ -88,8 +89,12 @@ include (ROOT_DIR . "/connect/connect_master_db.php");
 
 
 $companydb = $companydata["cmpdbname"];
+try {
 $check = $CompanyConn->query("SELECT `uid`,`uname`,`upass`,`upriv`,`utimezone`,`uactive`,`uexpiredate`,`udbs` FROM " . 'cmp_' . $companydb .
     ".usrs WHERE uname = '" . $uname . "'");
+}catch(PDOExcemption $cExcemption){
+    echo $cExcemption->getMessage();
+}
 $CompanyConn = null;
 
 if ($check->rowCount() == 0) {

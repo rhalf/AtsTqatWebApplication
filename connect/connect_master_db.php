@@ -43,8 +43,12 @@ $companyHostRow = $companyHostStatment->fetch(PDO::FETCH_ASSOC);
 
 
 // connect cmp
-$CompanyConn = new PDO("$engine:host=$companyHostRow[dbhostip];dbname=cmp_$companydata[cmpdbname]", "$companyHostRow[dbhostuser]", "$companyHostRow[dbhostpassword]", array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
+//try {
+$CompanyConn = new PDO("$engine:host=$companyHostRow[dbhostip];dbname=cmp_$companydata[cmpdbname]", "$companyHostRow[dbhostuser]", "$companyHostRow[dbhostpassword]", array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+//} catch (PDOException $cExcemption) {
+//	echo $cExcemption->getMessage();
+//}
 // close master
 $Conn = null;
 ?>			

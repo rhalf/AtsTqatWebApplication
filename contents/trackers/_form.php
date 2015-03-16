@@ -44,6 +44,9 @@ $HTTPHostResult = $session->get('httphosts');
                 <?php } ?>
             </ul>
             <div id="<?php echo $code ?>_general_tabs" style="height:250px; direction:<?php echo text_direction ?>">
+              <?php
+ echo '<script>alert("_form.php");</script>';
+?>
                 <table width="100%" border="0">
                     <tr>
                         <td width="15%"><?php echo constant($module . 'VehicleReg'); ?></td>
@@ -544,3 +547,4 @@ if ($type == 2) {
                     });
 
 </script>
+

@@ -337,5 +337,6 @@ if ($privilege == 1) {
     $('.context').bind('click', function(e) {
         var id = $(this).attr('class').split(' ')[1].split('context')[1];
         $('.tpopup' + id).html(geturl('connect/_tracker_popup.php?id=' + id));
+        alert("================================hello=======================================");
     });
 </script>

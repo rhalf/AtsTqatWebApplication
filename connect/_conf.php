@@ -1,9 +1,11 @@
 <?php
 
 $engine = 'mysql';
-$dbhost = '67.205.85.177';
+$dbhost = '108.163.190.202';
 $dbuser = 'root';
-$dbpass = 'natural999';
+$dbpass = 'ats123';
 $dbname = 'tracking_master';
 $prefix = 'dbt_';
+
+
 ?>

@@ -67,6 +67,7 @@ this.Open=function(){
 	$("#"+_this.params.name+'dialog').dialog("open");	
 		if (!_this.params.hasdiv || _this.params.loaded==false){
 			_this.Load();
+			
 		}
 		
 	if(_this.params.imagelink!=''){

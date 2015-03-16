@@ -1,1 +1,1 @@
-<?php $engine='mysql';$dbhost ='127.0.0.1';$dbuser ='root';$dbpass ='ats123';$dbname ='tracking_master';$prefix ='dbt_'; ?>
+<?php $engine='mysql';$dbhost ='108.163.190.202';$dbuser ='root';$dbpass ='ats123';$dbname ='tracking_master';$prefix ='dbt_'; ?>
