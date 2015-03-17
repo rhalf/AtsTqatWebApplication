@@ -112,7 +112,9 @@ create_map_tab(default_mapLabel, DefaultSettings.default_map, 'normal');">
 InitSite();
 </script>
 
+
 <?php
+    //debugging...
     if (gps_debug == true) {
         $cDebug = new Debug();
         $cDebug->showAlert("index.php");

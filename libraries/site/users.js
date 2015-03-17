@@ -601,14 +601,15 @@ function get_alarmImageStyles() {
 */
 function get_captionStyles() {
     var styles = {
-        "font-size" : "10px",
+        "font-size" : "11px",
         "white-space": "nowrap",
         "border": "3px",
         "font-family": "calibri",
         "font-weight": "normal",
         "color": "white",
         "background-color": "black",
-        "padding": "2px",
+        "padding-left": "3px",
+        "padding-right": "3px",
         "left": "0px",
         "top": "-5px",
         "position": "relative",

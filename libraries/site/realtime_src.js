@@ -804,7 +804,7 @@ this.osm_gotoLocation=function(tobj) {
 			before: 
 			var size = new OpenLayers.Size(50,50);
 		*/
-		var size = new OpenLayers.Size(40,40);
+		var size = new OpenLayers.Size(25,25);
 		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 		var icon = new OpenLayers.Icon(null, size, offset);   
 		icon.imageDiv=richMarkerContent.get(0);
@@ -823,7 +823,7 @@ this.osm_gotoLocation=function(tobj) {
 				before: 
 				new OpenLayers.Size(255,110)
 			*/
-			new OpenLayers.Size(255,110),
+			new OpenLayers.Size(255,60),
 			ContentInfo,
 			true
 		);
