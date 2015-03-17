@@ -16,7 +16,8 @@ $devices_Type = array(
     'VT310' => '6',
     'MT90' => '7',
     'T1' => '8',
-    'NR008' => '9'
+    'NR008' => '9',
+    'FM1100' => '10'
 );
 
 $Providers = array(

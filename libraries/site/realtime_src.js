@@ -593,40 +593,40 @@ this.UpdateGrid=function(tvar){
 
 
 this.CreateMarker=function(tobj){
-	//Marker
 	var richMarkerContent=$('<div/>', {id: 'marker'+tobj.gm_unit});
 	/*
 		Modified by: Rhalf Wendel D. Caacbay
 		Modified on: 20150316
 
-		before: 
-			var arrowImage=$('<img/>', {
-			id: 'arrow'+tobj.gm_unit,
-			src:tobj.img,
-			height:'25px',
-			width:'25px'
-			});	
-		if (tobj.alarmimg!="none"){
-			var AlarmImage=$('<img/>', {
-				id: 'alarm'+tobj.gm_unit,
-				src:tobj.alarmimg,
-				height:'25px',
-				width:'25px'
-			}).css(get_alarmImageStyles());
-		}
+		Note:
+			*Before 
+				var arrowImage=$('<img/>', {
+					id: 'arrow'+tobj.gm_unit,
+					src:tobj.img,
+					height:'35px',
+					width:'35px'
+					});	
+				if (tobj.alarmimg!="none"){
+					var AlarmImage=$('<img/>', {
+						id: 'alarm'+tobj.gm_unit,
+						src:tobj.alarmimg,
+						height:'35px',
+						width:'35px'
+					}).css(get_alarmImageStyles());
+				}	
 	*/
 	var arrowImage=$('<img/>', {
 		id: 'arrow'+tobj.gm_unit,
 		src:tobj.img,
-		height:'25px',
-		width:'25px'
+		height:'20px',
+		width:'20px'
 		});	
 	if (tobj.alarmimg!="none"){
 		var AlarmImage=$('<img/>', {
 			id: 'alarm'+tobj.gm_unit,
 			src:tobj.alarmimg,
-			height:'25px',
-			width:'25px'
+			height:'20px',
+			width:'20px'
 		}).css(get_alarmImageStyles());
 	}	
 	var rotationElement=$('<div/>', {id: 'rotation'+tobj.gm_unit}).css(get_rotationStyles(tobj.gm_deg));
@@ -796,14 +796,15 @@ this.osm_gotoLocation=function(tobj) {
 	var _this=this;
 	
 	if (this.MarkerExists(tobj.gm_unit)==false){
-		var richMarkerContent =this.CreateMarker(tobj);	 
+		var richMarkerContent =this.CreateMarker(tobj);	
 		/*
 			Modified by: Rhalf Wendel D. Caacbay
 			Modified on: 20150316
 
-			before: 
-			var size = new OpenLayers.Size(50,50);
-		*/
+			Note: 
+				*Before
+					var size = new OpenLayers.Size(50,50);
+		*/ 
 		var size = new OpenLayers.Size(25,25);
 		var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
 		var icon = new OpenLayers.Icon(null, size, offset);   
@@ -813,37 +814,37 @@ this.osm_gotoLocation=function(tobj) {
 		var marker=new OpenLayers.Marker(lonlat,icon);	
 		var osmMarker=new RealTimeMarker();
 		osmMarker.Marker=marker;
- 
+		
 		osmMarker.PopupWindow = new OpenLayers.Popup("live"+tobj.gm_unit,
 			lonlat,
 			/*
 				Modified by: Rhalf Wendel D. Caacbay
 				Modified on: 20150316
 
-				before: 
-				new OpenLayers.Size(255,110)
+				Note: 
+					*Before
+						new OpenLayers.Size(255,100)
 			*/
 			new OpenLayers.Size(255,60),
 			ContentInfo,
 			true
 		);
+
 		/*
-			Added by: Rhalf Wendel D. Caacbay
-			Added on: 20150316
+			Modified by: Rhalf Wendel D. Caacbay
+			Modified on: 20150316
+
+			Note:
+				*Added
+					osmMarker.PopupWindow.setBorder("1px solid black");
+					osmMarker.PopupWindow.setOpacity(0.8);
+				*Not Working
+					osmMarker.PopupWindow.autoSize();
 		*/
 		osmMarker.PopupWindow.setBorder("1px solid black");
 		osmMarker.PopupWindow.setOpacity(0.8);
-		/*
-			Note:
-			autoSize() function from Popup class not working!
-			
-			//osmMarker.PopupWindow.autoSize = true;
-			//osmMarker.PopupWindow.minSize = new OpenLayers.Size(200,55);
-			//osmMarker.PopupWindow.maxSize = new OpenLayers.Size(255,110);
-			//osmMarker.PopupWindow.fixPadding();
-			//osmMarker.PopupWindow.updateSize();
 
-		*/	
+
 		osmMarker.PopupWindow.hide();			   
 		osmmaps[tobj.map].addPopup(osmMarker.PopupWindow);	
 		
@@ -852,23 +853,29 @@ this.osm_gotoLocation=function(tobj) {
 				function(){
 					osmMarker.PopupWindow.show()
 				}
-			);	 
-
-			//MessageBox for OSMap
+			);	
 			if($('#vehicles').val()==marker.Unit){
 				$("#info").html(ContentInfo);
 			}
 		}else{
+		marker.events.register("mousedown", marker,
+			function(){
+				osmMarker.PopupWindow.show()
+			}
+		);		
+		/*
+			Modified by: Rhalf Wendel D. Caacbay
+			Modified on: 20150316
+
+			Note:
+				*Added
+					events -> mouseout
+		*/
 		marker.events.register("mouseout", marker,
 			function(){
 				osmMarker.PopupWindow.hide();
 			}
-		);	
-		marker.events.register("mousedown", marker,
-			function(){
-				osmMarker.PopupWindow.show();
-			}
-		);		
+		);
 		}
 		osmmaps[tobj.map].getLayer('Tracking'+tobj.map).addMarker(marker);
 		osmMarker.Unit=tobj.gm_unit;
@@ -1318,3 +1325,138 @@ function setLonLat_osm(marker, lonlat) {
 	 marker.draw(px);
 	}
 };
+
+
+function get_rotationStyles(deg) {
+	/*
+		Modified by: Rhalf Wendel D. Caacbay
+		Modified on: 20150316
+		
+		Note:
+			*Before
+				 if (navigator.appName == 'Microsoft Internet Explorer') {
+			        var styles = {
+			            'display': 'block',
+			            'position': 'relative',
+			            '-ms-transform': 'rotate(' + deg + 'deg)',
+			            '-o-transform': 'rotate(' + deg + 'deg)',
+			            '-moz-transform': 'rotate(' + deg + 'deg)',
+			            '-webkit-transform': 'rotate(' + deg + 'deg)',
+			            'margin-left': '5px',
+			            'margin-top': '24px',
+			            'width': '35px',
+			            'height': '35px'
+			        };
+			    } else {
+			        var styles = {
+			            'display': 'block',
+			            'position': 'relative',
+			            'left': '0px',
+			            'top': '0px',
+			            'width': '35px',
+			            'height': '35px',
+			            '-moz-transform': 'rotate(' + deg + 'deg)',
+			            '-moz-transform-origin': '50% 50%',
+			            '-webkit-transform': 'rotate(' + deg + 'deg)',
+			            '-webkit-transform-origin': '50% 50%'
+			        };
+			    }
+	*/
+    if (navigator.appName == 'Microsoft Internet Explorer') {
+        var styles = {
+            'display': 'block',
+            'position': 'relative',
+            '-ms-transform': 'rotate(' + deg + 'deg)',
+            '-o-transform': 'rotate(' + deg + 'deg)',
+            '-moz-transform': 'rotate(' + deg + 'deg)',
+            '-webkit-transform': 'rotate(' + deg + 'deg)',
+            'margin-left': '5px',
+            'margin-top': '24px',
+            'width': '20px',
+            'height': '20px'
+        };
+    } else {
+        var styles = {
+            'display': 'block',
+            'position': 'relative',
+            'left': '0px',
+            'top': '0px',
+            'width': '20px',
+            'height': '20px',
+            '-moz-transform': 'rotate(' + deg + 'deg)',
+            '-moz-transform-origin': '50% 50%',
+            '-webkit-transform': 'rotate(' + deg + 'deg)',
+            '-webkit-transform-origin': '50% 50%'
+        };
+    }
+    return styles;
+}
+;
+
+function get_alarmImageStyles() {
+    var styles = {
+        'display': 'block',
+        'position': 'absolute',
+        'left': '0px',
+        'top': '10px',
+        'width': '15px',
+        'height': '15px'
+    };
+    return styles;
+}
+;
+
+
+/*
+    Modified by: Rhalf Wendel D. Caacbay
+    Modified on: 20150316
+
+    Note:
+    	*Before
+			function get_captionStyles() {
+			    var styles = {
+			        "white-space": "nowrap",
+			        "border": "0px",
+			        "font-family": "arial",
+			        "font-weight": "bold",
+			        "color": "white",
+			        "background-color": "black",
+			        "padding": "0px",
+			        "left": "0px",
+			        "top": "-5px",
+			        "position": "relative",
+			        "opacity": ".75",
+			        "filter": "alpha(opacity=75)",
+			        "-ms-filter": "alpha(opacity=75)",
+			        "-khtml-opacity": ".75",
+			        "-moz-opacity": ".75"
+			    };
+			    return styles;
+			}
+*/
+
+function get_captionStyles() {
+    var styles = {
+        "font-size" : "10px",
+        "white-space": "nowrap",
+        "border": "3px",
+        "font-family": "calibri",
+        "font-weight": "normal",
+        "color": "white",
+        "background-color": "black",
+        "padding" : "3px",
+        "left": "0px",
+        "top": "-5px",
+        "position": "relative",
+        "opacity": "1.0",
+        "filter": "alpha(opacity=75)",
+        "-ms-filter": "alpha(opacity=75)",
+        "-khtml-opacity": "1.0",
+        "-moz-opacity": "1.0",
+
+        "-webkit-border-radius" : "3px",
+        "-moz-border-radius" : "3px",
+        "border-radius" : "3px",
+    };
+    return styles;
+}

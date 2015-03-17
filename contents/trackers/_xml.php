@@ -5,8 +5,9 @@ header('Content-Type: application/json');
 include_once("../../settings.php");
 include_once("../../scripts.php");
 include("_start.php");
-if (!is_ajax())
+if (!is_ajax()) {
     die;
+}
 
 $page = $_GET['page']; // get the requested page
 $limit = $_GET['rows']; // get how many rows we want to have into the grid

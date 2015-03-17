@@ -2,7 +2,9 @@
 header("Cache-Control: no-cache, must-revalidate");
 include_once ("../settings.php");
 include_once("../scripts.php");
- if (($privilege==4)or($privilege==3)) die;
+if (($privilege == 4) or ($privilege == 3)) {
+    die;
+}
 include(ROOT_DIR."/connect/connect_master_db.php");
 
 $settings=$session->get('settings');

@@ -5,7 +5,6 @@
 </script>
 <?php
 header("Cache-Control: no-cache, must-revalidate");
-
 include_once('../settings.php');
 include(ROOT_DIR . "/libraries/classes/system_boot.php");
 include_once(ROOT_DIR . "/connect/func.php");
@@ -13,12 +12,12 @@ include_once(ROOT_DIR . "/connect/func.php");
 if (!is_form()) {
     die;
 }
-if (!isset($_POST['login'])) {
+if (filter_input(INPUT_POST, 'login') === NULL) {
     die;
 }
 
 $session = system_sessions::getInstance();
-if (isset($_GET['mob'])) {
+if (filter_input(INPUT_GET, 'mob') !== NULL) {
     $mobileVersion = true;
 } else {
     $mobileVersion = false;
@@ -27,7 +26,7 @@ if (isset($_GET['mob'])) {
 
 // cockies
 $useCookies = false;
-if (isset($_POST['rememberme'])) {
+if (filter_input(INPUT_POST, 'rememberme') !== NULL) {
     $cookie = new system_cookies;
     if ($cookie->Exists('tqat') && !$cookie->IsEmpty('tqat')) {
         if (is_array(json_decode($cookie->Get('tqat'), true))) {
@@ -45,8 +44,8 @@ if (isset($_POST['rememberme'])) {
 
 // check language
 if ($useCookies == false) {
-    if (isset($_POST['l_language'])) {
-        $lang = $_POST['l_language'];
+    if (filter_input(INPUT_POST, 'l_language') !== NULL) {
+        $lang = filter_input(INPUT_POST, 'l_language');
     } else {
         $lang = "en";
     }
@@ -89,12 +88,8 @@ include (ROOT_DIR . "/connect/connect_master_db.php");
 
 
 $companydb = $companydata["cmpdbname"];
-try {
 $check = $CompanyConn->query("SELECT `uid`,`uname`,`upass`,`upriv`,`utimezone`,`uactive`,`uexpiredate`,`udbs` FROM " . 'cmp_' . $companydb .
-    ".usrs WHERE uname = '" . $uname . "'");
-}catch(PDOExcemption $cExcemption){
-    echo $cExcemption->getMessage();
-}
+        ".usrs WHERE uname = '" . $uname . "'");
 $CompanyConn = null;
 
 if ($check->rowCount() == 0) {
@@ -139,11 +134,11 @@ if ($check->rowCount() == 0) {
             // cockies
             if (isset($_POST['rememberme'])) {
                 $_array = array(
-                  'u' => $uname,
-                  'p' => $upass,
-                  'c' => $company,
-                  'l' => $lang,
-                  'r' => 1
+                    'u' => $uname,
+                    'p' => $upass,
+                    'c' => $company,
+                    'l' => $lang,
+                    'r' => 1
                 );
                 $cookie->Set('tqat', json_encode($_array));
             }

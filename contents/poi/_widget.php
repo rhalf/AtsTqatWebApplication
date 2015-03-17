@@ -137,7 +137,6 @@ include("_start.php");
     function <?php echo $module ?>newForm() {
         $('#<?php echo $module ?>_add_a').click();
         MarkerPOI._draw('<?php echo $module_add ?>');
-        
     }
     ;
 

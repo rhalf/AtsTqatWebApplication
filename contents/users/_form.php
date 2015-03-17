@@ -5,10 +5,10 @@ include_once("../../scripts.php");
 include("_start.php");
 
 
-if (!$_GET['type']) {
+if (filter_input(INPUT_GET, "type") === NULL) {
     die;
 }
-$type = $_GET['type'];
+$type = filter_input(INPUT_GET, "type");
 
 $UsersResult = $session->get('users');
 
@@ -19,12 +19,19 @@ if ($type == 1) {
 } else if ($type == 2) {
     $code = $module_edit;
     $link = "contents/{$loc}/_cmd.php?type=2";
-    $id = $_GET["id"];
+    if (filter_input(INPUT_GET, "id") === NULL) {
+        die;
+    }
+    $id = filter_input(INPUT_GET, "id");
+    $userRow = array();
     foreach ($UsersResult as $row) {
         if ($id == $row['uid']) {
             $userRow = $row;
             break;
         }
+    }
+    if (empty($userRow)) {
+        die;
     }
     $link.="&id=$id";
     $TrackersResult = $session->get('trackers');
@@ -253,7 +260,7 @@ if ($type == 2) {
     if ($userid == $userRow['uid']) {
         ?>
                     $('.header-info').load("main/main_header_info.php");
-    <?php
+        <?php
     }
 }
 ?>
@@ -324,7 +331,7 @@ if ($type == 2) {
         echo 1;
     } else {
         echo 0;
-    };
+    }
     ?>;
                                             var currPrivilege =<?php echo $privilege ?>;
                                             var ParentPrivilege = data;

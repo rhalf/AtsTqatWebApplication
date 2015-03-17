@@ -19,11 +19,15 @@ if ($type == 1) {
     $link = 'contents/trackers/_cmd.php?type=2';
     $id = $_GET["id"];
     $TrackersResult = $session->get('trackers');
+    $TrackerRow=array();
     foreach ($TrackersResult as $row) {
         if ($row['tunit'] == $id) {
             $TrackerRow = $row;
             break;
         }
+    }
+    if (count($TrackerRow)==0){
+        die;
     }
     $link.="&id=$id";
 }
@@ -44,9 +48,6 @@ $HTTPHostResult = $session->get('httphosts');
                 <?php } ?>
             </ul>
             <div id="<?php echo $code ?>_general_tabs" style="height:250px; direction:<?php echo text_direction ?>">
-              <?php
- echo '<script>alert("_form.php");</script>';
-?>
                 <table width="100%" border="0">
                     <tr>
                         <td width="15%"><?php echo constant($module . 'VehicleReg'); ?></td>
@@ -501,7 +502,9 @@ if ($type == 2) {
     <?php echo $code ?>Dialog.addButton('<?php echo $code ?>close', '<?php echo Close ?>', '<?php echo $code ?>Close', 'close');
 <?php } else if ($type == 2) { ?>
     <?php echo $code ?>Dialog.addButton('<?php echo $code ?>add', '<?php echo Save ?>', '<?php echo $code ?>Save', 'save');
+<?php if($privilege==1){?>
     <?php echo $code ?>Dialog.addButton('<?php echo $code ?>delete', '<?php echo Delete ?>', '<?php echo $code ?>Delete', 'delete');
+<?php }?>
     <?php echo $code ?>Dialog.addButton('<?php echo $code ?>close', '<?php echo Close ?>', '<?php echo $code ?>Close', 'close');
 <?php } ?>
 
@@ -547,4 +550,3 @@ if ($type == 2) {
                     });
 
 </script>
-

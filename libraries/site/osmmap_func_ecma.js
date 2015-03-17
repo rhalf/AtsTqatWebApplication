@@ -60,7 +60,6 @@ function operation_toggleControl(obj,operation){
 	}	
 	else if (obj==1 && operation=='show'){
 			markersLayer.display(true);
-			alert("markersLayer");
 	}
 	else if (obj==1 && operation=='delete'){
 			markersLayer.clearMarkers();

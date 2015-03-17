@@ -4,13 +4,15 @@ header("Cache-Control: no-cache, must-revalidate");
 include_once("../../settings.php");
 include_once("../../scripts.php");
 
-if (!isset($_GET['id']))
+if (filter_input(INPUT_GET, "id") === NULL) {
     die;
-$id = $_GET['id'];
+}
+$id = filter_input(INPUT_GET, "id");
 
-if (!isset($_GET['type']))
+if (filter_input(INPUT_GET, "type") === NULL) {
     die;
-$type = $_GET['type'];
+}
+$type = filter_input(INPUT_GET, "type");
 
 $UsersResult = $session->get('users');
 $parentPri = GetPrivilegeByID($id, $UsersResult);

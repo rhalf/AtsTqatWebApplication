@@ -1,17 +1,30 @@
 <?php
 
 define('ROOT_DIR', dirname(__FILE__));
-//$webroot = 'http://108.163.190.202';
-$webroot = 'http://127.0.0.1/ats_services_gpstrackingsystem';
+
+//$webroot = 'http://t-qat.net';
+$webroot = 'http://127.0.0.1/ats_services_GpsTrackingSystem';
+
+/*
+	Modified by: Rhalf Wendel D Caacbay
+	Modified on: 20150317
+	
+	
+	Note:
+		Prior Version
+			$ApplicationVersion = '6.4.0.0';
+			$WebSiteVersion = '5.1.0.0';
+*/
+
 $ApplicationVersion = '7.0.0.0';
-$WebSiteVersion = '7.0.0.0';
+$WebSiteVersion = '7.0.1.0';
 $engine = 'mysql';
 
-$active_googlemap = false;
-$active_bingmap = false;
-$active_ovimap = false;
-$active_nokiamap = false;
-$active_arcgismap = false;
+$active_googlemap = FALSE;
+$active_bingmap = FALSE;
+$active_ovimap = FALSE;
+$active_nokiamap = FALSE;
+$active_arcgismap = FALSE;
 
 $default_provider = '2';
 

@@ -6,7 +6,7 @@ include("_start.php");
 ?>
 <div class="contents ui-widget-content">
     <div style="float:right">
-        <img src="images/admin/logo.png" height="100px" width="133px"/>
+        <img src="images/admin/logo.png" height="60px" width="80px"/>
     </div>
     <div style="float:left">
         <p><?php echo ABOUTDESC; ?></p>

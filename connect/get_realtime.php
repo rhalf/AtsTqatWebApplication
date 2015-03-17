@@ -6,10 +6,10 @@ header("content-type:text/html");
 //$id=$_GET['id'];  
 //1 File could not be accessed
 //0 Only external files may be accessed
-if (empty($_GET['url'])) {
-    exit('File does not exist');
+if (filter_input(INPUT_GET, "url") === NULL) {
+    die;
 }
-$url = $_GET['url'];
+$url = filter_input(INPUT_GET, "url");
 $http = substr($url, 0, 7);
 if ($http != 'http://') {
     //Possible hacking attempt 

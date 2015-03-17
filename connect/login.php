@@ -1,5 +1,4 @@
 <?php
-
 header("Cache-Control: no-cache, must-revalidate");
 include_once('../libraries/classes/system_boot.php');
 $session = system_sessions::getInstance();

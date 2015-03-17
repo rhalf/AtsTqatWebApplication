@@ -7,10 +7,10 @@ include("_start.php");
 if ($privilege != 1) {
     die;
 }
-if (!$_GET['type']) {
+if (filter_input(INPUT_GET, "type")===NULL) {
     die;
 }
-$type = $_GET['type'];
+$type = filter_input(INPUT_GET, "type");
 
 if ($type == 1) {
     $code = $module_add;
@@ -29,18 +29,18 @@ if ($type == 1) {
     if (!is_form()) {
         die;
     }
-    if (!isset($_GET['id'])) {
+    if (filter_input(INPUT_GET, "id")===NULL) {
         die;
     }
-    $id = $_GET['id'];
+    $id = filter_input(INPUT_GET, "id");
 } else if ($type == 3) {
     if (!is_ajax()) {
         die;
     }
-    if (!isset($_GET['id'])) {
+    if (filter_input(INPUT_GET, "id")===NULL) {
         die;
     }
-    $id = $_GET['id'];
+    $id = filter_input(INPUT_GET, "id");
     foreach ($TrackersResult as $row) {
         if ($row['tunit'] == $id) {
             $trackerRow = $row;
@@ -70,63 +70,63 @@ if ($type == 1 or $type == 2) {
         $tracker_dbname = md5($tracker_date);
 
         $Array = array(
-            '`tcmp`' => $_POST[$code . 'company'],
-            '`tvehiclereg`' => $_POST[$code . 'vehiclereg'],
-            '`tdrivername`' => $_POST[$code . 'drivername'],
-            '`townername`' => $_POST[$code . 'ownername'],
-            '`tvehiclemodel`' => $_POST[$code . 'model'],
-            '`tsimno`' => $_POST[$code . 'simno'],
-            '`tsimsr`' => $_POST[$code . 'simsr'],
-            '`tunit`' => $_POST[$code . 'unit'],
-            '`tprovider`' => $_POST[$code . 'provider'],
-            '`ttype`' => $_POST[$code . 'type'],
-            '`tunitpassword`' => $_POST[$code . 'unitpassword'],
-            '`timg`' => $_POST[$code . 'img'],
-            '`tdbhost`' => $_POST[$code . 'dbhost'],
+            '`tcmp`' => filter_input(INPUT_POST, $code . "company"),
+            '`tvehiclereg`' => filter_input(INPUT_POST,$code . 'vehiclereg'),
+            '`tdrivername`' => filter_input(INPUT_POST,$code . 'drivername'),
+            '`townername`' => filter_input(INPUT_POST,$code . 'ownername'),
+            '`tvehiclemodel`' => filter_input(INPUT_POST,$code . 'model'),
+            '`tsimno`' => filter_input(INPUT_POST,$code . 'simno'),
+            '`tsimsr`' => filter_input(INPUT_POST,$code . 'simsr'),
+            '`tunit`' => filter_input(INPUT_POST,$code . 'unit'),
+            '`tprovider`' => filter_input(INPUT_POST,$code . 'provider'),
+            '`ttype`' => filter_input(INPUT_POST,$code . 'type'),
+            '`tunitpassword`' => filter_input(INPUT_POST,$code . 'unitpassword'),
+            '`timg`' => filter_input(INPUT_POST,$code . 'img'),
+            '`tdbhost`' => filter_input(INPUT_POST,$code . 'dbhost'),
             '`tcreatedate`' => $tracker_date,
             '`tdbs`' => $tracker_dbname,
             '`tusers`' => implode(',', $newUsers),
             '`tcollections`' => json_encode($newCollections),
-            '`thttphost`' => $_POST[$code . 'httphost'],
-            '`tmileageInit`' => $_POST[$code . 'initialmileage'],
+            '`thttphost`' => filter_input(INPUT_POST,$code . 'httphost'),
+            '`tmileageInit`' => filter_input(INPUT_POST,$code . 'initialmileage'),
             '`temails`' => implode(',', $newEmails),
-            '`tspeedlimit`' => $_POST[$code . 'overspeed'],
-            '`tmileagelimit`' => $_POST[$code . 'mileagelimit'],
-            '`tvehicleregexpiry`' => $_POST[$code . 'vehicleregexpiry'],
-            '`tnote`' => $_POST[$code . 'note'],
-            '`ttrackerexpiry`' => $_POST[$code . 'trackerexpiry'],
-            '`tinputs`' => $_POST[$code . 'inputs'],
-            '`tidlingtime`' => $_POST[$code . 'IdlingTime'],
+            '`tspeedlimit`' => filter_input(INPUT_POST,$code . 'overspeed'),
+            '`tmileagelimit`' => filter_input(INPUT_POST,$code . 'mileagelimit'),
+            '`tvehicleregexpiry`' => filter_input(INPUT_POST,$code . 'vehicleregexpiry'),
+            '`tnote`' => filter_input(INPUT_POST,$code . 'note'),
+            '`ttrackerexpiry`' => filter_input(INPUT_POST,$code . 'trackerexpiry'),
+            '`tinputs`' => filter_input(INPUT_POST,$code . 'inputs'),
+            '`tidlingtime`' => filter_input(INPUT_POST,$code . 'IdlingTime'),
             '`tmileagereset`' => '0'
         );
     } else if ($type == 2) {
         include(ROOT_DIR . '/connect/connection.php');
         $Array = array(
-            '`tcmp`' => $_POST[$code . 'company'],
-            '`tvehiclereg`' => $_POST[$code . 'vehiclereg'],
-            '`tdrivername`' => $_POST[$code . 'drivername'],
-            '`townername`' => $_POST[$code . 'ownername'],
-            '`tvehiclemodel`' => $_POST[$code . 'model'],
-            '`tsimno`' => $_POST[$code . 'simno'],
-            '`tsimsr`' => $_POST[$code . 'simsr'],
-            '`tunit`' => $_POST[$code . 'unit'],
-            '`tprovider`' => $_POST[$code . 'provider'],
-            '`ttype`' => $_POST[$code . 'type'],
-            '`tunitpassword`' => $_POST[$code . 'unitpassword'],
-            '`timg`' => $_POST[$code . 'img'],
+            '`tcmp`' => filter_input(INPUT_POST,$code . 'company'),
+            '`tvehiclereg`' => filter_input(INPUT_POST,$code . 'vehiclereg'),
+            '`tdrivername`' => filter_input(INPUT_POST,$code . 'drivername'),
+            '`townername`' => filter_input(INPUT_POST,$code . 'ownername'),
+            '`tvehiclemodel`' => filter_input(INPUT_POST,$code . 'model'),
+            '`tsimno`' => filter_input(INPUT_POST,$code . 'simno'),
+            '`tsimsr`' => filter_input(INPUT_POST,$code . 'simsr'),
+            '`tunit`' => filter_input(INPUT_POST,$code . 'unit'),
+            '`tprovider`' => filter_input(INPUT_POST,$code . 'provider'),
+            '`ttype`' => filter_input(INPUT_POST,$code . 'type'),
+            '`tunitpassword`' => filter_input(INPUT_POST,$code . 'unitpassword'),
+            '`timg`' => filter_input(INPUT_POST,$code . 'img'),
             //'`tusers`'=>implode(',',$newUsers),
             //'`tcollections`'=>json_encode($newCollections),
-            '`tdbhost`' => $_POST[$code . 'dbhost'],
-            '`thttphost`' => $_POST[$code . 'httphost'],
-            '`tmileageInit`' => $_POST[$code . 'initialmileage'],
+            '`tdbhost`' => filter_input(INPUT_POST,$code . 'dbhost'),
+            '`thttphost`' => filter_input(INPUT_POST,$code . 'httphost'),
+            '`tmileageInit`' => filter_input(INPUT_POST,$code . 'initialmileage'),
             //'`temails`'=>implode(',',$newEmails),
-            '`tspeedlimit`' => $_POST[$code . 'overspeed'],
-            '`tmileagelimit`' => $_POST[$code . 'mileagelimit'],
-            '`tvehicleregexpiry`' => $_POST[$code . 'vehicleregexpiry'],
-            '`tnote`' => $_POST[$code . 'note'],
-            '`ttrackerexpiry`' => $_POST[$code . 'trackerexpiry'],
-            '`tinputs`' => $_POST[$code . 'inputs'],
-            '`tidlingtime`' => $_POST[$code . 'IdlingTime']
+            '`tspeedlimit`' =>filter_input(INPUT_POST,$code . 'overspeed'),
+            '`tmileagelimit`' => filter_input(INPUT_POST,$code . 'mileagelimit'),
+            '`tvehicleregexpiry`' => filter_input(INPUT_POST,$code . 'vehicleregexpiry'),
+            '`tnote`' => filter_input(INPUT_POST,$code . 'note'),
+            '`ttrackerexpiry`' => filter_input(INPUT_POST,$code . 'trackerexpiry'),
+            '`tinputs`' => filter_input(INPUT_POST,$code . 'inputs'),
+            '`tidlingtime`' => filter_input(INPUT_POST,$code . 'IdlingTime')
         );
     }
 }
@@ -143,7 +143,7 @@ $Conn->query($sql);
 
 if ($type == 1) {
     foreach ($dbhostResult as $dbhost) {
-        if ($_POST[$code . 'dbhost'] == $dbhost['dbhostid']) {
+        if (filter_input(INPUT_POST,$code . 'dbhost') == $dbhost['dbhostid']) {
             $dbhostRow = $dbhost;
             break;
         }
@@ -188,7 +188,7 @@ include("_sql.php");
 $session->set('alltrackers', $TrackersResult);
 
 if ($type == 1 or $type == 2) {
-    if ($companyDB == $_POST[$code . 'company']) {
+    if ($companyDB == filter_input(INPUT_POST,$code . 'company')) {
         $session->un_set('trackers');
         include(ROOT_DIR . "/contents/trackers/_sql.php");
         $session->set('trackers', $TrackersResult);

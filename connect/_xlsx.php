@@ -2,12 +2,16 @@
 
 error_reporting(E_ALL);
 //ob_start();
-$filename = filter_input(INPUT_REQUEST, 'filename');
+$filename = filter_input(INPUT_POST, 'filename');
 include_once("../settings.php");
 include_once("../scripts.php");
 
-$data = json_decode($_REQUEST['data'], true);
-$excludes = json_decode($_REQUEST['exclude'], true);
+if ((filter_input(INPUT_POST, 'data') === NULL) or (filter_input(INPUT_POST, 'exclude') === NULL)) {
+    die;
+}
+
+$data = json_decode(filter_input(INPUT_POST, 'data'), true);
+$excludes = json_decode(filter_input(INPUT_POST, 'exclude'), true);
 /** PHPExcel */
 require_once (ROOT_DIR . '/libraries/phpexcel/Classes/PHPExcel.php');
 
@@ -17,60 +21,60 @@ $objPHPExcel = new PHPExcel();
 
 // Set properties
 $objPHPExcel->getProperties()->setCreator($filename)->
-    setLastModifiedBy($filename)->setTitle($filename)->
-    setSubject($filename)->setDescription($filename)->
-    setKeywords($filename)->setCategory($filename);
+        setLastModifiedBy($filename)->setTitle($filename)->
+        setSubject($filename)->setDescription($filename)->
+        setKeywords($filename)->setCategory($filename);
 
 $a = array(
-  0 => 'A',
-  1 => 'B',
-  2 => 'C',
-  3 => 'D',
-  4 => 'E',
-  5 => 'F',
-  6 => 'G',
-  7 => 'H',
-  8 => 'I',
-  9 => 'J',
-  10 => 'K',
-  11 => 'L',
-  12 => 'M',
-  13 => 'N',
-  14 => 'O',
-  15 => 'P',
-  16 => 'Q',
-  17 => 'R',
-  18 => 'S',
-  19 => 'T',
-  20 => 'u',
-  21 => 'V',
-  22 => 'W',
-  23 => 'X',
-  24 => 'Y',
-  25 => 'Z',
-  26 => 'AA',
-  27 => 'AB',
-  28 => 'AC',
-  29 => 'AD',
-  30 => 'AE',
-  31 => 'AF',
-  32 => 'AG',
-  33 => 'AH',
-  34 => 'AI',
-  35 => 'AJ'
+    0 => 'A',
+    1 => 'B',
+    2 => 'C',
+    3 => 'D',
+    4 => 'E',
+    5 => 'F',
+    6 => 'G',
+    7 => 'H',
+    8 => 'I',
+    9 => 'J',
+    10 => 'K',
+    11 => 'L',
+    12 => 'M',
+    13 => 'N',
+    14 => 'O',
+    15 => 'P',
+    16 => 'Q',
+    17 => 'R',
+    18 => 'S',
+    19 => 'T',
+    20 => 'u',
+    21 => 'V',
+    22 => 'W',
+    23 => 'X',
+    24 => 'Y',
+    25 => 'Z',
+    26 => 'AA',
+    27 => 'AB',
+    28 => 'AC',
+    29 => 'AD',
+    30 => 'AE',
+    31 => 'AF',
+    32 => 'AG',
+    33 => 'AH',
+    34 => 'AI',
+    35 => 'AJ'
 );
 
 
 $sharedStyle = new PHPExcel_Style();
 
 $sharedStyle->applyFromArray(
-    array('borders' => array(
-        'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-        'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-        'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-        'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
-      )
-    )
+        array('borders' => array(
+                'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+            )
+        )
 );
 
 // set titles
@@ -100,7 +104,7 @@ if (isset($data['rows'])) {
         $c = 0;
         foreach ($data['rows'][$id]['cell'] as $cell) {
             if (!in_array($c + 1, $excludes)) {
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue($a[$n] . $i, $cell);
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue($a[$n] . $i, "=\"".$cell."\"");
                 $objPHPExcel->getActiveSheet()->setSharedStyle($sharedStyle, $a[$n] . $i);
                 $n++;
             }
@@ -127,23 +131,10 @@ header("Pragma: no-cache");
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
 header("Content-Disposition: attachment; filename=\"" . $filename . '.xlsx' . "\";");
-//header("Content-Type: application/octet-stream");
-//header('Content-Transfer-Encoding: binary');
-//header("Content-Type: application/download");
-//header("Content-Type: application/force-download");
-//header('Content-Transfer-Encoding: binary');
-//header('Cache-Control: max-age=0');
-//header("Content-Type: application/force-download");
-//header("Content-Type: application/octet-stream");
-//header("Content-Type: application/download");
+
 // Save Excel 2007 file
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-//ob_end_clean();
-//$objWriter->setOffice2003Compatibility(true);
-//ob_end_clean();
 $objWriter->save('php://output');
-//$objWriter->save(ROOT_DIR.'/iupload/'.$filename.'.xlsx');
-//exit;
 $objPHPExcel->disconnectWorksheets();
 unset($objPHPExcel);
 ?>

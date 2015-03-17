@@ -4,11 +4,11 @@ include_once("../../settings.php");
 include_once("../../scripts.php");
 include("_start.php");
 
-if (!$_GET['type']) {
+if (filter_input(INPUT_GET, "type") === NULL) {
     die;
 }
-$type = $_GET['type'];
-;
+$type = filter_input(INPUT_GET, "type");
+
 
 if ($type == 1) {
     $code = $module_add;
@@ -20,10 +20,14 @@ if ($type == 1) {
     if (!is_form()) {
         die;
     }
-    if (!isset($_POST[$code . 'tz'])) {
+    if (filter_input(INPUT_POST, $code ."tz") === NULL) {
         die;
     }
-    if ($privilege >= $_POST[$code . 'privilege']) {
+
+    if (filter_input(INPUT_POST, $code ."privilege") === NULL) {
+        die;
+    }
+    if ($privilege >= filter_input(INPUT_POST, $code ."privilege")) {
         die;
     }
 } else if ($type == 2) {
@@ -72,16 +76,16 @@ if ($type == 1) {
     $aupass = $_POST[$code . 'password'];
     $auemail = $_POST[$code . 'email'];
     $Array = array(
-      '`uname`' => $auname,
-      '`upass`' => md5($aupass),
-      '`uemail`' => $auemail,
-      '`umain`' => $_POST[$code . 'parent'],
-      '`upriv`' => $_POST[$code . 'privilege'],
-      '`utimezone`' => $_POST[$code . 'tz'],
-      '`uexpiredate`' => $_POST[$code . 'expiredate'],
-      '`uactive`' => $_POST[$code . 'active'],
-      '`ucreatedate`' => $user_date,
-      '`udbs`' => $user_dbname
+        '`uname`' => $auname,
+        '`upass`' => md5($aupass),
+        '`uemail`' => $auemail,
+        '`umain`' => $_POST[$code . 'parent'],
+        '`upriv`' => $_POST[$code . 'privilege'],
+        '`utimezone`' => $_POST[$code . 'tz'],
+        '`uexpiredate`' => $_POST[$code . 'expiredate'],
+        '`uactive`' => $_POST[$code . 'active'],
+        '`ucreatedate`' => $user_date,
+        '`udbs`' => $user_dbname
     );
     $sql = build_insert('`usrs`', $Array);
 } else if ($type == 2) {
@@ -102,22 +106,22 @@ if ($type == 1) {
 
     if (!isset($_POST[$code . "privilege"])) {
         $Array = array(
-          '`uname`' => $_POST[$code . 'username'],
-          '`upass`' => $passwd,
-          '`uemail`' => $_POST[$code . 'email'],
-          '`umain`' => $_POST[$code . 'parent'],
-          '`utimezone`' => $_POST[$code . 'tz']
+            '`uname`' => $_POST[$code . 'username'],
+            '`upass`' => $passwd,
+            '`uemail`' => $_POST[$code . 'email'],
+            '`umain`' => $_POST[$code . 'parent'],
+            '`utimezone`' => $_POST[$code . 'tz']
         );
     } else {
         $Array = array(
-          '`uname`' => $_POST[$code . 'username'],
-          '`upass`' => $passwd,
-          '`uemail`' => $_POST[$code . 'email'],
-          '`umain`' => $_POST[$code . 'parent'],
-          '`upriv`' => $_POST[$code . 'privilege'],
-          '`utimezone`' => $_POST[$code . 'tz'],
-          '`uexpiredate`' => $_POST[$code . 'expiredate'],
-          '`uactive`' => $_POST[$code . 'active']
+            '`uname`' => $_POST[$code . 'username'],
+            '`upass`' => $passwd,
+            '`uemail`' => $_POST[$code . 'email'],
+            '`umain`' => $_POST[$code . 'parent'],
+            '`upriv`' => $_POST[$code . 'privilege'],
+            '`utimezone`' => $_POST[$code . 'tz'],
+            '`uexpiredate`' => $_POST[$code . 'expiredate'],
+            '`uactive`' => $_POST[$code . 'active']
         );
     }
     $sql = build_update('`usrs`', $Array, "`uid`='$id'");
@@ -130,7 +134,7 @@ $statment = $CompanyConn->query($sql);
 
 if ($type == 1) {
     $Collsql = "CREATE TABLE IF NOT EXISTS `coll_" . $user_dbname .
-        "` (";
+            "` (";
     $Collsql .= "  `collid` int(11) NOT NULL AUTO_INCREMENT,";
     $Collsql .= "  `collname` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,";
     $Collsql .= "  `colldesc` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,";
@@ -141,24 +145,24 @@ if ($type == 1) {
     $statment = $CompanyConn->query($Collsql);
 
     $sql_createpoi = 'CREATE TABLE IF NOT EXISTS `poi_' . $user_dbname . '` (' .
-        '`poi_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,' .
-        ' `poi_lat` VARCHAR( 20)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  ,' .
-        ' `poi_lon` VARCHAR( 20)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  ,' .
-        ' `poi_name` VARCHAR( 50)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  ,' .
-        ' `poi_desc` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  ,' .
-        ' `poi_img` VARCHAR( 11)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  ,' .
-        'UNIQUE KEY `poi_name` (`poi_name`),' .
-        ' KEY `poi_lat` (`poi_lat`),' .
-        ' KEY `poi_lon` (`poi_lon`)' .
-        ') ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;';
+            '`poi_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,' .
+            ' `poi_lat` VARCHAR( 20)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  ,' .
+            ' `poi_lon` VARCHAR( 20)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  ,' .
+            ' `poi_name` VARCHAR( 50)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  ,' .
+            ' `poi_desc` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  ,' .
+            ' `poi_img` VARCHAR( 11)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL  ,' .
+            'UNIQUE KEY `poi_name` (`poi_name`),' .
+            ' KEY `poi_lat` (`poi_lat`),' .
+            ' KEY `poi_lon` (`poi_lon`)' .
+            ') ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;';
 
     $statment = $CompanyConn->query($sql_createpoi);
 
     $sql_createlog = 'CREATE TABLE IF NOT EXISTS `log_' . $user_dbname . '` (' .
-        '`log_id` TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,' .
-        '`log_data` VARCHAR( 100)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,' .
-        '`log_date` VARCHAR( 25)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,' .
-        'INDEX (`log_data` ,`log_date`) ' . ') ENGINE=InnoDB ;';
+            '`log_id` TINYINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,' .
+            '`log_data` VARCHAR( 100)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,' .
+            '`log_date` VARCHAR( 25)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,' .
+            'INDEX (`log_data` ,`log_date`) ' . ') ENGINE=InnoDB ;';
 
     $statment = $CompanyConn->query($sql_createlog);
 } else if ($type == 2) {
@@ -175,8 +179,8 @@ if ($type == 1) {
             }
             $cmpConn = new PDO("$engine:host=$dbhostRow[dbhostip];dbname=cmp_$cmp[cmpdbname]", "$dbhostRow[dbhostuser]", "$dbhostRow[dbhostpassword]", array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $Array = array(
-              '`uname`' => $_POST[$code . 'username'],
-              '`upass`' => $passwd
+                '`uname`' => $_POST[$code . 'username'],
+                '`upass`' => $passwd
             );
             $sql = build_update('`usrs`', $Array, "`uid`='$userid' and `upriv`='$privilege'");
             $cmpConn->query($sql);

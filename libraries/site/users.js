@@ -49,8 +49,6 @@ function TrackerObject() {
     this.Http;
     this.TrackerExpiry;
     this.VehicleregExpiry;
-
- 
 }
 ;
 
@@ -233,7 +231,6 @@ function fixSearch(mod) {
 
 
 fixPositionsOfFrozenDivs = function() {
-    
     var $rows;
     if (this.grid.fbDiv !== undefined) {
         $rows = $('>div>table.ui-jqgrid-btable>tbody>tr', this.grid.bDiv);
@@ -332,7 +329,6 @@ function CheckUserOnline() {
 
 // Status Message	
 function ShowMessage(value) {
-
     if (value != '') {
         var o = {
             name: 'message',
@@ -511,117 +507,3 @@ function LoadMore(id, count) {
 ;
 
 
-function get_rotationStyles(deg) {
-    if (navigator.appName == 'Microsoft Internet Explorer') {
-        /*
-            Modified by: Rhalf Wendel D. Caacbay
-            Modified on: 20150316
-
-            before: 
-            'width': '25px',
-            'height': '25px'
-        */
-        var styles = {
-            'display': 'block',
-            'position': 'relative',
-            '-ms-transform': 'rotate(' + deg + 'deg)',
-            '-o-transform': 'rotate(' + deg + 'deg)',
-            '-moz-transform': 'rotate(' + deg + 'deg)',
-            '-webkit-transform': 'rotate(' + deg + 'deg)',
-            'margin-left': '5px',
-            'margin-top': '24px',
-            'width': '15px',
-            'height': '15px'
-        };
-    } else {
-        /*
-            Modified by: Rhalf Wendel D. Caacbay
-            Modified on: 20150316
-
-            before: 
-            'width': '25px',
-            'height': '25px'
-        */
-        var styles = {
-            'display': 'block',
-            'position': 'relative',
-            'left': '0px',
-            'top': '0px',
-            'width': '15px',
-            'height': '15px',
-            '-moz-transform': 'rotate(' + deg + 'deg)',
-            '-moz-transform-origin': '50% 50%',
-            '-webkit-transform': 'rotate(' + deg + 'deg)',
-            '-webkit-transform-origin': '50% 50%'
-        };
-    }
-    return styles;
-}
-;
-
-function get_alarmImageStyles() {
-    var styles = {
-        'display': 'block',
-        'position': 'absolute',
-        'left': '0px',
-        'top': '10px',
-        'width': '15px',
-        'height': '15px'
-    };
-    return styles;
-}
-;
-
-
-/*
-    Modified by: Rhalf Wendel D. Caacbay
-    Modified on: 20150316
-
-    before: 
-    function get_captionStyles() {
-        var styles = {
-            "white-space": "nowrap",
-            "border": "0px",
-            "font-family": "arial",
-            "font-weight": "bold",
-            "color": "white",
-            "background-color": "black",
-            "padding": "0px",
-            "left": "0px",
-            "top": "-5px",
-            "position": "relative",
-            "opacity": ".75",
-            "filter": "alpha(opacity=75)",
-            "-ms-filter": "alpha(opacity=75)",
-            "-khtml-opacity": ".75",
-            "-moz-opacity": ".75"
-        };
-        return styles;
-    }
-*/
-function get_captionStyles() {
-    var styles = {
-        "font-size" : "11px",
-        "white-space": "nowrap",
-        "border": "3px",
-        "font-family": "calibri",
-        "font-weight": "normal",
-        "color": "white",
-        "background-color": "black",
-        "padding-left": "3px",
-        "padding-right": "3px",
-        "left": "0px",
-        "top": "-5px",
-        "position": "relative",
-        "opacity": "1.0",
-        "filter": "alpha(opacity=75)",
-        "-ms-filter": "alpha(opacity=75)",
-        "-khtml-opacity": "1.0",
-        "-moz-opacity": "1.0",
-
-        "-webkit-border-radius" : "3px",
-        "-moz-border-radius" : "3px",
-        "border-radius" : "3px",
-    };
-    return styles;
-}

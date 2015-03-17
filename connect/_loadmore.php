@@ -2,6 +2,17 @@
 include_once("../settings.php");
 include_once("../scripts.php");
 
+if (filter_input(INPUT_GET, 'id') === NULL) {
+    die;
+}
+
+if (filter_input(INPUT_GET, 'count') === NULL) {
+    die;
+}
+
+$id = filter_input(INPUT_GET, 'id');
+$count = filter_input(INPUT_GET, 'count');
+
 $settings = $session->get('settings');
 
 $grouping = get_setting('grouping_' . $userid, $settings);
@@ -14,8 +25,6 @@ if ($grouping == '') {
     }
 }
 
-$id = $_GET['id'];
-$count = $_GET['count'];
 $limit = 20;
 
 $CollectionsResult = $session->get('colls');
@@ -29,6 +38,7 @@ if ($privilege == 1) {
     $alltrksResult = $session->get('alltrackers');
 }
 
+$trksArray=array();
 if ($grouping == 0) {
     foreach ($cmpsResult as $cmp) {
         if ($cmp['cmpid'] == $id) {
@@ -44,6 +54,12 @@ if ($grouping == 0) {
         }
     }
 }
+
+if (count($trksArray)==0){
+    die;
+}
+
+
 /**
  * 
  */

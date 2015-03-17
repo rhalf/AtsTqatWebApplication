@@ -145,15 +145,15 @@ function AddSection($sectionName, $sectionid, $count, $countLabel, $group, $priv
     $result.= "    <tr width='100%'>";
     $result.= "      <td align='left' style='padding:0;margin:0' width='75%'>";
     if ($privilege == 1) {
-        $result.= "<button style=\"float:right\" class=\"abutton loadmore load{$sectionid}\" type=\"button\" value=\"0\" ";
+        $result.= "<button style='float:right' class='abutton loadmore load{$sectionid}' type='button' value='0' ";
         if ($count == 0) {
-            $result.= "disabled=\"disabled\"";
+            $result.= "disabled='disabled'";
         }
         $result.=">Load More</button>";
     }
 
 
-    $result.= "<span class=\"ui-icon ui-icon-wrench\"  style=\"float:left\"></span>";
+    $result.= "<span class='ui-icon ui-icon-wrench'  style='float:left'></span>";
     $result.= "<div class='ui-widget-content section-popup' style='position:fixed;border-radius:5px'>";
     $result.= "<ul style='width:200px;padding-left:5px'>";
     $result.= "  <li style='background:none'>";
@@ -177,23 +177,23 @@ function AddSection($sectionName, $sectionid, $count, $countLabel, $group, $priv
 
 
 
-    $result.= "<input id=\"umap{$sectionid}\" type=\"hidden\" value=\"0\" />";
+    $result.= "<input id='umap{$sectionid}' type='hidden' value='0' />";
     $result.= "</td>";
     $result.= "      <td align='right' width='65px'><div>";
-    $result.= "          <div  style=\"height:26px\">";
-    $result.= "            <button style=\"height:26px;width:35px;vertical-align:top\" class=\"checktoggle\"><span id=\"topcheck{$sectionid}\" class=\"ui-icon ui-icon-minus\"></span></button>";
+    $result.= "          <div  style='height:26px'>";
+    $result.= "            <button style='height:26px;width:35px;vertical-align:top' class='checktoggle'><span id='topcheck{$sectionid}' class='ui-icon ui-icon-minus'></span></button>";
     $result.= "            <button style=\"height:26px;width:25px;vertical-align:top\" class=\"select\"></button>";
     $result.= "          </div>";
-    $result.= "          <ul style=\"text-align:center\">";
-    $result.= "            <li class=\"ui-widget-content\" style=\"border:none\" onclick=\"$('javascript:void(0)topcheck{$sectionid}').attr('class','ui-icon ui-icon-check');SearchSectionCheck(true,'result$sectionid');\"><a class='checkall' href=\"javascript:void(0)\"></a></li>";
-    $result.= "            <li class=\"ui-widget-content\" style=\"border:none\" onclick=\"$('javascript:void(0)topcheck{$sectionid}').attr('class','ui-icon ui-icon-minus');SearchSectionCheck(false,'result$sectionid');\"><a class='uncheckall' href=\"javascript:void(0)\"></a></li>";
-    $result.= "            <li class=\"ui-widget-content\" style=\"border:none\" onclick=\"$('javascript:void(0)topcheck{$sectionid}').attr('class','ui-icon ui-icon-transferthick-e-w');SearchSectionCheck(-1,'result$sectionid');\"><a class='checkinvert' href=\"javascript:void(0)\"></a></li>";
+    $result.= "          <ul style='text-align:center'>";
+    $result.= "            <li class='ui-widget-content' style='border:none' onclick=\"$('javascript:void(0)topcheck{$sectionid}').attr('class','ui-icon ui-icon-check');SearchSectionCheck(true,'result$sectionid');\"><a class='checkall' href='javascript:void(0)'></a></li>";
+    $result.= "            <li class='ui-widget-content' style='border:none' onclick=\"$('javascript:void(0)topcheck{$sectionid}').attr('class','ui-icon ui-icon-minus');SearchSectionCheck(false,'result$sectionid');\"><a class='uncheckall' href='javascript:void(0)'></a></li>";
+    $result.= "            <li class='ui-widget-content' style='border:none' onclick=\"$('javascript:void(0)topcheck{$sectionid}').attr('class','ui-icon ui-icon-transferthick-e-w');SearchSectionCheck(-1,'result$sectionid');\"><a class='checkinvert' href='javascript:void(0)'></a></li>";
     $result.= "          </ul>";
     $result.= "        </div></td>";
     $result.= "    </tr>";
     $result.= "  </table>";
     $result.= "</div>";
-    $result.= "  <div id=\"result$sectionid\" style=\"width:100%;height:100%\">";
+    $result.= "  <div id='result$sectionid' style='width:100%;height:100%'>";
     return $result;
 }
 
@@ -228,7 +228,7 @@ function get_subUsers(array $array, $uid) {
         if ($item['umain'] == $uid && $item['uid'] != $uid) {
             $ResultArray[] = $item;
         } else {
-            if ($uid == GetParentID($item['umain'], $array) && $item['uid'] != $uid) {
+            if (($uid == GetParentID($item['umain'], $array)) && ($item['uid'] != $uid)) {
                 $ResultArray[] = $item;
             } else if ($uid == GetParentID(GetParentID($item['umain'], $array), $array) && $item['uid'] != $uid) {
                 $ResultArray[] = $item;
@@ -357,7 +357,6 @@ function GetParentID($id, array $array) {
     foreach ($array as $row) {
         if ($row['uid'] == $id) {
             return $row['umain'];
-            break;
         }
     }
 }
@@ -373,7 +372,6 @@ function HasUser($id, array $array) {
     foreach ($array as $row) {
         if ($row['umain'] == $id) {
             return true;
-            break;
         }
     }
     return $check;
@@ -390,7 +388,6 @@ function HasTracker($userid, array $trkarray) {
     foreach ($trkarray as $item) {
         if (in_array($userid, explode(',', $item['tusers']))) {
             return true;
-            break;
         }
     }
     return $check;
@@ -407,7 +404,6 @@ function cmpHasTracker($cmpdb, $trkarray) {
     foreach ($trkarray as $item) {
         if ($cmpdb == $item['tcmp']) {
             return true;
-            break;
         }
     }
     return $check;
@@ -517,12 +513,12 @@ function loadlib($path, $array) {
  */
 function is_ajax() {
     return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND
-        strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
 }
 
 function is_form() {
     return (
-        strtolower($_SERVER['CONTENT_TYPE']) === 'application/x-www-form-urlencoded' || strtolower($_SERVER['CONTENT_TYPE']) === 'application/x-www-form-urlencoded; charset=utf-8');
+            strtolower($_SERVER['CONTENT_TYPE']) === 'application/x-www-form-urlencoded' || strtolower($_SERVER['CONTENT_TYPE']) === 'application/x-www-form-urlencoded; charset=utf-8');
 }
 
 /**
@@ -538,11 +534,11 @@ function sanitize($string, $force_lowercase = true, $anal = false) {
     $clean = preg_replace('/\s+/', "-", $clean);
     $clean = ($anal) ? preg_replace("/[^a-zA-Z0-9]/", "", $clean) : $clean;
     return
-        ($force_lowercase) ?
-        (function_exists('mb_strtolower')) ?
-            mb_strtolower($clean, 'UTF-8') :
-            strtolower($clean)  :
-        $clean;
+            ($force_lowercase) ?
+            (function_exists('mb_strtolower')) ?
+                    mb_strtolower($clean, 'UTF-8') :
+                    strtolower($clean)  :
+            $clean;
 }
 
 /**

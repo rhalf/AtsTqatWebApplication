@@ -6,6 +6,15 @@ include_once("../../settings.php");
 include_once("../../scripts.php");
 include("_start.php");
 
+
+
+if ((filter_input(INPUT_GET, 'uin') === NULL) or (filter_input(INPUT_GET, 'exclude') === NULL)) {
+    die;
+}
+
+$uin = filter_input(INPUT_GET, 'uin');
+$exclude = filter_input(INPUT_GET, 'exclude');
+
 $settings = $session->get('settings');
 
 $grouping = get_setting('grouping_' . $userid, $settings);
@@ -21,23 +30,27 @@ if ($privilege == 1) {
 }
 $DBHostResult = $session->get('dbhosts');
 
-$uin = $_GET["uin"];
-$exclude = $_GET["exclude"];
 
+$TrackerRow = array();
 foreach ($TrackersResult as $row) {
     if ($uin == $row['tunit']) {
         $TrackerRow = $row;
         break;
     }
 }
-
+if (empty($TrackerRow)) {
+    die;
+}
+$DBHostRow = array();
 foreach ($DBHostResult as $row) {
     if ($row['dbhostid'] == $TrackerRow['tdbhost']) {
         $DBHostRow = $row;
         break;
     }
 }
-
+if (empty($DBHostRow)) {
+    die;
+}
 
 $type = $TrackerRow["ttype"];
 
@@ -60,7 +73,7 @@ $GPSsql = "select
 	`gm_data` ,
 	`gm_mileage`
 	from `gps_" .
-    $trackerDatabase . "`
+        $trackerDatabase . "`
 where `gm_time` BETWEEN  '" . $fdate . "' and '" . $tdate . "'
 	 order by gm_time asc ";
 
@@ -135,19 +148,30 @@ while ($GPSRow = $GPSStatment->fetch(PDO::FETCH_ASSOC)) {
         } else {
             $exc = false;
         }
+    }else if ($type == '10') {
+        if ($exclude == '1') {
+            $checkArray = explode(',', $GPSRow['gm_data']);
+            if ((float) $GPSRow['gm_lat'] == 0 || (float) $GPSRow['gm_lng'] == 0) {
+                $exc = true;
+            } else {
+                $exc = false;
+            }
+        } else {
+            $exc = false;
+        }
     }
     if ($exc == false) {
         $responce->rows[$i]['cell'] = array(
-          "tdrivername:'" . $TrackerRow['tdrivername'] . "' , " .
-          "tvehiclereg:'" . $TrackerRow['tvehiclereg'] . "' , " .
-          "gm_time:'" . $GPSRow['gm_time'] . "' , " .
-          "gm_lat:'" . $GPSRow['gm_lat'] . "' , " .
-          "gm_lng:'" . $GPSRow['gm_lng'] . "' , " .
-          "gm_address:'' , " .
-          "gm_speed:'" . $GPSRow['gm_speed'] . "' , " .
-          "gm_ori:'" . $GPSRow['gm_ori'] . "' , " .
-          "gm_mileage:'" . $GPSRow['gm_mileage'] . "' , " .
-          "gm_data:'" . $GPSRow['gm_data'] . "'  "
+            "tdrivername:'" . $TrackerRow['tdrivername'] . "' , " .
+            "tvehiclereg:'" . $TrackerRow['tvehiclereg'] . "' , " .
+            "gm_time:'" . $GPSRow['gm_time'] . "' , " .
+            "gm_lat:'" . $GPSRow['gm_lat'] . "' , " .
+            "gm_lng:'" . $GPSRow['gm_lng'] . "' , " .
+            "gm_address:'' , " .
+            "gm_speed:'" . $GPSRow['gm_speed'] . "' , " .
+            "gm_ori:'" . $GPSRow['gm_ori'] . "' , " .
+            "gm_mileage:'" . $GPSRow['gm_mileage'] . "' , " .
+            "gm_data:'" . $GPSRow['gm_data'] . "'  "
         );
     }
     $i++;

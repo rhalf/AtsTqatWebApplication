@@ -31,8 +31,9 @@ if ($privilege == 1) {
     Http.Clear();
 <?php foreach ($HTTPHostsResult as $row) { ?>
         Http.add('<?php echo $row['httphostid'] ?>', '<?php echo $row['httphostname'] ?>', '<?php echo $row['httphostip'] ?>', '<?php echo $row['httpport'] ?>', '<?php echo $row['cmdport'] ?>');
-    </script>
-<?php } ?>
+ <?php } ?>   
+</script>
+
 <script type="text/javascript">
     $('#searchbox').keyup(function() {
         search_trackers();
@@ -337,6 +338,5 @@ if ($privilege == 1) {
     $('.context').bind('click', function(e) {
         var id = $(this).attr('class').split(' ')[1].split('context')[1];
         $('.tpopup' + id).html(geturl('connect/_tracker_popup.php?id=' + id));
-        alert("================================hello=======================================");
     });
 </script>

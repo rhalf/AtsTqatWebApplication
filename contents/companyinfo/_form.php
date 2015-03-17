@@ -61,27 +61,31 @@ $code = $module;
                         <input name="ci_displayname" type="text"  id="ci_displayname"style="width:90%" title="Required, Min chars is 4, Max chars is 50"  value="<?php
                         echo $CompanyInfoStatmentRow['cmpdisplayname'];
                         ?>" maxlength="50" class="inputstyle" />
-                        <span class="textfieldRequiredMsg"></span></span></td>
+              <span class="textfieldRequiredMsg"></span></span></td>
             </tr>
             <tr>
                 <td width="93" height="34"><label for="ci_email"><?php echo constant($module . 'Email') ?></label></td>
                 <td width="260"><span id="spryci_email">
-                        <input type="text" name="ci_email" id="ci_email" style="width:90%" value="<?php
+                <input type="text" name="ci_email" id="ci_email" style="width:90%" value="<?php
                                echo $CompanyInfoStatmentRow['cmpemail'];
                         ?>" title="Min chars is 5, Max chars is 50, E-mail format" class="inputstyle" />
-                        <span class="textfieldRequiredMsg"></span><span class="textfieldInvalidFormatMsg"></span></span></td>
+              <span class="textfieldInvalidFormatMsg"></span><span class="textfieldRequiredMsg"></span></span></td>
             </tr>
             <tr>
                 <td width="93" height="34"><label for="ci_phoneno"><?php echo constant($module . 'PhoneNo') ?></label></td>
-                <td width="260"><input type="text" name="ci_phoneno" id="ci_phoneno" style="width:90%" value="<?php
+                <td width="260"><span id="spryci_phoneno">
+                <input type="text" name="ci_phoneno" id="ci_phoneno" style="width:90%" value="<?php
                                echo $CompanyInfoStatmentRow['cmpphoneno'];
-                               ?>" title="Min chars is 5, Max chars is 50, E-mail format" class="inputstyle"></td>
+                               ?>" title="Max chars is 50" class="inputstyle" />
+              <span class="textfieldInvalidFormatMsg"></span><span class="textfieldMaxCharsMsg"></span></span></td>
             </tr>
             <tr>
                 <td width="93" height="34"><label for="ci_mobileno"><?php echo constant($module . 'MobileNo') ?></label></td>
-                <td width="260"><input type="text" name="ci_mobileno" id="ci_mobileno" style="width:90%" value="<?php
+                <td width="260"><span id="spryci_mobileno">
+                <input type="text" name="ci_mobileno" id="ci_mobileno" style="width:90%" value="<?php
                     echo $CompanyInfoStatmentRow['cmpmobileno'];
-                    ?>" title="Min chars is 5, Max chars is 50, E-mail format" class="inputstyle"></td>
+                    ?>" title="Max chars is 50" class="inputstyle" />
+              <span class="textfieldInvalidFormatMsg"></span><span class="textfieldMaxCharsMsg"></span></span></td>
             </tr>
             <tr>
                 <td width="93" height="34"><label for="ci_address"><?php echo constant($module . 'Address') ?></label></td>
@@ -94,7 +98,9 @@ $code = $module;
     </form>
 </div>
 <script type="text/javascript">
-    var spryci_name = new Spry.Widget.ValidationTextField("spryci_name");
-    var spryci_displayname = new Spry.Widget.ValidationTextField("spryci_displayname");
+var spryci_name = new Spry.Widget.ValidationTextField("spryci_name");
+    var spryci_displayname = new Spry.Widget.ValidationTextField("spryci_displayname", "none");
     var spryci_email = new Spry.Widget.ValidationTextField("spryci_email", "email");
+var spryci_phoneno = new Spry.Widget.ValidationTextField("spryci_phoneno", "integer", {isRequired:false, maxChars:50});
+var spryci_mobileno = new Spry.Widget.ValidationTextField("spryci_mobileno", "integer", {isRequired:false, maxChars:50});
 </script>

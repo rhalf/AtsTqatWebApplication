@@ -10,21 +10,30 @@ if (!is_ajax()) {
     die;
 }
 
-$UsersResult = $session->get('users');
-
-
-$page = $_GET['page']; // get the requested page
-$limit = $_GET['rows']; // get how many rows we want to have into the grid
-$sidx = $_GET['sidx']; // get index row - i.e. user click to sort
-$sord = $_GET['sord']; // get the direction
-if (!$sidx) {
-    $sidx = 1;
+if ((filter_input(INPUT_GET, 'page') === NULL ) or
+        (filter_input(INPUT_GET, 'rows') === NULL ) or
+        (filter_input(INPUT_GET, 'sord') === NULL )) {
+    die;
 }
 
-$totalrows = isset($_GET['totalrows']) ? $_GET['totalrows'] : false;
+
+$page = filter_input(INPUT_GET, 'page'); // get the requested page
+$limit = filter_input(INPUT_GET, 'rows'); // get how many rows we want to have into the grid
+
+$sord = filter_input(INPUT_GET, 'sord'); // get the direction
+if (filter_input(INPUT_GET, 'sidx') === NULL) {
+    $sidx = 1;
+} else {
+    $sidx = filter_input(INPUT_GET, 'sidx'); // get index row - i.e. user click to sort  
+}
+
+$totalrows = filter_input(INPUT_GET, 'totalrows') !== NULL ? filter_input(INPUT_GET, 'totalrows') : false;
 if ($totalrows) {
     $limit = $totalrows;
 }
+
+
+$UsersResult = $session->get('users');
 $usersArray = get_allUsers($UsersResult, $userid, $privilege);
 $count = count($usersArray);
 

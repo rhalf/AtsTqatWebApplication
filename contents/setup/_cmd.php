@@ -113,6 +113,25 @@ if (!$stmt) {
     print_r($install_conn->errorInfo());
 }
 
+/* protocols */
+$protocols_sql = "CREATE TABLE IF NOT EXISTS `{$prefix}{$databasename}`.`protocols` (
+  `pid` int(11) NOT NULL AUTO_INCREMENT,
+  `pmodel` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `pport` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `pconnection` smallint(6) NOT NULL,
+  `pdesc` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`pid`),
+  UNIQUE KEY `pmodel_UNIQUE` (`pmodel`),
+  UNIQUE KEY `pport_UNIQUE` (`pport`),
+  KEY `pmodel` (`pmodel`),
+  KEY `pport` (`pport`),
+  KEY `pconnection` (`pconnection`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+$stmt = $install_conn->query($protocols_sql);
+if (!$stmt) {
+    print_r($install_conn->errorInfo());
+}
+
 /* trks */
 $trks_sql = "CREATE TABLE IF NOT EXISTS `{$prefix}{$databasename}`.`trks` (
 `tid` int(11) NOT NULL AUTO_INCREMENT,
@@ -221,17 +240,17 @@ $install_conn->query($sql);
 
 
 $Array = array(
-  '`cmpname`' => $companyname,
-  '`cmpdisplayname`' => $companyname,
-  '`cmphost`' => '1',
-  '`cmpemail`' => '',
-  '`cmpphoneno`' => '',
-  '`cmpmobileno`' => '',
-  '`cmpaddress`' => '',
-  '`cmpexpiredate`' => '',
-  '`cmpcreatedate`' => $cmp_date,
-  '`cmpactive`' => '1',
-  '`cmpdbname`' => $cmp_dbname,
+    '`cmpname`' => $companyname,
+    '`cmpdisplayname`' => $companyname,
+    '`cmphost`' => '1',
+    '`cmpemail`' => '',
+    '`cmpphoneno`' => '',
+    '`cmpmobileno`' => '',
+    '`cmpaddress`' => '',
+    '`cmpexpiredate`' => '',
+    '`cmpcreatedate`' => $cmp_date,
+    '`cmpactive`' => '1',
+    '`cmpdbname`' => $cmp_dbname,
 );
 
 $sql = build_insert('`cmps`', $Array);
@@ -239,11 +258,11 @@ $install_conn->query($sql);
 
 
 $CompanyConn = new PDO("$engine:host=$ipaddress", "$hostuser", "$hostpassword", array(PDO::MYSQL_ATTR_INIT_COMMAND =>
-  "SET NAMES utf8"));
+    "SET NAMES utf8"));
 
 
 $createdatabasesql = "CREATE DATABASE `" . 'cmp_' . $cmp_dbname .
-    "` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
+        "` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
 
 $CompanyConn->query($createdatabasesql);
 
@@ -252,7 +271,7 @@ $user_date = date('d/m/Y H:i:s', time());
 $user_dbname = md5($user_date);
 
 $sql = "CREATE TABLE IF NOT EXISTS " . '`cmp_' . $cmp_dbname . "`.`poi_" . $user_dbname .
-    "` (";
+        "` (";
 $sql .= "  `poi_id` int(11) NOT NULL AUTO_INCREMENT,";
 $sql .= "  `poi_lat` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,";
 $sql .= "  `poi_lon` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,";
@@ -273,7 +292,7 @@ $CompanyConn->query($sql);
 
 
 $sql = "CREATE TABLE IF NOT EXISTS " . '`cmp_' . $cmp_dbname . "`.`coll_" . $user_dbname .
-    "` (";
+        "` (";
 $sql .= "  `collid` int(11) NOT NULL AUTO_INCREMENT,";
 $sql .= "  `collname` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,";
 $sql .= "  `colldesc` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,";
@@ -289,7 +308,7 @@ if (!$stmt) {
 
 
 $sql = "CREATE TABLE IF NOT EXISTS " . '`cmp_' . $cmp_dbname . "`.`log_" . $user_dbname .
-    "` (
+        "` (
 `log_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `log_data` VARCHAR(100)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `log_date` VARCHAR(25)CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
@@ -329,7 +348,7 @@ $sql .= ') ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCR
 $CompanyConn->query($sql);
 
 $sql = "INSERT INTO `" . 'cmp_' . $cmp_dbname .
-    "`.`settings` (`skey`, `svalue`) VALUES";
+        "`.`settings` (`skey`, `svalue`) VALUES";
 $sql .= '(\'logo\', \'default\');';
 
 $CompanyConn->query($sql);
@@ -370,10 +389,10 @@ $CompanyConn->query($sql);
 
 
 $sql = "INSERT INTO `" . 'cmp_' . $cmp_dbname .
-    "`.`usrs` (`uid`, `uname`, `upass`, `uemail`, `umain`, `upriv`,`utimezone`, `ucreatedate`, `uexpiredate`, `uactive`,`udbs`) VALUES";
+        "`.`usrs` (`uid`, `uname`, `upass`, `uemail`, `umain`, `upriv`,`utimezone`, `ucreatedate`, `uexpiredate`, `uactive`,`udbs`) VALUES";
 $sql .= '(Null, \'' . $mastername . '\', \'' . md5($masterpassword) .
-    '\',\'\', \'1\', \'1\',\'' . $defaultTimeZone . '\',\'' .
-    $user_date . '\',\'\',\'1\',\'' . $user_dbname . '\');';
+        '\',\'\', \'1\', \'1\',\'' . $defaultTimeZone . '\',\'' .
+        $user_date . '\',\'\',\'1\',\'' . $user_dbname . '\');';
 $CompanyConn->query($sql);
 
 

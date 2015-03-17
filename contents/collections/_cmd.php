@@ -5,10 +5,10 @@ include_once("../../settings.php");
 include_once("../../scripts.php");
 include("_start.php");
 
-if (!$_GET['type']) {
+if (!filter_input(INPUT_GET, "type")) {
     die;
 }
-$type = $_GET['type'];
+$type = filter_input(INPUT_GET, "type");
 
 if ($type == 1) {
     $code = $module_add;

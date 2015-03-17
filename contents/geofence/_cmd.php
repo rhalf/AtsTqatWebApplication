@@ -28,8 +28,8 @@ if (count(explode('),(', $gpolyarr)) < 3) {
 
 if ($type == 1) {
     if (!is_form()) {
-        
-    }die;
+      die;  
+    }
 } else if ($type == 2) {
     if (!is_form()) {
         die;
