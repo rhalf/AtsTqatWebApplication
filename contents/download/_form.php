@@ -11,6 +11,9 @@ include("_start.php");
         <tr>
             <td align="left"><input name="download64x" id="download64x" type="button" value="Download 64bit" onclick="javascript:download('/64/setup.exe')" /></td>
         </tr>
+         <tr>
+            <td align="left"><input name="downloadAtsTqatUserManual" id="downloadAtsTqatUserManual" type="button" value="TQat User Manual" onclick="javascript:download('/fmr/ATS_TQAT_USER_MANUAL.pdf')" /></td>
+        </tr>
     </table>
 </div>
 <script type="text/javascript">
@@ -24,6 +27,7 @@ include("_start.php");
         $('#downloadBtn').button();
         $("#download32x").button();
         $("#download64x").button();
+        $("#downloadAtsTqatUserManual").button();
 
 
 <?php echo $module ?>Dialog.addButton('<?php echo $module ?>close', '<?php echo Close ?>', '<?php echo $module ?>Close', 'close');

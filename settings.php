@@ -16,7 +16,7 @@ $webroot = 'http://127.0.0.1/ats_services_GpsTrackingSystem';
 			$WebSiteVersion = '5.1.0.0';
 */
 
-$ApplicationVersion = '7.0.0.0';
+$ApplicationVersion = '6.4.0.0';
 $WebSiteVersion = '7.0.1.0';
 $engine = 'mysql';
 

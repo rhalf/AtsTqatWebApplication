@@ -9,7 +9,14 @@ if (!$_GET['type']) {
     die;
 }
 $type = $_GET['type'];
-
+/*  
+    Modified by: Rhalf Wendel D Caacbay
+    Modified on: 20150317
+    
+    Note:
+        *Remarks
+            -Fixed the delete geofence
+*/
 if ($type == 1) {
     $code = $module_add;
 
