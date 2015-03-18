@@ -49,7 +49,7 @@ function del_geofence(id) {
   type: 'POST',    
    url:u ,   
 	success: function(data) {      
-	ShowMessage(data);  
+  
 	<?php if($type==2){?>    
 		$('#<?php echo $module?>_List_a').click();
 		$('#<?php echo $module?>_edit_li').hide();

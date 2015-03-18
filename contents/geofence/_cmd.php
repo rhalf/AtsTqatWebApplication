@@ -12,18 +12,31 @@ $type = $_GET['type'];
 
 if ($type == 1) {
     $code = $module_add;
-} else if ($type == 2 or $type == 3) {
+
+      $gname = $_POST[$code . 'name'];
+
+    $gpolyarr = $_POST[$code . 'polyarr'];
+
+    if ($gpolyarr == '') {
+        die;
+    }
+    if (count(explode('),(', $gpolyarr)) < 3) {
+        die;
+    }
+
+} else if ($type == 2) {
     $code = $module_edit;
-}
 
-$gname = $_POST[$code . 'name'];
-$gpolyarr = $_POST[$code . 'polyarr'];
+    $gname = $_POST[$code . 'name'];
 
-if ($gpolyarr == '') {
-    die;
-}
-if (count(explode('),(', $gpolyarr)) < 3) {
-    die;
+    $gpolyarr = $_POST[$code . 'polyarr'];
+
+    if ($gpolyarr == '') {
+        die;
+    }
+    if (count(explode('),(', $gpolyarr)) < 3) {
+        die;
+    }
 }
 
 if ($type == 1) {
@@ -70,6 +83,7 @@ if ($type == 1) {
 } else if ($type == 2) {
     $sql = build_update("`gf`", $Array, "`gf_id`=$id");
 } else if ($type == 3) {
+    echo "alert('im here sql')";
     $sql = "delete from `gf` WHERE `gf_id`=$id";
 }
 $CompanyConn->query($sql);

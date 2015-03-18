@@ -109,7 +109,8 @@ include("_start.php");
                       $('#<?php echo $module ?>_list_a').click();
                       $('#<?php echo $module ?>_tabs').tabs("option", "active", 0);
                       del_geofence($('#<?php echo $module ?>_list option:selected').val());
-
+                      DrawingGeoFence.reset();
+                      DrawingGeoFence.draw();
                   }
                   ;
 
