@@ -273,12 +273,21 @@ function GFViewer(){
 		fillColor: "#FF0000", 
 		fillOpacity: 0.35 
 	};
+
+	/*  
+    Modified by: Rhalf Wendel D Caacbay
+    Modified on: 20150317
+    
+    Note:
+        *Remarks
+            -Adjusted geofences opacity and stroke from 5 to 2
+	*/
 	this.osm_PolygonOptions_view = { 
 		strokeColor: '#1C33FF', 
-		strokeOpacity: 0.5,
+		strokeOpacity: 0.2,
 	//	strokeWidth: 5,
 		fillColor : '#1C33FF',
-		fillOpacity:0.5	
+		fillOpacity:0.2	
 	};
 	this.osm_PolygonOptions_track = { 
 		strokeColor: '#FF3414', 

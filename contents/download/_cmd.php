@@ -14,7 +14,6 @@ include("_start.php");
             -Created $filename and compare
 */
 
-
 if (!isset($_GET['file'])) {
     die;
 }

@@ -1443,8 +1443,12 @@ function get_captionStyles() {
         "font-family": "calibri",
         "font-weight": "normal",
         "color": "white",
-        "background-color": "black",
-        "padding" : "3px",
+        "background-color": "#000000",
+
+        "padding" : "1px",
+        "padding-right" : "2px",
+        "padding-left" : "2px",
+
         "left": "0px",
         "top": "-5px",
         "position": "relative",
