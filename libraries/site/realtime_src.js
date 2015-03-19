@@ -1445,9 +1445,9 @@ function get_captionStyles() {
         "color": "white",
         "background-color": "#000000",
 
-        "padding" : "1px",
-        "padding-right" : "2px",
-        "padding-left" : "2px",
+        "padding" : "1x",
+        "padding-right" : "4px",
+        "padding-left" : "4px",
 
         "left": "0px",
         "top": "-5px",
@@ -1458,9 +1458,9 @@ function get_captionStyles() {
         "-khtml-opacity": "1.0",
         "-moz-opacity": "1.0",
 
-        "-webkit-border-radius" : "3px",
-        "-moz-border-radius" : "3px",
-        "border-radius" : "3px",
+        "-webkit-border-radius" : "10px",
+        "-moz-border-radius" : "10px",
+        "border-radius" : "10px",
     };
     return styles;
 }

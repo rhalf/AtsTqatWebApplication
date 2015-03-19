@@ -284,7 +284,7 @@ function GFViewer(){
 	*/
 	this.osm_PolygonOptions_view = { 
 		strokeColor: '#1C33FF', 
-		strokeOpacity: 0.2,
+		strokeOpacity: 0.1,
 	//	strokeWidth: 5,
 		fillColor : '#1C33FF',
 		fillOpacity:0.2	

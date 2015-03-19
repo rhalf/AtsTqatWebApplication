@@ -103,10 +103,10 @@
     font-weight:normal;
     color:#FFFFFF;
     background-color: #1C33FF;
-    
+
     padding : 1px;
-    padding-right : 2px;
-    padding-left : 2px;
+    padding-right : 4px;
+    padding-left : 4px;
 
     left:0px;top:0px;
     position: absolute; 
@@ -116,9 +116,9 @@
     -khtml-opacity :  1.0 ;
     -moz-opacity :  1.0 ;
 
-    -webkit-border-radius  :  3px ;
-    -moz-border-radius  :  3px ;
-    border-radius  :  3px ;
+    -webkit-border-radius  :  10px ;
+    -moz-border-radius  :  10px ;
+    border-radius  :  10px ;
 
     filter :  alpha(opacity=75) ;
         
