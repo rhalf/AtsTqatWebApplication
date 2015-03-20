@@ -10,6 +10,14 @@
     top: 30px;
 }
 
+/*  
+    Modified by: Rhalf Wendel D Caacbay
+    Modified on: 20150320
+    
+    Note:
+        *Before
+            top: 30px; 
+*/
 .osmmap {
     /*height:100%;*/
     width:100%;
@@ -18,7 +26,7 @@
     z-index:0 !important;
     position:absolute;
     bottom: 0px;
-    top: 30px;
+    top: 25px;
 }
 
 .googlemap_unselect {
