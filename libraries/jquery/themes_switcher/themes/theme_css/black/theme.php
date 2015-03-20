@@ -10,6 +10,7 @@ if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) OR isset($_SERVER['HTTP_IF_NONE_MAT
 	if ($_SERVER['HTTP_IF_MODIFIED_SINCE'] == gmdate('D, d M Y H:i:s \G\M\T', $last_modified)) 
 	{
 		header('HTTP/1.0 304 Not Modified');
+		
 		return;
 	}
 } 
@@ -31,6 +32,8 @@ $array=array(
 	'jquery.ui.tabs.min.css',
 	'jquery.ui.tooltip.min.css',
 );
+
+
 	foreach ($array as $js){
 		include("minified/$js");			
 	};
