@@ -1,6 +1,5 @@
 <?php
 
-//Modified by chini
 header("Cache-Control: no-cache, must-revalidate");
 include_once("settings.php");
 include_once("scripts.php");
