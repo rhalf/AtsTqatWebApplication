@@ -8,7 +8,7 @@ function DrawingGeoFenceClass(){
 	this.osm_style = { 
 		strokeColor: '#1C33FF', 
 		strokeOpacity: 0.5,
-	//	strokeWidth: 5,
+		strokeWidth: 5,
 		fillColor : '#1C33FF',
 		fillOpacity:0.5	
 	};
@@ -240,7 +240,7 @@ this.polygonClick;
 
 };
 
-var DrawingGeoFence=new DrawingGeoFenceClass();
+var DrawingGeoFence = new DrawingGeoFenceClass();
 
 
 
@@ -284,18 +284,20 @@ function GFViewer(){
 	*/
 	this.osm_PolygonOptions_view = { 
 		strokeColor: '#1C33FF', 
-		strokeOpacity: 0.1,
-	//	strokeWidth: 5,
+		strokeOpacity: 0.5,
+		strokeWidth: 1,
 		fillColor : '#1C33FF',
 		fillOpacity:0.2	
 	};
 	this.osm_PolygonOptions_track = { 
 		strokeColor: '#FF3414', 
 		strokeOpacity: 0.5,
+		strokeWidth: 1,
 		fillColor : '#FF3414',
-		fillOpacity:0.5	
+		fillOpacity:0.2	
 	};
 	
+	//for bing
 	this.bing_PolygonOptions_view = { 
 		strokeColor: '#1C33FF', 
 		strokeOpacity: 0.5,
@@ -309,6 +311,7 @@ function GFViewer(){
 		fillColor : '#FF3414',
 		fillOpacity:0.5	
 	};
+
 	/*Clear*/
 	this.Clear=function(){
 		this.Delete();
