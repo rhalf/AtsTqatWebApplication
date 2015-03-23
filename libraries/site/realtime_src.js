@@ -397,20 +397,6 @@ this.get_realtimeTracker=function(object, last) {
 };
 
 this.UpdateMarker=function(tvar){
-	/*
-		Modified by: Rhalf Wendel D Caacbay
-		Modified on: 20150323
-
-		Note:
-			*Remarks
-				-Added an update for Address
-	*/
-	if (MapClass.currMap == 'omap') {
-		osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
-		tvar.gm_address = osm_code;
-	}
-
-
     var unitName = tvar.gm_unit;
     var vreg = tvar.tvehiclereg;
 	var Drivername= tvar.tdrivername;
@@ -587,19 +573,6 @@ $('#LostSection').text(LOSTSECTION_LBL).append("<font size='-3' style='padding-r
 };
 
 this.UpdateGrid=function(tvar){
-	/*
-		Modified by: Rhalf Wendel D Caacbay
-		Modified on: 20150323
-
-		Note:
-			*Remarks
-				-Added an update for Address
-	*/
-	if (MapClass.currMap == 'omap') {
-		osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
-		tvar.gm_address = osm_code;
-	}
-
  if ( this.LiveArr.indexOf(tvar.gm_unit) == -1) {
 		this.LiveArr.push(tvar.gm_unit);
 		this.LiveArrPOS.push(this.LiveArr.length);

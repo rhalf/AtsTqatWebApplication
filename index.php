@@ -1,5 +1,10 @@
 <?php
+<<<<<<< HEAD
 //20150323
+=======
+
+//Modified by chini
+>>>>>>> origin/master
 header("Cache-Control: no-cache, must-revalidate");
 include_once("settings.php");
 include_once("scripts.php");

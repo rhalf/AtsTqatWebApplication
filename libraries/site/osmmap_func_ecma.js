@@ -3,7 +3,6 @@
          }
 		    function clearSelected(){
          	vectors.removeFeatures(vectors.selectedFeatures);
-         	
          }
 /*<script type="text/ecmascript">*/
 function operation_toggleControl(obj,operation){
