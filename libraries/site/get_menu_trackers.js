@@ -434,7 +434,20 @@ function Parse_tvar(tvar, object, ope) {
         tvar.gm_inputs = object.Inputs;
         var ElemInps = tvar.gm_inputs;
         tvar.gm_overspeed = parseFloat(object.SpeedLimit);
-        tvar.gm_address = 'Double Click';
+        /*
+            Modified by: Rhalf Wendel D Caacbay
+            Modified on: 20150323
+
+            Note:
+                *Remarks
+                    -Added an update for Address
+        */
+        if (MapClass.currMap == 'omap') {
+            osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
+            tvar.gm_address = osm_code;
+        }
+
+        tvar.gm_address = osm_code;
         tvar.gm_speed = parseFloat(tvar.gm_speed);
         //over speed
         tvar.OverSpeedAlarm = false;
