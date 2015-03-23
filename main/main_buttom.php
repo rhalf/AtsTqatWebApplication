@@ -151,19 +151,19 @@ include_once("../scripts.php");
             shrinkToFit: false,
             sortorder: "desc",
             toolbar: [true, "bottom"],
-            // ondblClickRow: function(id, iRow, iCol, e) {
-            //     var ret = rtGrid.jqGrid('getRowData', iRow);
-            //     var unitLat = ret.gm_lat;
-            //     var unitLng = ret.gm_lng;
-            //     if (MapClass.currMap == 'gmap') {
-            //         AddressCodeLatLng(unitLat, unitLng);
-            //         var be = code;
-            //     } else if (MapClass.currMap == 'omap') {
-            //         osm_AddressCodeLatLng(unitLat, unitLng);
-            //         var be = osm_code;
-            //     }
-            //     rtGrid.jqGrid('setRowData', iRow, {gm_address: be});
-            // },
+            ondblClickRow: function(id, iRow, iCol, e) {
+                var ret = rtGrid.jqGrid('getRowData', iRow);
+                var unitLat = ret.gm_lat;
+                var unitLng = ret.gm_lng;
+                if (MapClass.currMap == 'gmap') {
+                    AddressCodeLatLng(unitLat, unitLng);
+                    var be = code;
+                } else if (MapClass.currMap == 'omap') {
+                    osm_AddressCodeLatLng(unitLat, unitLng);
+                    var be = osm_code;
+                }
+                rtGrid.jqGrid('setRowData', iRow, {gm_address: be});
+            },
             onSelectRow: function(id) {
                 $('#rt_edit').show();
                 if (MapClass.currMap == 'gmap') {
