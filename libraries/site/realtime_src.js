@@ -714,6 +714,7 @@ this.UpdateGrid=function(tvar){
 				TextElement.appendTo(richMarkerContent);
 				rotationElement.appendTo(richMarkerContent);
 
+<<<<<<< Updated upstream
 				if (tobj.alarmimg!="none"){
 					AlarmImage.appendTo(richMarkerContent);
 				}	
@@ -733,9 +734,53 @@ this.UpdateGrid=function(tvar){
 						this.bing_gotoLocation(tobj)	
 					}
 				}
+=======
+	if (tobj.mobile){
+		this.osm_gotoLocation(tobj);
+	}else{
+		if(MapClass.currMap=='gmap'){
+			this.google_gotoLocation(tobj)	
+		}else if (MapClass.currMap=='omap'){
+			this.osm_gotoLocation(tobj)	
+		}else if (MapClass.currMap=='bmap'){
+			this.bing_gotoLocation(tobj)	
+		}
+	}
+	
+};
+this.google_gotoLocation=function(tobj) { 
+	var _this=this;
+	var latlng = new google.maps.LatLng(tobj.gm_lat,tobj.gm_lng);	
+	if (this.MarkerExists(tobj.gm_unit)==false){
+	var richMarkerContent =this.CreateMarker(tobj);
+	marker = new RichMarker({
+		position: latlng,
+		map: maps[tobj.map],
+		flat:true,
+		content:richMarkerContent.get(0) 
+	});
+	var ContentInfo=createInfoWindowContent(tobj);
+>>>>>>> Stashed changes
 
 			};
 
+<<<<<<< Updated upstream
+=======
+	}else{
+		var marker=this.getMarker(tobj.gm_unit);
+		marker.Locations.push(tobj);
+		marker.Trackable=tobj.trackable;
+		marker.MapID=tobj.map;
+		marker.Label=tobj.caption;
+		marker.Img=tobj.img;
+		marker.AlarmImg=tobj.alarmimg;
+		marker.Deg=tobj.gm_deg;
+		
+		marker.Status='stopped';
+    } 	
+};	
+this.moveMarker=function(marker){
+>>>>>>> Stashed changes
 
 			this.google_gotoLocation=function(tobj) { 
 				var _this=this;
@@ -902,12 +947,20 @@ this.UpdateGrid=function(tvar){
 				Note: 
 					*Before
 						new OpenLayers.Size(255,100)
+<<<<<<< Updated upstream
 						*/
 						new OpenLayers.Size(255,60),
 						ContentInfo,
 						true
 						);
 
+=======
+			*/
+			new OpenLayers.Size(255,60),
+			ContentInfo,
+			true
+		);
+>>>>>>> Stashed changes
 		/*
 			Modified by: Rhalf Wendel D. Caacbay
 			Modified on: 20150316
@@ -948,6 +1001,7 @@ this.UpdateGrid=function(tvar){
 			Note:
 				*Added
 					events -> mouseout
+<<<<<<< Updated upstream
 					*/
 					marker.events.register("mouseout", marker,
 						function(){
@@ -992,6 +1046,51 @@ this.UpdateGrid=function(tvar){
 						var OldLatLng=new OpenLayers.LonLat(marker.Locations[0].gm_lng, marker.Locations[0].gm_lat);
 						var NewLatLng= new OpenLayers.LonLat(marker.Locations[1].gm_lng, marker.Locations[1].gm_lat);
 						marker.numDeltas=new BigNumber(marker.Locations[1].gm_timestamp-marker.Locations[0].gm_timestamp).multiply(10);
+=======
+		*/
+		marker.events.register("mouseout", marker,
+			function(){
+				osmMarker.PopupWindow.hide();
+			}
+		);
+		}
+		osmmaps[tobj.map].getLayer('Tracking'+tobj.map).addMarker(marker);
+		osmMarker.Unit=tobj.gm_unit;
+		osmMarker.MoveCounter=0;
+		osmMarker.Locations.push(tobj);
+		osmMarker.Trackable=tobj.trackable;
+		osmMarker.MapID=tobj.map;
+		osmMarker.Mobile=tobj.mobile;
+		this.Markers.push(osmMarker);		
+		this.Units.push(tobj.gm_unit);
+		setTimeout(function(){
+			_this.UpdateMarker(tobj);
+		},500);
+		if (!osmMarker.Mobile){
+			this.UpdateGrid(tobj);
+		}
+		this.moveMarker_osm(osmMarker);		
+	}else{
+	var marker=this.getMarker(tobj.gm_unit);
+		marker.Locations.push(tobj);
+		marker.Trackable=tobj.trackable;
+		marker.MapID=tobj.map;
+		marker.Label=tobj.caption;
+		marker.Img=tobj.img;
+		marker.AlarmImg=tobj.alarmimg;
+		marker.Deg=tobj.gm_deg;		
+		marker.Status='stopped';
+	}  
+  };
+ this.moveMarker_osm=function(marker){
+	var _this=this;
+	if (marker.Status!='init'){
+		if (marker.Status=='stopped' ){
+			if (marker.Locations.length>=2){
+				var OldLatLng=new OpenLayers.LonLat(marker.Locations[0].gm_lng, marker.Locations[0].gm_lat);
+				var NewLatLng= new OpenLayers.LonLat(marker.Locations[1].gm_lng, marker.Locations[1].gm_lat);
+				marker.numDeltas=new BigNumber(marker.Locations[1].gm_timestamp-marker.Locations[0].gm_timestamp).multiply(10);
+>>>>>>> Stashed changes
 				//check dublicate
 				if (marker.numDeltas!=0){
 					if(marker.Locations[1].gm_speed!=0){
@@ -1085,8 +1184,6 @@ this.setTimer_osm=function(marker,timeout){
 
 	}, timeout);
 };
-
-
 /*bing_gotoLocation*/
 this.bing_gotoLocation=function(tobj) { 
 	var _this=this;
@@ -1141,10 +1238,15 @@ this.bing_gotoLocation=function(tobj) {
 		marker.Deg=tobj.gm_deg;
 		
 		marker.Status='stopped';
+<<<<<<< Updated upstream
 	} 	
 };
 
 
+=======
+    } 	
+};	
+>>>>>>> Stashed changes
 this.moveMarker_bing=function(marker){
 
 	var _this=this;
@@ -1288,8 +1390,6 @@ function setGridvalue(pos,val){
 	});	
 };
 
-
-
 function SearchSectionCheck(set,id) {
 	var dub=[];
 	$('#'+id).find('input:checkbox').each(function(index, element) {
@@ -1312,7 +1412,6 @@ function SearchSectionCheck(set,id) {
 	});
 	dub.length=0;
 };
-
 
 function move_tracker_toSection(classname,section) {
 	if(!check_tracker_inSection(classname,section)){

@@ -51,7 +51,7 @@ loc_img.height = 90;
 		//	loc_br = document.createElement("br");
 
 			loc_a = document.createElement("a");
-			loc_a.setAttribute("href", "#");
+			loc_a.setAttribute("htdref", "#");
 
 			loc_link = '"' + para.url_css + $.fn.gcjs_themeswitcher_dialog.css_list[i].file + '",';
 			if (para.setcookie == true)
@@ -88,7 +88,7 @@ loc_img.height = 90;
 		}
 		loc_table.appendChild(loc_tbod);
 
-		$.fn.gcjs_themeswitcher_dialog.switcher = $("<div id='themedialog'></div>")
+		$.fn.gcjs_themeswitcher_dialog.switcher = $("<div id='themedialog' style='overflow-y: scroll;'></div>")
 			.append(loc_table)
 			.dialog({
 				modal: $.fn.gcjs_themeswitcher_dialog.parameters.modal,
@@ -175,7 +175,8 @@ loc_img.height = 90;
 		};
 
 		if (!filename){
-			filename =  $.fn.gcjs_themeswitcher_dialog.parameters.url_css + $.fn.gcjs_themeswitcher_dialog.parameters.defaultTheme; 
+			filename =  $.fn.gcjs_
+			switcher_dialog.parameters.url_css + $.fn.gcjs_themeswitcher_dialog.parameters.defaultTheme; 
 		};
 
 	 	var fileref=document.createElement("link");

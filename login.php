@@ -53,12 +53,26 @@ if (!file_exists('connect/conf.php')) {
             <img  class="background" src="images\background\<?php echo rand(1, 30); ?>.jpg" height=700 width=1024 border=0'/>
         </div>
     </div>
-    <div style="height:36px;width:100%;bottom:0;position:absolute" class="ui-state-default">
+    <div style="height:36px;width:100%;bottom:0;position:absolute;opacity:0" class="ui-state-default">
         <div style="float:left">
             <div style="float:left;padding-top:3px"> <img src="images/admin/logo.png" width="32px" height="24px"/> </div>
             <div style="float:left;padding-top:8px"> <a target="_blank" href="http:\\www.ats-qatar.com">Advanced Technologies and Solutions</a> </div>
         </div>
-        <div style="float:right;padding-right:5px;padding-top:8px"> © 2013 ATS QATAR </div>
+
+        <div style="float:right;padding-right:5px;padding-top:8px"> © 
+        <?php
+        /*
+                Modified by: Mary Ann Lacerona
+                Date modified: 20150325
+
+                Note: 
+                Changed yearly date display into automatic updation 
+        */
+                echo date('Y'); ?> ATS QATAR </div>
     </div>
 </body>
 </html>
+
+
+       
+

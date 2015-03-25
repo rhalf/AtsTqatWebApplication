@@ -147,7 +147,7 @@ $.noty.defaultOptions = {
     template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
     cssPrefix: 'noty_', // this variable will be a type and layout prefix.
     custom: {
-        container: null // $('.custom_container')
+    container: null // $('.custom_container')
     }
 };
 

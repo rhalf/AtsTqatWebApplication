@@ -88,7 +88,7 @@ loc_img.height = 90;
 		}
 		loc_table.appendChild(loc_tbod);
 
-		$.fn.gcjs_themeswitcher_dialog.switcher = $("<div id='themedialog'></div>")
+		$.fn.gcjs_themeswitcher_dialog.switcher = $("<div id='themedialog' style='overflow-y: scroll;'></div>")
 			.append(loc_table)
 			.dialog({
 				modal: $.fn.gcjs_themeswitcher_dialog.parameters.modal,

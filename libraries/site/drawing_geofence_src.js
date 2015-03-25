@@ -287,7 +287,7 @@ function GFViewer(){
 		strokeOpacity: 0.5,
 		strokeWidth: 1,
 		fillColor : '#1C33FF',
-		fillOpacity:0.2	
+		fillOpacity:0.06	
 	};
 	this.osm_PolygonOptions_track = { 
 		strokeColor: '#FF3414', 

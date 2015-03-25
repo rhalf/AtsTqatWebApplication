@@ -80,8 +80,16 @@ body {
 	/* NOTE: It looks best when 'hover' and 'dragging' are set to the same color,
 		otherwise color shifts while dragging when bar can't keep up with mouse */
 	.ui-layout-resizer-open-hover ,	/* hover-color to 'resize' */
+/*
+		modified by: Mary Ann Lacerona
+		date modified: 20150324
+
+		Note: 
+			changed color
+*/
+
 	.ui-layout-resizer-dragging {	/* resizer beging 'dragging' */
-		background: #C4E1A4;
+		background: #b1b2b4;
 	}
 	.ui-layout-resizer-dragging {	/* CLONED resizer being dragged */
 		border: 	 1px solid #BBB;

@@ -46,7 +46,8 @@ function POIClass() {
             this._bing_reset();
         }
     };
-    /*_google_draw*/
+
+    /* _google_draw */
     this._google_draw = function (code) {
         var _this = this;
         google.maps.event.addListener(maps[MapClass.currMapID], 'click', function (event) {
@@ -249,7 +250,6 @@ function POIClass() {
             this.google_getLabelPOIArray.length = 0;
         }
     };
-
 
     /*_osm_view*/
     this._osm_view = function (Lat, Lon, lbltext, image) {
