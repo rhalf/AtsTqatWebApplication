@@ -1,0 +1,82 @@
+
+body, td, th,.ui-widget ,.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-family:  tahoma, Arial, Verdana, sans-serif !important;
+    font-size: 11px !important;
+}
+
+.ui-selectmenu-icon{
+    left:0px  !important;
+    right:auto !important;
+}
+.ui-selectmenu-menu{
+    direction:rtl
+}
+
+.tracker-popup,.section-popup{
+    direction:rtl	
+}
+.ui-jqgrid .frozen-bdiv, .ui-jqgrid .frozen-div{
+    left:auto !important;
+}
+
+.header-menu{
+    float: right !important;
+    width: 60%;
+    left: 900px;
+    top: 51px;
+    position: fixed;
+    direction:rtl;
+}
+
+.header-logo{
+    float:right !important;	
+    margin: 15px;
+    right:0;
+    position:fixed;
+    direction:rtl;
+}
+
+.header-info{
+    float:left !important;	
+    padding:5px;
+    width:20%;
+    left:0;
+    position:fixed;
+    direction:rtl;
+}
+
+.header-title{
+    float:left !important;	
+}
+.header-image{
+    float:right !important;		
+}
+
+.ui-menubar-item {
+    float:right !important;
+}
+.menu-span-image {
+    float:right !important;
+}
+
+.ui-menu .ui-menu-icon {
+    float:left !important;		
+}
+
+.ui-menu .ui-menu {
+    left: -200px !important;
+}
+
+.ui-multiselect .ui-state-default {
+    padding:0;
+    padding-right:20px;
+}
+
+.ui-jqgrid .ui-jqgrid-hbox-rtl {
+    padding:0 !important;
+    padding-right:20px
+}
+.ui-dialog-titlebar{
+    direction:rtl;
+    padding-right: 60px!important;
+}
