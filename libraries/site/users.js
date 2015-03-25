@@ -49,6 +49,7 @@ function TrackerObject() {
     this.Http;
     this.TrackerExpiry;
     this.VehicleregExpiry;
+    this.Administrator;
 }
 ;
 

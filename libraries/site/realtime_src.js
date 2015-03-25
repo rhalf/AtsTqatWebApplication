@@ -406,21 +406,22 @@ this.UpdateMarker=function(tvar){
 				var unitLat = tvar.gm_lat;
 				var unitLng = tvar.gm_lng;
 				var unitspeed = tvar.gm_speed;
-				var unitmileage=tvar.gm_mileage;
-				var unitsignal=tvar.gm_signal;
-				var unitinput1=tvar.gm_input1;
-				var unitinput2=tvar.gm_input2;
-				tvar.pos=this.getGridPosition(unitName);
+				var unitmileage = tvar.gm_mileage;
+				var unitsignal = tvar.gm_signal;
+				var unitinput1 = tvar.gm_input1;
+				var unitinput2 = tvar.gm_input2;
 
-				var imgid=tvar.imgid;	
+				tvar.pos = this.getGridPosition(unitName);
 
-				if (GeoFenceViewer.ID.length!=0){
+				var imgid = tvar.imgid;	
+
+				if (GeoFenceViewer.ID.length != 0){
 					setGridvalue(tvar.pos,tvar.geoFArea);
 					this.ViewGeoFence(tvar.geoFID,unitName,tvar.geoFAlarm);
 				}
 
 
-////////////////// parsing states entry
+//parsing states entry
 if (tvar.ExpAlarm){
 	for(var im=0;im< $('.imgexp' + unitName).length;im++){
 		$('.imgexp' + unitName).css('display','block');
@@ -455,7 +456,7 @@ for(var im=0;im< $('.img' + unitName).length;im++){
 	$('.img' + unitName).removeAttr("src").attr('src', tvar.img).attr('height','15px').attr('width','15px');	
 }
 
-// notifacation
+//Notification 
 if (tvar.lostAlarm){
 	if ($('#ntlost').is(":checked")){
 		setNoty(VEHICLEREG_LBL+' '+vreg+' '+LOSTMODE_LBL );	
@@ -507,7 +508,7 @@ if (tvar.lostAlarm){
 }
 
 
-// moving to state section 
+//Moving start
 if (grouping=='2'){
 	remove_tracker_FromSection(unitName,'resultRunning');
 	remove_tracker_FromSection(unitName,'resultParking');
@@ -550,7 +551,8 @@ if (grouping=='2'){
 			}
 		}
 	}
-// counting
+
+//Counting
 $('#RunningSection').text(RUNNINGSECTION_LBL).append("<font size='-3' style='padding-right:40px;float: right;'>" +$('#resultRunning').find($('div[class*="div"]')).size()+' '+TRACKERCOUNT_LBL+"</font>");
 $('#ParkingSection').text(PARKINGSECTION_LBL).append("<font size='-3' style='padding-right:40px;float: right;'>" +$('#resultParking').find($('div[class*="div"]')).size()+' '+TRACKERCOUNT_LBL+"</font>");
 $('#IdleSection').text(IDLESECTION_LBL).append("<font size='-3' style='padding-right:40px;float: right;'>" +$('#resultIdle').find($('div[class*="div"]')).size()+' '+TRACKERCOUNT_LBL+"</font>");
@@ -565,9 +567,62 @@ $('#LostSection').text(LOSTSECTION_LBL).append("<font size='-3' style='padding-r
 $('#rotation'+unitName).css(get_rotationStyles(tvar.gm_deg)); 
 $('#arrow'+tvar.gm_unit).removeAttr("src").attr('src', tvar.img);
 
+/*
+	Modified by: Rhalf Wendel D Caacbay
+	Modified on: 20150323
+
+	Note:
+		*Remarks
+			-Added an update for Address
+*/
+if (MapClass.currMap == 'omap') {
+	osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
+	tvar.gm_address = osm_code;
+}
+
 if (tvar.alarmimg!="none"){
 	$('#alarm'+tvar.gm_unit).removeAttr("src").attr('src', tvar.alarmimg);
 	$('#alarm'+tvar.gm_unit).show();
+	/*
+	Added by: Rhalf Wendel D Caacbay
+	Added on: 20150324
+
+	Note:
+		*Remarks
+			-Use for sending email alerts
+	*/
+	//=====================================================================
+	 $.ajax({
+	 	type: "POST",
+	 	url:"libraries/site/email.php",
+		data: {	
+				'trackee' 			: 	tvar.gm_unit, 
+
+				'trackeeMileage'	:   tvar.gm_mileage,
+				'trackeeTime'		:   tvar.gm_time,
+				'trackeeSpeed'		:   tvar.gm_speed,
+				'trackeeDegrees'	:   tvar.gm_deg,
+				'trackeeSignal'		:   (tvar.gm_signal == "no") ? "BAD" : "GOOD",
+				'trackeeLatitude'	:   tvar.gm_lat,
+				'trackeeLongitude'	:   tvar.gm_lng,
+				'trackeeAddress'	:   (tvar.gm_address.length > 0) ? tvar.gm_address : "None",
+				//'trackeeGeofence'	:   (tvar.gm_geoFArea.length > 0) ? tvar.gm_geoFArea : "None",
+
+				'alarmLost' 		: 	tvar.lostAlarm ? "YES" : "NO", 
+				'alarmUrgent'		: 	tvar.UrgentAlarm ? "YES" : "NO",  
+				'alarmAcc' 			: 	tvar.AccAlarm ? "YES" : "NO",  
+				'alarmGeofence' 	: 	tvar.geoFAlarm ? "YES" : "NO", 
+				'alarmRegistration' : 	tvar.regAlarm ? "YES" : "NO", 
+				'alarmExpiration'	: 	tvar.ExpAlarm ? "YES" : "NO", 
+				'alarmOverSpeeding'	: 	tvar.OverSpeedAlarm ? "YES" : "NO"
+		},
+	 	success:function(result){
+			//if (result.length != 0) {
+				alert("Success");
+			//}
+		}
+	});
+	//======================================================================
 }else{
 	$('#alarm'+tvar.gm_unit).hide();
 }
@@ -576,7 +631,7 @@ $('#text'+tvar.gm_unit).html(tvar.caption);
 };
 
 this.UpdateGrid=function(tvar){
-	
+
 
 				//alert(this.LiveArr.indexOf(tvar.gm_unit));
 				/*
@@ -1199,7 +1254,6 @@ this.StopOnOffLive=function() {
 };
 
 };
-
 
 var RealTimeClass = new RTClass();
 
