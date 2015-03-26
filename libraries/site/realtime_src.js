@@ -392,8 +392,7 @@ this.get_realtimeTracker=function(object, last) {
             		}
 
             	}
-				var oVehicle = tvar;
-				sendEmailAlerts(oVehicle);
+
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
             	if ( _this.LiveArr.indexOf(object.Unit) == -1){
@@ -407,7 +406,8 @@ this.get_realtimeTracker=function(object, last) {
 
 this.UpdateMarker=function(tvar){
 
-	
+	var oVehicle = tvar;
+	sendEmailAlerts(oVehicle);
 
 	var unitName = tvar.gm_unit;
 	var vreg = tvar.tvehiclereg;
