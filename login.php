@@ -58,7 +58,18 @@ if (!file_exists('connect/conf.php')) {
             <div style="float:left;padding-top:3px"> <img src="images/admin/logo.png" width="32px" height="24px"/> </div>
             <div style="float:left;padding-top:8px"> <a target="_blank" href="http:\\www.ats-qatar.com">Advanced Technologies and Solutions</a> </div>
         </div>
-        <div style="float:right;padding-right:5px;padding-top:8px"> © 2013 ATS QATAR </div>
+
+        <div style="float:right;padding-right:5px;padding-top:8px"> © 
+        <?php
+/*
+        Modified by: Mary Ann Lacerona
+        Date modified: 20150325
+
+        Note: 
+                Changed yearly date display into automatic updation
+
+*/
+         echo date('Y'); ?> ATS QATAR </div>
     </div>
 </body>
 </html>

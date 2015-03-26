@@ -259,9 +259,16 @@ include_once("../scripts.php");
         create_geofences();
         create_pois();
         create_mapsmanager();
-        $("#themesMnuItem").gcjs_themeswitcher_dialog.gcjs_m_add_theme({theme: "black", pic: "theme_90_black.png", file: "black/theme.php"});
-        $("#themesMnuItem").gcjs_themeswitcher_dialog.gcjs_m_add_theme({theme: "white", pic: "theme_90_white.png", file: "white/theme.php"});
+        $("#themesMnuItem").gcjs_themeswitcher_dialog.gcjs_m_add_theme({theme: "Dark", pic: "theme_90_black.png", file: "black/theme.php"});
+        $("#themesMnuItem").gcjs_themeswitcher_dialog.gcjs_m_add_theme({theme: "Light", pic: "theme_90_white.png", file: "white/theme.php"});
+/*     
+        Modified by: Mary Ann Lacerona
+        Date Modified: 20150324
 
+        Note: 
+                Added Themes
+*/       
+        $("#themesMnuItem").gcjs_themeswitcher_dialog.gcjs_m_add_theme({theme: "Grey", pic: "theme_90_smoothness.png", file: "smoothness/theme.php"});
         $("#themesMnuItem").gcjs_themeswitcher_dialog({s_title: "Select Theme", number_pics: 1, url_gallery: "libraries/jquery/themes_switcher/themes/theme_gallery/", url_css: "libraries/jquery/themes_switcher/themes/theme_css/"});
 
         $("#theme_close").button({icons: {primary: "ui-icon-close"}});
