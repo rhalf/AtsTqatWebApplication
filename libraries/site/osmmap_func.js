@@ -18,13 +18,50 @@ var BaseProjection=new OpenLayers.Projection("EPSG:900913");
 	this.init_OsmMap =function(div,id,version){
 		osmmaps[id] = new OpenLayers.Map(div,{
 			projection: BaseProjection,
-			displayProjection: TargetProjection
+			displayProjection: TargetProjection,
+			// ratio: 1,
+			// maxResolution: 10000,
+			// units: 'm',
+			// numZoomLevels: 19, 
+			transitionEffect : "map-resize",
+			buffer : 100
+			// singleTile: true,
+			//tileSize: new OpenLayers.Size(1000,1000)
+		/*	, 
+          controls: [
+            new OpenLayers.Control.Navigation(),
+            new OpenLayers.Control.PanZoomBar(),
+            new OpenLayers.Control.Attribution()
+          ]
+        */  
 		});
-		osmmaps[id].addLayer(new OpenLayers.Layer.OSM("OpenLayers WMS"));
+		//==================================================================================
+		arrayOSM = ["http://otile1.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+                    "http://otile2.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+                    "http://otile3.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png",
+                    "http://otile4.mqcdn.com/tiles/1.0.0/map/${z}/${x}/${y}.png"];
+        arrayAerial = ["http://oatile1.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png",
+                        "http://oatile2.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png",
+                        "http://oatile3.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png",
+                        "http://oatile4.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png"];
+        
+        fraunhofer = "http://tile.iosb.fraunhofer.de/tiles/osmde/${z}/${x}/${y}.png";
+
+        baseOSM = new OpenLayers.Layer.OSM("MapQuest-OSM Tiles", arrayOSM);
+        baseAerial = new OpenLayers.Layer.OSM("MapQuest Open Aerial Tiles", arrayAerial);
+        baseFraunhofer =  new OpenLayers.Layer.OSM("Fraunhofer Map", fraunhofer);
+        
+        //osmmaps[id].addLayer(baseCycle);
+        osmmaps[id].addLayer(new OpenLayers.Layer.OSM("OpenLayers WMS"));
+        osmmaps[id].addLayer(baseOSM);
+        osmmaps[id].addLayer(baseAerial);
+        osmmaps[id].addLayer(baseFraunhofer);
+        osmmaps[id].addControl(new OpenLayers.Control.LayerSwitcher());
+		//==================================================================================
+		//osmmaps[id].addLayer(new OpenLayers.Layer.OSM("OpenLayers WMS"));
 		osmmaps[id].setCenter(transform(new OpenLayers.LonLat(DefaultSettings.default_Lon,DefaultSettings.default_Lat ))
 	 	 , DefaultSettings.default_Zoom // Zoom
 	 	 );
-
 		//osmmaps[id].addControl(new OpenLayers.Control.LayerSwitcher());
 
 		OpenLayers.Feature.Vector.style['default']['strokeWidth'] = '2';
