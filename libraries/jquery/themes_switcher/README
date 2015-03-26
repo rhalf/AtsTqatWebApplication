@@ -1,0 +1,162 @@
+/**
+ * Themeswitcher Dialog-Tool for the jQuery UI CSS Framework
+ * http://sourceforge.net/projects/gc-ui-tswitch/
+ *
+ * Change the css stylesheet using an ui dialogbox. Usable as well offline or 
+ * from within your own webspace.
+ * More information to jQuery UI:  http://jqueryui.com/
+ *
+ * Copyright (c) 2011 Michael Partenheimer
+ * V 1.01	2011-12  
+ *
+ * Dual licensed under both the MIT and GPL version 2.0 licenses.
+ * This means that you can choose the license that best suits your 
+ * project and use it accordingly.
+ *
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+ *
+ */
+
+
+
+-------------------------------------------------------------------------------------------------- 
+1. HISTORY
+2011-11 V1.0; initial version
+2011-12 V1.01; css files can be added with push; example without "flickering"
+
+
+
+-------------------------------------------------------------------------------------------------- 
+2. DESCRIPTION
+Themeswitcher dialog tool is a (just another) jQuery plugin with which the user of a web page 
+can change the theme css files. 
+
+Parameters controlling the behaviour:
+
+s_title: 
+	title text in the dialog box, no support of different languages. Remark: you cannot bypass this
+	easily currently as only one single object in the jQuery object is created.
+
+modal: 
+	true/false; modus of dialog, false per default
+
+url_gallery: 
+	path to the picture folder, relative to the calling *.html file; default: "./theme_gallery/"
+
+url_css:
+	path to the css folder of the themes, copy into here the downloaded theme folders 
+	default path is "./theme_css/"
+	  
+defaultTheme: 
+	path and file name of the default theme in the folder url_css 
+	default is "no-design/jquery-ui-1.8.16.custom.css"
+
+width_piccell: 
+	width in pixel of the table cells with the picture. Default 100 fits to the 80*90 png
+	
+number_pics: 
+	number of pictures in one row, default is 6
+
+setcookie: 
+	true or false, defines whether a cookie is used to save the choosen css file
+	default is: true = use cookie. 
+
+cookieExpiry: default is "365" days, 
+
+cookiePath:   default path to cookie is "/"
+
+cookieDomain: given default name of cookie is "GCJS_THEME"
+
+
+
+-------------------------------------------------------------------------------------------------- 
+3. HOW TO USE IT
+Using the example as a start template might be the fasted way to implement it. 
+
+Download therefore the latest example*.zip, extract it to a folder named e.g. "ui" in your webspace root. 
+You end up with the following folders or files: 
+	./ui/themes/theme_css/..			the folder with the jQuery UI css
+	./ui/themes/theme_gallery/*,png		the folder with the pictures
+	./ui/jquery.gcjs_themeswitcher_dialog.js	the pluging javascript code
+
+The example page uses only the two themes "no_design" and "humanity". If you (certainly!) 
+want to offer more themes, please download them from the original jQuery Themeswitcher 
+gallery in http://jqueryui.com/themeroller/ . Download the pictures in the gallery, and 
+the css files using the download button. Add pictures and css files with all needed 
+images to the themes folders.
+
+The plugin needs the following other javascript plugins, please do not use those from the
+example but load the latest version:
+
+jquery.js:
+	of course, jquery itself (http://jquery.com/)
+
+jquery-ui-1.8.16.custom.min.js:
+ 	the jQuery UI, other versions might work as well, but not tested (http://jqueryui.com/)
+
+jquery.cookie.js
+	cookie plugin! (https://github.com/carhartl/jquery-cookie)
+	
+After those js files are loaded, the themeswitcher itself can come with e.g.:
+<script language="javascript" type="text/javascript" src="./themes/jquery.gcjs_themeswitcher_dialog.js">
+
+The pictures added in the example have the pixel size 80*90, that is the current size of the pictures
+used in the Themeroller. 
+
+Choose a button or a link to which you assign the dialog box. In the example, the button with the 
+id "demo_opt_Theme" was taken. 
+
+Add the themes you want to present to the user with 
+	$("#demo_opt_Theme").gcjs_themeswitcher_dialog.gcjs_m_add_theme
+		({theme: "No Design", pic: "theme_90_no-design.png", file: "no-design/jquery-ui-1.8.16.custom.css"});
+
+The method gcjs_m_add_theme needs to be called for all css files individually stating the theme description, 
+the picture file and the css file. This has to be done before finally the plugin is called (no dynamical  
+reloading currently) with
+	$("#demo_opt_Theme").gcjs_themeswitcher_dialog();
+
+In case you want to change the parameters, add them e.g. like
+	$("#demo_opt_Theme").gcjs_themeswitcher_dialog({
+			s_title: "Select Theme",
+			number_pics: 1, 
+			url_gallery: "./themes/theme_gallery/",
+			url_css: "./themes/theme_css/"});
+ 
+Using the method $.fn.gcjs_themeswitcher_dialog.gcjs_m_load_initial_css("") you can load at start of the 
+page the (potentially) stored css in the cookie or a default css file stated in the parameters of the plugin. To 
+avoid a flickering at start you might hide and display the complete body with $('body').css(xy) like in the
+example. 
+ 
+Enjoy it, any hints are welcome.
+
+
+
+-------------------------------------------------------------------------------------------------- 
+4. Appendix: 
+// a list of all themes css+png files available on the jQuery UI Themeroller page as of 2011-11:
+//
+//		{theme: "Black Tie", 	pic: "theme_90_black_tie.png", 		file: "black-tie/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Blitzer", 		pic: "theme_90_blitzer.png", 		file: "blitzer/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Dark Hive", 	pic: "theme_90_dark_hive.png", 		file: "dark-hive/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Dot Luv", 		pic: "theme_90_dot_luv.png", 		file: "dot-luv/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Eggplant", 	pic: "theme_90_eggplant.png", 		file: "eggplant/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Excite Bike", 	pic: "theme_90_excite_bike.png", 	file: "excite-bike/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Flick", 		pic: "theme_90_flick.png", 			file: "flick/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Hot Sneaks", 	pic: "theme_90_hot_sneaks.png", 	file: "hot-sneaks/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Humanity", 	pic: "theme_90_humanity.png", 		file: "humanity/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Le Frog", 		pic: "theme_90_le_frog.png", 		file: "le-frog/jquery-ui-1.8.16.custom.css"},	
+//		{theme: "Mint Choc", 	pic: "theme_90_mint_choco.png", 	file: "mint-choc/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Overcast", 	pic: "theme_90_overcast.png", 		file: "overcast/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Pepper Grinder", pic: "theme_90_pepper_grinder.png", file: "pepper-grinder/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Redmond", 		pic: "theme_90_windoze.png", 		file: "redmond/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Smoothness", 	pic: "theme_90_smoothness.png", 	file: "smoothness/jquery-ui-1.8.16.custom.css"},
+//		{theme: "South Street", pic: "theme_90_south_street.png", 	file: "south-street/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Sunny", 		pic: "theme_90_sunny.png", 			file: "sunny/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Swanky Purse", pic: "theme_90_swanky_purse.png", 	file: "swanky-purse/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Trontastic", 	pic: "theme_90_trontastic.png", 	file: "trontastic/jquery-ui-1.8.16.custom.css"},
+//		{theme: "UI Darkness", 	pic: "theme_90_ui_dark.png", 		file: "ui-darkness/jquery-ui-1.8.16.custom.css"},
+//		{theme: "UI Lightness", pic: "theme_90_ui_light.png.gif", 	file: "ui-lightness/jquery-ui-1.8.16.custom.css"},
+//		{theme: "Vader", 		pic: "theme_90_black_matte.png", 	file: "vader/jquery-ui-1.8.16.custom.css"}
+
+

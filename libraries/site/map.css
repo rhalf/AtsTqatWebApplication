@@ -1,0 +1,133 @@
+/*@charset "utf-8";*/
+.googlemap {
+    /*height:100%;*/
+    width:100%;
+    padding:0 0 0 0 !important;
+    margin:0 0 0 0;
+    z-index:0 !important;
+    position:absolute;
+    bottom: 0px;
+    top: 30px;
+}
+
+/*  
+    Modified by: Rhalf Wendel D Caacbay
+    Modified on: 20150320
+    
+    Note:
+        *Before
+            top: 30px; 
+*/
+.osmmap {
+    /*height:100%;*/
+    width:100%;
+    padding:0 0 0 0 !important;
+    margin:0 0 0 0;
+    z-index:0 !important;
+    position:absolute;
+    bottom: 0px;
+    top: 25px;
+}
+
+.googlemap_unselect {
+    display:none;
+}
+.bingmap {
+
+    /*top: 0px;*/
+    left: 0px;
+    width: 100%;
+    /*height: 100%;*/
+    margin: 0px 0px 0px 0px;
+    padding:0 0 0 0 !important;
+
+    display:block;
+    visibility:visible;
+
+    bottom: 0px;
+    top: 30px;
+    z-index:0 !important;
+    position:absolute;
+}
+
+
+.ovimap {
+    /*top: 0px;*/
+    left: 0px;
+    width: 100%;
+    /*height: 100%;*/
+    margin: 0px 0px 0px 0px;
+    padding:0 0 0 0 !important;
+    z-index:0 !important;
+    display:block;
+    visibility:visible;
+    position:absolute;
+    bottom: 0px;
+    top: 30px;
+}
+
+.nokiamap {
+    /*top: 0px;*/
+    left: 0px;
+    width: 100%;
+    /*height: 100%;*/
+    margin: 0px 0px 0px 0px;
+    padding:0 0 0 0 !important;
+    z-index:0 !important;
+    display:block;
+    visibility:visible;
+    position:absolute;
+    bottom: 0px;
+    top: 30px;
+}
+
+.arcgismap {
+    left: 0px;
+    width: 100%;
+    /*height: 100%;*/
+    margin: 0px 0px 0px 0px;
+    padding:0 0 0 0 !important;
+    z-index:0 !important;
+    display:block;
+    visibility:visible;
+    position:absolute;
+    bottom: 0px;
+    top: 30px;
+}
+
+/*  
+    Modified by: Rhalf Wendel D Caacbay
+    Modified on: 20150317
+    
+    Note:
+        *Remarks
+        -Changed geofences label properties
+*/
+.polygonlabel{
+    white-space:nowrap; 
+    border: 3px; 
+    font-size:10px;
+    font-family:calibri; 
+    font-weight:normal;
+    color:#FFFFFF;
+    background-color: #1C33FF;
+
+    padding : 1px;
+    padding-right : 4px;
+    padding-left : 4px;
+
+    left:0px;top:0px;
+    position: absolute; 
+    opacity: 1.0; 
+       
+    -ms-filter :  alpha(opacity=75);
+    -khtml-opacity :  1.0 ;
+    -moz-opacity :  1.0 ;
+
+    -webkit-border-radius  :  10px ;
+    -moz-border-radius  :  10px ;
+    border-radius  :  10px ;
+
+    filter :  alpha(opacity=75) ;
+        
+}

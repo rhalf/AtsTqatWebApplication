@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+
+#ContextMnu {
+/* background:#FFF;*/
+/*border:1px solid #444;*/
+display:none;
+width:200px;
+}
+
+#ContextMnu ul, #ContextMnu ul * {
+padding:0;
+margin:0;
+}
+
+#ContextMnu ul li{
+list-style:none;
+/*border:1px solid #444;*/
+/*padding: 5px;*/
+display:block;
+width:200px;
+}
+
+#ContextMnu ul li:hover{
+/*background:#666;*/
+/*color:#FFF;*/
+}
+
+#ContextMnu ul li:hover span{
+/*color:#FFF;*/
+}
+
+#ContextMnu li:hover a{
+/*color:#FFF;*/
+}
+
+#ContextMnu a{
+/*color:#000;*/
+font:11px Tahoma;
+font-weight:normal;
+text-decoration:none;
+}

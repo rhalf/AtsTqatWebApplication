@@ -1,0 +1,18 @@
+09-12-2013
++ add rememberMe/forgetMe option in login page 
++ upgrade jquery library to v1.10.2
++ ablity to save options into database.
+/ remove grouping from session to store it into database.
+/ fix issue with upload/unlink logo files
+/ fix issue geofences and pois loading on start up.
+/ speed up loading php files.
+/ speed up load popups for users and trackers.
+/ improve dialogs modules.
++ ablity to resize all dialog types
+/ improve theme switcher plugin.
+/ merge jquery css styles produced from theme switcher into one file
+/ rebuild white theme.
+/ improve load more option.
+/ improve create markers function.
+/ share map objects style between plugins
+/ minify javascript files.   

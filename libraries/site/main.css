@@ -1,0 +1,280 @@
+body, td, th {
+    font-family: "Trebuchet MS", Helvetica, Arial, Verdana, sans-serif !important;
+    font-size: 11px !important;
+}
+
+#options {
+    width: 100px;
+    height: 100px;
+}
+A:link {
+    text-decoration: none;
+
+}
+
+/*A:link {
+        
+        color:#000000;
+        text-decoration: none;
+        font-size:10px;
+        font-style:
+}
+A:visited {
+        color:#000000;
+        text-decoration: none;
+        font-size:10px
+}
+A:active {
+        color:#0066FF;
+        text-decoration: none;
+        font-size:10px
+}
+A:hover {
+        text-decoration: none;
+        color:#0066FF;
+        font-size:10px
+}*/
+p {
+    font-size:		1em;
+    margin:			1ex 0;
+}
+p.buttons {
+    text-align:		center;
+    line-height:	2.5em;
+}
+button {
+    line-height:	normal;
+}
+.hidden {
+    display:		none;
+}
+/*
+         *	Rules for simulated drop-down/pop-up lists
+         */
+ul {
+    /* rules common to BOTH inner and outer UL */
+    z-index:	100000;
+    margin:		1ex 0;
+    padding:	0;
+    list-style:	none;
+    cursor:		pointer;
+    border:		0px solid Black;
+    /* rules for outer UL only */
+    width:		15ex;
+    position:	relative;
+}
+ul li {
+    /*background-color: #EEE;*/
+    padding: 0.15em 1em 0.3em 5px;
+}
+ul ul {
+    display:	none;
+    position:	absolute;
+    width:		100%;
+    left:		-1px;
+    /* Pop-Up */
+    bottom:		0;
+    margin:		0;
+    margin-bottom: 1.55em;
+}
+.ui-layout-north ul ul {
+    /* Drop-Down */
+    bottom:		auto;
+    margin:		0;
+    margin-top:	1.45em;
+}
+ul ul li {
+    padding: 3px 1em 3px 5px;
+}
+ul ul li:hover {
+    /*background-color: #FF9;*/
+}
+ul li:hover ul {
+    display:	block;
+    /*background-color: #EEE;*/
+}
+
+#loading_layer{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:999999;
+    background-color: #FFF;
+    text-align: center;
+    margin: 0 auto;
+}
+html, body {
+    height: 100% !important;
+    padding:0 0 0 0;
+    margin:0 0 0 0;
+}
+
+input, select, textarea {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+table {
+    font-size: 11px;
+}
+textarea {
+    width:100%;
+}
+.kwicksli {
+    background:none;
+    width: 175px;
+    height: 40px;
+    margin-left: 5px;
+    float: left;
+}
+.kwicksdiv{
+    float:left;
+    vertical-align:middle	
+}
+.kwicksimg{
+    float:right	
+}
+.contents{
+    overflow:auto;
+    border:none !important;
+    margin:5px 5px 5px 5px
+}
+
+.inputstyle, .textareastyle{
+    width:100%;
+    border-style:solid;
+    border-width:1px;
+    border-color:#CCCCCC;
+    border-radius:8px;
+    padding:5px 5px 5px 5px;	
+}
+.ui-datepicker {
+    z-index:auto ;	
+}
+
+.search {
+    background: url(../images/admin/search.png) no-repeat scroll 2px 2px  !important;
+    padding-left:30px;
+    height:25px;
+    outline: none;
+    /*border: 1px solid #444;*/
+    border-radius: 8px;
+}
+
+.gm-iw, .gm-iw table {
+    color:#000000	
+}
+
+.ui-jqgrid .ui-jqgrid-hdiv{
+    overflow:hidden !important;	
+}
+.ui-dialog{
+    box-shadow: 0 0 0 7px rgba(82, 82, 82, .7) !important; 
+    position:absolute !important;	
+}
+
+.ui-menu {
+    position: fixed;
+    width: 100px;
+}
+
+.fulldiv{
+    height:100% !important;
+    width:100% !important;
+    padding:0 0 0 0 !important;
+    margin:0 0 0 0 !important;	
+
+}
+
+.trtd {
+    border:0;
+    color:#f6931f;
+    font-weight:bold;
+    width:100%;
+    text-align:center;
+}
+
+.ui-jqgrid .ui-jqgrid-hdiv{
+    overflow:hidden
+}
+.ui-multiselect input.search {
+    height:20px !important;	
+    padding-left: 30px !important;
+}
+
+
+
+.ui-layout-resizer-east{
+    z-index:-1 !important;	
+}
+.ui-layout-resizer-north{
+    z-index:-1 !important;	
+}
+
+.ui-layout-container{
+    z-index:0 !important;	
+}
+
+.menu-span-image{
+    float:left;margin:5px
+}
+
+.ui-multiselect ul.available{
+    background:none !important;	
+}
+.ui-multiselect ul.selected{
+    background:none !important;
+}
+
+
+.section_holder{
+    width:100%;
+    height:100% !important;
+    overflow:hidden !important;
+    padding-left:0 !important;
+    padding-right:0px !important;	
+}
+
+.section_top{
+    width:100%;
+    overflow:hidden  !important;
+    padding:0 0 0 0 !important; 
+    margin:0 0 0 0 !important;
+}
+
+th.ui-th-column div{
+    word-wrap: break-word;      /* IE 5.5+ and CSS3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap;     /* Opera 4-6 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    white-space: pre-wrap;      /* CSS3 */
+    overflow: hidden;
+    height: auto !important;
+    vertical-align: middle;
+
+}
+.ui-jqgrid tr.jqgrow td {
+    white-space: normal !important;
+    height:auto;
+    vertical-align: middle;
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+};
+
+.ui-jqgrid .ui-jqgrid-htable th.ui-th-column {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.ui-jqgrid .frozen-bdiv, .ui-jqgrid .frozen-div {
+    overflow: hidden;
+}
+.ui-layout-center{
+    z-index:-1 !important;	
+}
+
+.transdiv{
+    opacity:0.6;	
+}
