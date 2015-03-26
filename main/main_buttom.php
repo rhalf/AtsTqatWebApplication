@@ -178,7 +178,7 @@ include_once("../scripts.php");
                     var lonlat = new OpenLayers.LonLat(ret.gm_lng, ret.gm_lat).transform(
                             new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
                             osmmaps[MapClass.currMapID].getProjectionObject()//,
-                            //   new OpenLayers.Projection("EPSG:900913")  // to Spherical Mercator Projection
+                            //   new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
                             );
                     osmmaps[MapClass.currMapID].zoomTo(16);
                     osmmaps[MapClass.currMapID].setCenter(lonlat)
@@ -295,7 +295,7 @@ include_once("../scripts.php");
         else if (aData.gm_input2 == 'n/a') {
             grid.setCell(rowid, 'gm_input2', '', {color: 'gray'});
         }
-        
+
         if (aData.gm_input3 == '<?php echo On; ?>') {
             grid.setCell(rowid, 'gm_input3', '', {color: 'green'});
         }
