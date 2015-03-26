@@ -22,7 +22,9 @@ $timezone = $session->get('timezone');
 $language = $session->get('language');
 $privilege = $session->get('priv');
 $udb = $session->get('udb');
-/*    if ($session->is_set('grouping')) {
+
+/*
+  if ($session->is_set('grouping')) {
   $grouping = $session->get('grouping');
   } else {
   if($privilege==1){

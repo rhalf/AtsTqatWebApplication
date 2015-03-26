@@ -16,8 +16,7 @@
 
 	*/
 	header("Cache-Control: no-cache, must-revalidate");
-	include_once("../../settings.php");
-	include_once("../../scripts.php");
+	include_once("../../connect/conf.php");
 
 	if (!isset($_POST['trackee'])) {
 	    die;
@@ -41,18 +40,21 @@
 	$sTrackeeSignal = $_POST['trackeeSignal'];
 	$sTrackeeLatitude = $_POST['trackeeLatitude'];
 	$sTrackeeLongitude = $_POST['trackeeLongitude'];
-
-	$sTrackeeAddress = $_POST['trackeeAddress'];
 	$sTrackeeGeofence = $_POST['trackeeGeofence'];
+	$sTrackeeAddress = $_POST['trackeeAddress'];
+	
+	$sTrackeeVehicleReg = $_POST['trackeeVehicleReg'];
+	$sTrackeeDriver	=	$_POST['trackeeDriver'];
 	
 	try {
-		$sUsername = "root";
-		$sPassword = "ats123";
+		$sUsername = "$dbuser";
+		$sPassword = "$dbpass";
 
 		//Query And Connection 1
-		$sDriver = 'mysql:host=108.163.190.202;port=3306;dbname=dbt_tracking_master';
-		
-		$cMainDatabase = new PDO($sDriver,$sUsername,$sPassword);
+		//$sDriver = 'mysql:host=108.163.190.202;port=3306;dbname=dbt_tracking_master';
+		$sDriver = "$engine:host=$dbhost;dbname=$prefix$dbname";
+	
+		$cMainDatabase = new PDO($sDriver,$sUsername,$sPassword,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
 		$sQuery = 	'SELECT dbt_tracking_master.trks.tcmp ' .
 					'FROM dbt_tracking_master.trks ' .
@@ -63,14 +65,13 @@
 		$cQuery->execute();
 
 		$aResult = $cQuery->fetch();
-
-		$sCompanyDatabase = 'cmp_'. $aResult['tcmp'];
-		
 		unset($cQuery);
 
+		$sCompanyDatabase = 'cmp_'. $aResult['tcmp'];
+
 		//Query and Connection 2
-		$sDriver = 'mysql:host=108.163.190.202;port=3306;dbname='. $sCompanyDatabase;
-	
+		$sDriver = "$engine:host=$dbhost;dbname=$sCompanyDatabase";
+		
 
 		$cCompanyDatabase = new PDO($sDriver,$sUsername,$sPassword);
 		$sQuery = 	'SELECT '. $sCompanyDatabase .'.usrs.uemail, '. $sCompanyDatabase .'.usrs.uname ' .
@@ -84,29 +85,32 @@
 		while ( $aRow = $cQuery->fetch(PDO::FETCH_ASSOC)) {
 
 			$sEmailMessage = "Dear " . $aRow['uname'] . ",\r\n\r\n" .
-			 				 "\tDetails of a unit with Tracker ID : ". $sTrackee . " is listed below." . "\r\n\r\n" .
-			 				 "\t======================================================" . "\r\n\r\n" .
-			 				 "\tTracker ID\t\t: " . $sTrackee . "\r\n" .
-			 				 "\tTracker Mileage\t\t: " . $sTrackeeMileage . "\r\n" .
-			 				 "\tTracker Time\t\t: " . $sTrackeeTime . "\r\n" .
-			 				 "\tTracker Speed\t\t: " . $sTrackeeSpeed . "\r\n" .
-			 				 "\tTracker Signal\t\t: " . $sTrackeeSignal . "\r\n" .
-			 				 "\tTracker Geofence\t: " . $sTrackeeGeofence . "\r\n" .
-			 				 "\tTracker Ordinates\t: " . $sTrackeeLatitude. ", " . $sTrackeeLongitude . "\r\n" .
-			 				 "\tTracker Address\t\t: " . $sTrackeeAddress . "\r\n\r\n" .
-			 				 "\t======================================================" . "\r\n\r\n" .
-			 				 "\tLost Tracker\t\t: " . $sAlarmLost . "\r\n" .
-			 				 "\tUrgent\t\t\t: " . $sAlarmUrgent . "\r\n" .
-			 				 "\tACC\t\t\t: " . $sAlarmAcc . "\r\n" .
-			 				 "\tGeofence\t\t: " . $sAlarmGeofence . "\r\n" .
-			 				 "\tExp. Registration\t: " . $sAlarmExpiration . "\r\n" .
-			 				 "\tOverspeeding\t\t: " . $sAlarmLost . "\r\n\r\n" .
-			 				 "\t======================================================" . "\r\n\r\n" .
-			 				 "\tPlease do not reply to this email." . "\r\n" .
-			 				 "\tThis is an Electronic Generated email." . "\r\n\r\n" .
-							 
-			 				 "Regards,\r\n" .
-			 				 "www.t-qat.net\r\n";
+							"\tDetails of a unit with Tracker ID : ". $sTrackee . " is listed below." . "\r\n\r\n" .
+							"\tTracker ID\t\t: " . $sTrackee . "\r\n" .
+							"\tTracker DriverName\t: " . $sTrackeeDriver . "\r\n" .
+							"\tTracker VehicleReg\t: " . $sTrackeeVehicleReg . "\r\n\r\n" .
+							"\t======================================================" . "\r\n\r\n" .
+
+							"\tTracker Mileage\t\t: " . $sTrackeeMileage . "\r\n" .
+							"\tTracker Time\t\t: " . $sTrackeeTime . "\r\n" .
+							"\tTracker Speed\t\t: " . $sTrackeeSpeed . "\r\n" .
+							"\tTracker Signal\t\t: " . $sTrackeeSignal . "\r\n" .
+							"\tTracker Geofence\t: " . $sTrackeeGeofence . "\r\n" .
+							"\tTracker Ordinates\t: " . $sTrackeeLatitude. ", " . $sTrackeeLongitude . "\r\n" .
+							"\tTracker Address\t\t: " . $sTrackeeAddress . "\r\n\r\n" .
+							"\t======================================================" . "\r\n\r\n" .
+							"\tLost Tracker\t\t: " . $sAlarmLost . "\r\n" .
+							"\tUrgent\t\t\t: " . $sAlarmUrgent . "\r\n" .
+							"\tACC\t\t\t: " . $sAlarmAcc . "\r\n" .
+							"\tGeofence\t\t: " . $sAlarmGeofence . "\r\n" .
+							"\tExp. Registration\t: " . $sAlarmExpiration . "\r\n" .
+							"\tOverspeeding\t\t: " . $sAlarmLost . "\r\n\r\n" .
+							"\t======================================================" . "\r\n\r\n" .
+							"\tPlease do not reply to this email." . "\r\n" .
+							"\tThis is an Electronic Generated email." . "\r\n\r\n" .
+
+							"Regards,\r\n" .
+							"www.t-qat.net\r\n";
 			email($aRow['uemail'],"T-QAT E-ALERT (Tracker ID: " . $sTrackee . ")" , $sEmailMessage );
 		}
 

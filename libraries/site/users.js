@@ -334,19 +334,19 @@ function ShowMessage(value) {
         var o = {
             name: 'message',
             height: 'auto',
-            width: 200,
+            width: 'auto',
             htmllink: '',
             html: value,
             imagelink: '',
-            hideclose: true,
-            hideheader: true,
+            hideclose: false,
+            hideheader: false,
             hasdiv: false
         };
         MessageDialog.setParams(o);
         MessageDialog.createDialog(true);
         window.setTimeout(function() {
             MessageDialog.Close();
-        }, 3000);
+        }, 5000);
     }
 }
 ;

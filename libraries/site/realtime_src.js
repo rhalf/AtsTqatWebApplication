@@ -1,3 +1,5 @@
+var sGeofenceName = "";
+
 // RealTime
 function RealTimeMarker(){
 	this.Marker;
@@ -19,6 +21,7 @@ function RealTimeMarker(){
 	this.MoveTimeout;
 	this.deltaLat;
 	this.deltaLng;	
+
 	this.numDeltas;
 };
 
@@ -398,27 +401,28 @@ this.get_realtimeTracker=function(object, last) {
 
 this.UpdateMarker=function(tvar){
 
+	
 
+	var unitName = tvar.gm_unit;
+	var vreg = tvar.tvehiclereg;
+	var Drivername= tvar.tdrivername;
+	var unitLat = tvar.gm_lat;
+	var unitLng = tvar.gm_lng;
+	var unitspeed = tvar.gm_speed;
+	var unitmileage = tvar.gm_mileage;
+	var unitsignal = tvar.gm_signal;
+	var unitinput1 = tvar.gm_input1;
+	var unitinput2 = tvar.gm_input2;
 
-				var unitName = tvar.gm_unit;
-				var vreg = tvar.tvehiclereg;
-				var Drivername= tvar.tdrivername;
-				var unitLat = tvar.gm_lat;
-				var unitLng = tvar.gm_lng;
-				var unitspeed = tvar.gm_speed;
-				var unitmileage = tvar.gm_mileage;
-				var unitsignal = tvar.gm_signal;
-				var unitinput1 = tvar.gm_input1;
-				var unitinput2 = tvar.gm_input2;
+	tvar.pos = this.getGridPosition(unitName);
 
-				tvar.pos = this.getGridPosition(unitName);
+	var imgid = tvar.imgid;	
 
-				var imgid = tvar.imgid;	
+	if (GeoFenceViewer.ID.length != 0) {
+		setGridvalue(tvar.pos,tvar.geoFArea);
+		this.ViewGeoFence(tvar.geoFID,unitName,tvar.geoFAlarm);
+	}
 
-				if (GeoFenceViewer.ID.length != 0){
-					setGridvalue(tvar.pos,tvar.geoFArea);
-					this.ViewGeoFence(tvar.geoFID,unitName,tvar.geoFAlarm);
-				}
 
 
 //parsing states entry
@@ -567,111 +571,47 @@ $('#LostSection').text(LOSTSECTION_LBL).append("<font size='-3' style='padding-r
 $('#rotation'+unitName).css(get_rotationStyles(tvar.gm_deg)); 
 $('#arrow'+tvar.gm_unit).removeAttr("src").attr('src', tvar.img);
 
-/*
-	Modified by: Rhalf Wendel D Caacbay
-	Modified on: 20150323
-
-	Note:
-		*Remarks
-			-Added an update for Address
-*/
-if (MapClass.currMap == 'omap') {
-	osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
-	tvar.gm_address = osm_code;
-}
 
 if (tvar.alarmimg!="none"){
 	$('#alarm'+tvar.gm_unit).removeAttr("src").attr('src', tvar.alarmimg);
 	$('#alarm'+tvar.gm_unit).show();
-	/*
-	Added by: Rhalf Wendel D Caacbay
-	Added on: 20150324
-
-	Note:
-		*Remarks
-			-Use for sending email alerts
-	*/
-	//=====================================================================
-	 $.ajax({
-	 	type: "POST",
-	 	url:"libraries/site/email.php",
-		data: {	
-				'trackee' 			: 	tvar.gm_unit, 
-
-				'trackeeMileage'	:   tvar.gm_mileage,
-				'trackeeTime'		:   tvar.gm_time,
-				'trackeeSpeed'		:   tvar.gm_speed,
-				'trackeeDegrees'	:   tvar.gm_deg,
-				'trackeeSignal'		:   (tvar.gm_signal == "no") ? "BAD" : "GOOD",
-				'trackeeLatitude'	:   tvar.gm_lat,
-				'trackeeLongitude'	:   tvar.gm_lng,
-				'trackeeAddress'	:   (tvar.gm_address.length > 0) ? tvar.gm_address : "None",
-				//'trackeeGeofence'	:   (tvar.gm_geoFArea.length > 0) ? tvar.gm_geoFArea : "None",
-
-				'alarmLost' 		: 	tvar.lostAlarm ? "YES" : "NO", 
-				'alarmUrgent'		: 	tvar.UrgentAlarm ? "YES" : "NO",  
-				'alarmAcc' 			: 	tvar.AccAlarm ? "YES" : "NO",  
-				'alarmGeofence' 	: 	tvar.geoFAlarm ? "YES" : "NO", 
-				'alarmRegistration' : 	tvar.regAlarm ? "YES" : "NO", 
-				'alarmExpiration'	: 	tvar.ExpAlarm ? "YES" : "NO", 
-				'alarmOverSpeeding'	: 	tvar.OverSpeedAlarm ? "YES" : "NO"
-		},
-	 	success:function(result){
-			//if (result.length != 0) {
-				alert("Success");
-			//}
-		}
-	});
-	//======================================================================
 }else{
 	$('#alarm'+tvar.gm_unit).hide();
 }
 $('#text'+tvar.gm_unit).html(tvar.caption);
 
+	
 };
 
 this.UpdateGrid=function(tvar){
 
+	var oVehicle = tvar;
+	sendEmailAlerts(oVehicle);
 
-				//alert(this.LiveArr.indexOf(tvar.gm_unit));
-				/*
-					Modified by: Rhalf Wendel D Caacbay
-					Modified on: 20150323
-
-					Note:
-						*Remarks
-							-Added an update for Address
-				*/
-				if (MapClass.currMap == 'omap') {
-					osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
-					tvar.gm_address = osm_code;
-				}
-
+	if ( this.LiveArr.indexOf(tvar.gm_unit) == -1) {
+		this.LiveArr.push(tvar.gm_unit);
+		this.LiveArrPOS.push(this.LiveArr.length);
+		this.LiveArrData.push(tvar);
+				//alert("length:" + this.LiveArr.length);
+				$("#listtrackersdata").addRowData( this.LiveArr.length, tvar);
+				coloring_grid( this.LiveArr.length-1,$("#listtrackersdata"));
+			} else {
+				//alert(this.getGridPosition("unit:" + tvar.gm_unit));
+				$("#listtrackersdata").setRowData(this.getGridPosition(tvar.gm_unit), tvar);
+				$("#listtrackersdata").setRowData(this.getGridPosition(tvar.gm_unit), tvar);
 				
-				if ( this.LiveArr.indexOf(tvar.gm_unit) == -1) {
-					this.LiveArr.push(tvar.gm_unit);
-					this.LiveArrPOS.push(this.LiveArr.length);
-					this.LiveArrData.push(tvar);
-					//alert("length:" + this.LiveArr.length);
-					$("#listtrackersdata").addRowData( this.LiveArr.length, tvar);
-					coloring_grid( this.LiveArr.length-1,$("#listtrackersdata"));
-				} else {
-					//alert(this.getGridPosition("unit:" + tvar.gm_unit));
-					$("#listtrackersdata").setRowData(this.getGridPosition(tvar.gm_unit), tvar);
-					$("#listtrackersdata").setRowData(this.getGridPosition(tvar.gm_unit), tvar);
-					
-					this.LiveArrData[this.LiveArr.indexOf(tvar.gm_unit)]=tvar;
-					coloring_grid( this.LiveArr.indexOf(tvar.gm_unit),$("#listtrackersdata"));
-				}
+				this.LiveArrData[this.LiveArr.indexOf(tvar.gm_unit)]=tvar;
+				coloring_grid( this.LiveArr.indexOf(tvar.gm_unit),$("#listtrackersdata"));
+			}
 
-				$('#trackerdatarecordcount').html(TRACKERCOUNT_LBL+': ' + jQuery("#listtrackersdata").jqGrid('getGridParam', 'records'));	
+			$('#trackerdatarecordcount').html(TRACKERCOUNT_LBL+': ' + jQuery("#listtrackersdata").jqGrid('getGridParam', 'records'));	
 
-			};
+		};
 
 
 
-			this.CreateMarker=function(tobj){
-				var richMarkerContent=$('<div/>', {id: 'marker'+tobj.gm_unit});
+		this.CreateMarker=function(tobj){
+			var richMarkerContent=$('<div/>', {id: 'marker'+tobj.gm_unit});
 	/*
 		Modified by: Rhalf Wendel D. Caacbay
 		Modified on: 20150316
@@ -875,6 +815,7 @@ this.UpdateGrid=function(tvar){
 
 				if (this.MarkerExists(tobj.gm_unit)==false){
 					var richMarkerContent =this.CreateMarker(tobj);	
+
 		/*
 			Modified by: Rhalf Wendel D. Caacbay
 			Modified on: 20150316
@@ -1541,3 +1482,69 @@ function get_rotationStyles(deg) {
 				};
 				return styles;
 			}
+
+function sendEmailAlerts(tvar) {
+
+	/*
+		Modified by: Rhalf Wendel D Caacbay
+		Modified on: 20150323
+
+		Note:
+			*Remarks
+				-Added an update for Address
+	*/
+	if (MapClass.currMap == 'omap') {
+		osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
+		tvar.gm_address = osm_code;
+
+	}
+
+
+	if (tvar.AlarmImg!='none') {
+		/*
+			Added by: Rhalf Wendel D Caacbay
+			Added on: 20150324
+
+			Note:
+				*Remarks
+					-Use for sending email alerts
+		*/
+		//=====================================================================
+		var sAddress =  "(" + tvar.gm_address + ")";
+		var sGeofence =  "(" + tvar.gm_geoFArea + ")";
+
+		 $.ajax({
+		 	type: "POST",
+		 	url:"libraries/site/email.php",
+			data: {	
+					'trackee' 			: 	tvar.gm_unit, 
+					'trackeeDriver'		: 	tvar.tdrivername,
+					'trackeeVehicleReg'	: 	tvar.tvehiclereg,	
+					'trackeeMileage'	:   tvar.gm_mileage,
+					'trackeeTime'		:   tvar.gm_time,
+					'trackeeSpeed'		:   tvar.gm_speed,
+					'trackeeDegrees'	:   tvar.gm_deg,
+					'trackeeSignal'		:   (tvar.gm_signal == "no") ? "BAD" : "GOOD",
+					'trackeeLatitude'	:   tvar.gm_lat,
+					'trackeeLongitude'	:   tvar.gm_lng,
+					'trackeeAddress'	:   sAddress,
+					'trackeeGeofence'	:   sGeofence,
+
+					'alarmLost' 		: 	tvar.lostAlarm ? "YES" : "NO", 
+					'alarmUrgent'		: 	tvar.UrgentAlarm ? "YES" : "NO",  
+					'alarmAcc' 			: 	tvar.AccAlarm ? "YES" : "NO",  
+					'alarmGeofence' 	: 	tvar.geoFAlarm ? "YES" : "NO", 
+					'alarmRegistration' : 	tvar.regAlarm ? "YES" : "NO", 
+					'alarmExpiration'	: 	tvar.ExpAlarm ? "YES" : "NO", 
+					'alarmOverSpeeding'	: 	tvar.OverSpeedAlarm ? "YES" : "NO"
+			},
+		 	success:function(result){
+				if (result.length > 0) {
+					//alert("Success");
+					ShowMessage(result);
+				}
+			}
+		});
+		//======================================================================
+	}
+}
