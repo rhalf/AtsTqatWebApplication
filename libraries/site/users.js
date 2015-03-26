@@ -338,15 +338,33 @@ function ShowMessage(value) {
             htmllink: '',
             html: value,
             imagelink: '',
-            hideclose: false,
-            hideheader: false,
+            hideclose: true,
+            hideheader: true,
             hasdiv: false
         };
         MessageDialog.setParams(o);
         MessageDialog.createDialog(true);
         window.setTimeout(function() {
             MessageDialog.Close();
-        }, 5000);
+        }, 3000);
+    }
+}
+;
+// Status Message   
+function ShowMessageClose(value) {
+    if (value != '') {
+        var o = {
+            name: 'message',
+            height: 'auto',
+            width: 'auto',
+            htmllink: '',
+            html: value,
+            imagelink: '',
+            hideclose: true,
+            hideheader: true,
+            hasdiv: true
+        };
+        MessageDialog.setParams(o);
     }
 }
 ;

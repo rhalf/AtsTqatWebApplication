@@ -355,6 +355,9 @@ this.get_realtimeTracker=function(object, last) {
             		var RTinterval;
             		tvar.gm_unit=object.Unit;
             		tvar = Parse_tvar(tvar,object,'realtime');	
+            		
+
+
             		if (last==false){
             			if (tvar.gm_timeInterval=='' ||tvar.gm_timeInterval==undefined ||tvar.gm_timeInterval=='0' ||tvar.gm_timeInterval=='n/a' ){
             				RTinterval='10';
@@ -387,7 +390,10 @@ this.get_realtimeTracker=function(object, last) {
             		if ($('#ntlost').is(":checked")){
             			setNoty(VEHICLEREG_LBL+' '+object.Vehicle+' '+LOSTMODE_LBL);	
             		}
+
             	}
+				var oVehicle = tvar;
+				sendEmailAlerts(oVehicle);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
             	if ( _this.LiveArr.indexOf(object.Unit) == -1){
@@ -585,8 +591,8 @@ $('#text'+tvar.gm_unit).html(tvar.caption);
 
 this.UpdateGrid=function(tvar){
 
-	var oVehicle = tvar;
-	sendEmailAlerts(oVehicle);
+	// var oVehicle = tvar;
+	// sendEmailAlerts(oVehicle);
 
 	if ( this.LiveArr.indexOf(tvar.gm_unit) == -1) {
 		this.LiveArr.push(tvar.gm_unit);
@@ -1541,7 +1547,7 @@ function sendEmailAlerts(tvar) {
 		 	success:function(result){
 				if (result.length > 0) {
 					//alert("Success");
-					ShowMessage(result);
+					ShowMessageClose(result);
 				}
 			}
 		});

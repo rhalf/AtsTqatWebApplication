@@ -111,7 +111,9 @@
 
 							"Regards,\r\n" .
 							"www.t-qat.net\r\n";
-			email($aRow['uemail'],"T-QAT E-ALERT (Tracker ID: " . $sTrackee . ")" , $sEmailMessage );
+			if (email($aRow['uemail'],"T-QAT E-ALERT (Tracker ID: " . $sTrackee . ")" , $sEmailMessage )==false) {
+				echo error_get_last();
+			}
 		}
 
 		//echo json_encode($cQuery->fetchAll(PDO::FETCH_ASSOC));
