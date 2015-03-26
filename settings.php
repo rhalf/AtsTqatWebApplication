@@ -17,7 +17,7 @@ $webroot = 'http://127.0.0.1/ats_services_GpsTrackingSystem';
 */
 
 $ApplicationVersion = '6.4.0.0';
-$WebSiteVersion = '7.0.1.0';
+$WebSiteVersion = '7.0.0';
 $engine = 'mysql';
 
 $active_googlemap = FALSE;
