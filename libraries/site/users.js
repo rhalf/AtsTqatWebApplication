@@ -296,7 +296,7 @@ function create_login() {
         name: 'login',
         height: 250,
         width: 400,
-        transparent: true,
+        transparent: false,
         htmllink: "connect/login.php",
         imagelink: '',
         hideclose: true
