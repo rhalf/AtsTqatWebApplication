@@ -127,7 +127,7 @@ function POIClass() {
             });
             var rotationElement = $('<div/>').css(get_rotationStyles(0));
             arrowImage.appendTo(rotationElement);
-            var TextElement = $('<span/>').html($('#' + code + 'name').val()).css(get_captionStyles());
+            var TextElement = $('<span/>').html($('#' + code + 'name').val()).css(get_captionStylesPoi());
             TextElement.appendTo(rotationElement);
             rotationElement.appendTo(richMarkerContent);
             icon.imageDiv = richMarkerContent.get(0);
@@ -166,7 +166,7 @@ function POIClass() {
             });
             var rotationElement = $('<div/>').css(get_rotationStyles(0));
             arrowImage.appendTo(rotationElement);
-            var TextElement = $('<span/>').html($('#' + code + 'name').val()).css(get_captionStyles());
+            var TextElement = $('<span/>').html($('#' + code + 'name').val()).css(get_captionStylesPoi());
             TextElement.appendTo(rotationElement);
             rotationElement.appendTo(richMarkerContent);
             icon = richMarkerContent.html();
@@ -264,7 +264,7 @@ function POIClass() {
         });
         var rotationElement = $('<div/>').css(get_rotationStyles(0));
         arrowImage.appendTo(rotationElement);
-        var TextElement = $('<span/>').html(lbltext).css(get_captionStyles());
+        var TextElement = $('<span/>').html(lbltext).css(get_captionStylesPoi());
         TextElement.appendTo(rotationElement);
         rotationElement.appendTo(richMarkerContent);
         icon.imageDiv = richMarkerContent.get(0);
@@ -291,7 +291,7 @@ function POIClass() {
         });
         var rotationElement = $('<div/>').css(get_rotationStyles(0));
         arrowImage.appendTo(rotationElement);
-        var TextElement = $('<span/>').html(lbltext).css(get_captionStyles());
+        var TextElement = $('<span/>').html(lbltext).css(get_captionStylesPoi());
         TextElement.appendTo(rotationElement);
         rotationElement.appendTo(richMarkerContent);
         var icon = richMarkerContent.html();

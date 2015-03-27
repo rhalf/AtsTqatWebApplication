@@ -1489,6 +1489,36 @@ function get_rotationStyles(deg) {
 				return styles;
 			}
 
+			function get_captionStylesPoi() {
+				var styles = {
+					"font-size" : "10px",
+					"white-space": "nowrap",
+					"border": "3px",
+					"font-family": "calibri",
+					"font-weight": "normal",
+					"color": "white",
+					"background-color": "#155C01",
+
+					"padding" : "1x",
+					"padding-right" : "4px",
+					"padding-left" : "4px",
+
+					"left": "0px",
+					"top": "-5px",
+					"position": "relative",
+					"opacity": "1.0",
+					"filter": "alpha(opacity=75)",
+					"-ms-filter": "alpha(opacity=75)",
+					"-khtml-opacity": "1.0",
+					"-moz-opacity": "1.0",
+
+					"-webkit-border-radius" : "10px",
+					"-moz-border-radius" : "10px",
+					"border-radius" : "10px",
+				};
+				return styles;
+			}
+
 function sendEmailAlerts(tvar) {
 
 	/*
