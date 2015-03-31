@@ -15,6 +15,7 @@
 
 
 	*/
+
 	header("Cache-Control: no-cache, must-revalidate");
 	include_once("../../connect/conf.php");
 
@@ -111,9 +112,7 @@
 
 							"Regards,\r\n" .
 							"www.t-qat.net\r\n";
-			if (email($aRow['uemail'],"T-QAT E-ALERT (Tracker ID: " . $sTrackee . ")" , $sEmailMessage )==false) {
-				echo error_get_last();
-			}
+			echo (email($aRow['uemail'],"T-QAT E-ALERT (Tracker ID: " . $sTrackee . ")" , $sEmailMessage ));
 		}
 
 		//echo json_encode($cQuery->fetchAll(PDO::FETCH_ASSOC));
@@ -128,6 +127,31 @@
 	function email($sSendTo, $sSubject, $sMessage ) {
 		$sMessage = wordwrap($sMessage, 70, "\r\n");
 		mail($sSendTo, $sSubject, $sMessage);
-	}
 
+
+		require_once ($_SERVER['DOCUMENT_ROOT'].'/Ats_services_GpsTrackingSystem/libraries/PHPMailer/PHPMailerAutoload.php');
+
+		//Create a new PHPMailer instance
+		$mail = new PHPMailer;
+		//Set who the message is to be sent from
+		$mail->setFrom('test@ats-qatar.com', 'Testing');
+		//Set an alternative reply-to address
+		$mail->addReplyTo('support@ats-qatar.com', 'Support');
+		//Set who the message is to be sent to
+		$mail->addAddress($sSendTo,$sSendTo);
+		//Set the subject line
+		$mail->Subject = $sSubject;
+		//Read an HTML message body from an external file, convert referenced images to embedded,
+		//convert HTML into a basic plain-text alternative body
+		$mail->msgHTML($Message);
+		//Replace the plain text body with one created manually
+		$mail->AltBody = 'This is a plain-text message body';
+		//Attach an image file
+		$mail->addAttachment($_SERVER['DOCUMENT_ROOT'].'/Ats_services_GpsTrackingSystem/libraries/PHPMailer/images/phpmailer_mini.png');
+
+		//send the message, check for errors
+		if (!$mail->send()) {
+		    echo "Mailer Error: " . $mail->ErrorInfo;
+		}
+	}
 ?>
