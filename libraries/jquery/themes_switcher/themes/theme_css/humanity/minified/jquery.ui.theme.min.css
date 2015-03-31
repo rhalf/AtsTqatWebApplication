@@ -1,13 +1,6 @@
 /*! jQuery UI - v1.10.3 - 2013-10-19
 * http://jqueryui.com
 * Copyright 2013 jQuery Foundation and other contributors; Licensed MIT */
-/* 
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:	
-				Changed image and font color
-*/
 
 .ui-widget {
     font-family: Verdana, Arial, sans-serif;
@@ -25,23 +18,23 @@
 }
 .ui-widget-content {
     border: 1px solid #555;
-    background: #ccc url(images/ui-bg_loop_10_000000_21x21.png) 50% 50% repeat;
+    background: #f1ebdf;
     color: #292929
 }
 .ui-widget-content a {
     color: #292929
 }
-/* 
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:	
-				Changed background color
-*/
-
 .ui-widget-header {
     border: 1px solid #444;
-    background: #aaaaaa url(images/ui-bg_highlight-soft_35_b8191e_1x100.png) 50% 50% repeat-x;
+    background: #f2ede1; /* Old browsers */
+    background: -moz-linear-gradient(top,  #f2ede1 0%, #cc9255 66%, #d09042 67%, #d09042 67%, #d09042 80%, #cf8e3f 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2ede1), color-stop(66%,#cc9255), color-stop(67%,#d09042), color-stop(67%,#d09042), color-stop(80%,#d09042), color-stop(100%,#cf8e3f)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #f2ede1 0%,#cc9255 66%,#d09042 67%,#d09042 67%,#d09042 80%,#cf8e3f 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f2ede1 0%,#cc9255 66%,#d09042 67%,#d09042 67%,#d09042 80%,#cf8e3f 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f2ede1 0%,#cc9255 66%,#d09042 67%,#d09042 67%,#d09042 80%,#cf8e3f 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #f2ede1 0%,#cc9255 66%,#d09042 67%,#d09042 67%,#d09042 80%,#cf8e3f 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2ede1', endColorstr='#cf8e3f',GradientType=0 ); /* IE6-9 */
+
     color: #fff;
     font-weight: bold
 }
@@ -51,10 +44,10 @@
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-    border: 1px solid #292929;
-    background: #ccc url(images/ui-bg_loop_10_000000_21x21.png) repeat;
+    border: 1px solid #444;
+    background: #EDE4D6;
     font-weight: normal;
-    color: #292929
+    color: #292929;
 }
 .ui-state-default a,
 .ui-state-default a:link,
@@ -62,60 +55,43 @@
     color: #292929;
     text-decoration: none
 }
-/* 
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:	
-				Changed image
-
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150328
-
-		Note:	
-				Changed image into color
-*/
-
-
-
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
 .ui-widget-header .ui-state-hover,
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-    border: 1px solid #cccccc;
-    background: #666;
+    border: 1px solid #470002;
+    background: #cd8936;
     font-weight: normal;
-    color: #fff
+    color: #fff;
 }
-
 .ui-state-hover a,
 .ui-state-hover a:hover,
 .ui-state-hover a:link,
 .ui-state-hover a:visited {
-    color: #fff;
+    color: #292929;
     text-decoration: none
 }
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-    border: 1px solid #292929;
-    background: #292929 url(images/ui-bg_highlight-hard_20_b8191e_1x100.png) 50% 50% repeat-x;
+    border: 1px solid #cb842e;
+    background: #cb842e url(images/ui-bg_glass_25_cb842e_1x400.png) 50% 50% repeat-x;
     font-weight: normal;
     color: #fff
 }
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
-    color: #fff;
+    color: #292929;
     text-decoration: none
 }
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
     border: 1px solid #ccc;
-    background: #292929 url(images/ui-bg_highlight-soft_80_eeeeee_1x100.png) 50% top repeat-x;
+    background: #eee url(images/ui-bg_highlight-soft_80_eeeeee_1x100.png) 50% top repeat-x;
     color: #2e7db2
 }
 .ui-state-highlight a,
@@ -126,8 +102,8 @@
 .ui-state-error,
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
-    border: 1px solid #fbf9ee;
-    background: #fbf9ee url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;
+    border: 1px solid #a60000;
+    background: #ffc73d url(images/ui-bg_glass_25_cb842e_1x400.png) 50% 50% repeat-x;
     color: #111
 }
 .ui-state-error a,
@@ -166,45 +142,29 @@
     width: 16px;
     height: 16px
 }
-/* 
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:	
-				Changed image
-*/
-
 .ui-icon,
 .ui-widget-content .ui-icon {
-    background-image: url(images/ui-icons_454545_256x240.png)
+    background-image: url(images/ui-icons_c47a23_256x240.png)
 }
 .ui-widget-header .ui-icon {
-    background-image: url(images/ui-icons_454545_256x240.png)
+    background-image: url(images/ui-icons_c47a23_256x240.png)
 }
 .ui-state-default .ui-icon {
-    background-image: url(images/ui-icons_454545_256x240.png)
+    background-image: url(images/ui-icons_c47a23_256x240.png)
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon {
     background-image: url(images/ui-icons_ffffff_256x240.png)
 }
 .ui-state-active .ui-icon {
-    background-image: url(images/ui-icons_454545_256x240.png)
+    background-image: url(images/ui-icons_c47a23_256x240.png)
 }
 .ui-state-highlight .ui-icon {
     background-image: url(images/ui-icons_4b8e0b_256x240.png)
 }
-/* 
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:	
-				Changed image
-*/
-
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-    background-image: url(images/ui-icons_cd0a0a_256x240.png)
+    background-image: url(images/ui-icons_f35f07_256x240.png)
 }
 .ui-icon-blank {
     background-position: 16px 16px
@@ -756,22 +716,14 @@
     border-bottom-right-radius: 6px
 }
 .ui-widget-overlay {
-    background: #5c5c5c url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
+    background: #5c5c5c url(images/ui-bg_flat_50_5c5c5c_40x100.png) 50% 50% repeat-x;
     opacity: .8;
     filter: Alpha(Opacity=80)
 }
-/* 
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:	
-				Changed image
-*/
-
 .ui-widget-shadow {
     margin: -7px 0 0 -7px;
     padding: 7px;
-    background: #ccc url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+    background: #aaa url(images/ui-bg_flat_75_aaaaaa_40x100.png) 50% 50% repeat-x;
     opacity: .6;
     filter: Alpha(Opacity=60);
     border-radius: 8px

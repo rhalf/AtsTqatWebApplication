@@ -267,9 +267,17 @@ include_once("../scripts.php");
                 Date Modified: 20150324
 
                 Note: 
-                        Added Themes
+                        Added Theme
         */       
         $("#themesMnuItem").gcjs_themeswitcher_dialog.gcjs_m_add_theme({theme: "Steel Chrome Grey", pic: "theme_90_smoothness.png", file: "smoothness/theme.php"});
+        /*     
+                Modified by: Mary Ann Lacerona
+                Date Modified: 20150331
+
+                Note: 
+                        Added Theme
+        */  
+        $("#themesMnuItem").gcjs_themeswitcher_dialog.gcjs_m_add_theme({theme: "Coffee Brown", pic: "theme_90_humanity.png", file: "humanity/theme.php"});
         $("#themesMnuItem").gcjs_themeswitcher_dialog({s_title: "Select Theme", number_pics: 1, url_gallery: "libraries/jquery/themes_switcher/themes/theme_gallery/", url_css: "libraries/jquery/themes_switcher/themes/theme_css/"});
 
         $("#theme_close").button({icons: {primary: "ui-icon-close"}});

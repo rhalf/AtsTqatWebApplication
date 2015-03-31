@@ -1,7 +1,7 @@
 /*! jQuery UI - v1.10.3 - 2013-10-19
 * http://jqueryui.com
 * Includes: jquery.ui.core.css, jquery.ui.resizable.css, jquery.ui.selectable.css, jquery.ui.accordion.css, jquery.ui.autocomplete.css, jquery.ui.button.css, jquery.ui.datepicker.css, jquery.ui.dialog.css, jquery.ui.menu.css, jquery.ui.progressbar.css, jquery.ui.slider.css, jquery.ui.spinner.css, jquery.ui.tabs.css, jquery.ui.tooltip.css, jquery.ui.theme.css
-* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Verdana%2CArial%2Csans-serif&fwDefault=normal&fsDefault=1.1em&cornerRadius=6px&bgColorHeader=%23222222&bgTextureHeader=highlight_soft&bgImgOpacityHeader=35&borderColorHeader=%23444444&fcHeader=%23ffffff&iconColorHeader=%23cccccc&bgColorContent=%23000000&bgTextureContent=loop&bgImgOpacityContent=10&borderColorContent=%23555555&fcContent=%23ffffff&iconColorContent=%23cccccc&bgColorDefault=%23222222&bgTextureDefault=highlight_soft&bgImgOpacityDefault=35&borderColorDefault=%23444444&fcDefault=%23eeeeee&iconColorDefault=%23cccccc&bgColorHover=%23470002&bgTextureHover=highlight_soft&bgImgOpacityHover=33&borderColorHover=%23470002&fcHover=%23ffffff&iconColorHover=%23ffffff&bgColorActive=%23292929&bgTextureActive=highlight_hard&bgImgOpacityActive=20&borderColorActive=%23292929&fcActive=%23ffffff&iconColorActive=%23cccccc&bgColorHighlight=%23eeeeee&bgTextureHighlight=highlight_soft&bgImgOpacityHighlight=80&borderColorHighlight=%23cccccc&fcHighlight=%232e7db2&iconColorHighlight=%234b8e0b&bgColorError=%23ffc73d&bgTextureError=glass&bgImgOpacityError=40&borderColorError=%23ffb73d&fcError=%23111111&iconColorError=%23a83300&bgColorOverlay=%235c5c5c&bgTextureOverlay=flat&bgImgOpacityOverlay=50&opacityOverlay=80&bgColorShadow=%23cccccc&bgTextureShadow=flat&bgImgOpacityShadow=30&opacityShadow=60&thicknessShadow=7px&offsetTopShadow=-7px&offsetLeftShadow=-7px&cornerRadiusShadow=8px
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Verdana%2CArial%2Csans-serif&fwDefault=normal&fsDefault=1.1em&cornerRadius=6px&bgColorHeader=%23222222&bgTextureHeader=highlight_soft&bgImgOpacityHeader=35&borderColorHeader=%23444444&fcHeader=%23ffffff&iconColorHeader=%23cccccc&bgColorContent=%23000000&bgTextureContent=loop&bgImgOpacityContent=10&borderColorContent=%23555555&fcContent=%23ffffff&iconColorContent=%23cccccc&bgColorDefault=%23222222&bgTextureDefault=highlight_soft&bgImgOpacityDefault=35&borderColorDefault=%23444444&fcDefault=%23eeeeee&iconColorDefault=%23cccccc&bgColorHover=%23470002&bgTextureHover=highlight_soft&bgImgOpacityHover=33&borderColorHover=%23470002&fcHover=%23ffffff&iconColorHover=%23ffffff&bgColorActive=%23a60000&bgTextureActive=highlight_hard&bgImgOpacityActive=20&borderColorActive=%23a60000&fcActive=%23ffffff&iconColorActive=%23cccccc&bgColorHighlight=%23eeeeee&bgTextureHighlight=highlight_soft&bgImgOpacityHighlight=80&borderColorHighlight=%23cccccc&fcHighlight=%232e7db2&iconColorHighlight=%234b8e0b&bgColorError=%23ffc73d&bgTextureError=glass&bgImgOpacityError=40&borderColorError=%23ffb73d&fcError=%23111111&iconColorError=%23a83300&bgColorOverlay=%235c5c5c&bgTextureOverlay=flat&bgImgOpacityOverlay=50&opacityOverlay=80&bgColorShadow=%23cccccc&bgTextureShadow=flat&bgImgOpacityShadow=30&opacityShadow=60&thicknessShadow=7px&offsetTopShadow=-7px&offsetLeftShadow=-7px&cornerRadiusShadow=8px
 * Copyright 2013 jQuery Foundation and other contributors; Licensed MIT */
 
 .ui-helper-hidden {
@@ -752,23 +752,24 @@ body .ui-tooltip {
 }
 .ui-widget-content {
     border: 1px solid #555;
-    background-image: #ccc url(images/body-texture.png) 50% 50% repeat;
-    color: #292929
+    background: #EDE4D6;
+    color: #292929;
 }
 .ui-widget-content a {
-    color: #292929
+    color: #fff
 }
-/* 		
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:
-			Changed image
-*/
-
 .ui-widget-header {
-    border: 1px solid #292929;
-    background: #ccc url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+    border: 1px solid #444;
+
+    background: #background: #f2ede1; /* Old browsers */
+background: -moz-linear-gradient(top,  #f2ede1 0%, #cc9255 66%, #d09042 67%, #d09042 67%, #d09042 80%, #cf8e3f 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2ede1), color-stop(66%,#cc9255), color-stop(67%,#d09042), color-stop(67%,#d09042), color-stop(80%,#d09042), color-stop(100%,#cf8e3f)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #f2ede1 0%,#cc9255 66%,#d09042 67%,#d09042 67%,#d09042 80%,#cf8e3f 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #f2ede1 0%,#cc9255 66%,#d09042 67%,#d09042 67%,#d09042 80%,#cf8e3f 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #f2ede1 0%,#cc9255 66%,#d09042 67%,#d09042 67%,#d09042 80%,#cf8e3f 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #f2ede1 0%,#cc9255 66%,#d09042 67%,#d09042 67%,#d09042 80%,#cf8e3f 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2ede1', endColorstr='#cf8e3f',GradientType=0 ); /* IE6-9 */
+ 
     color: #fff;
     font-weight: bold
 }
@@ -777,20 +778,12 @@ body .ui-tooltip {
 }
 .ui-state-default,
 .ui-widget-content .ui-state-default,
-.ui-widget-header
-/* 		
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
+.ui-widget-header .ui-state-default {
+    border: 1px solid #444;
+    background: #EDE4D6;
 
-		Note:
-			Changed image
-*/
-
-.ui-state-default {
-    border: 1px solid #292929;
-    background: #ccc url(images/ui-bg_loop_10_000000_21x21.png) repeat;
     font-weight: normal;
-    color: #292929
+    color: #292929;
 }
 .ui-state-default a,
 .ui-state-default a:link,
@@ -805,33 +798,24 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
     border: 1px solid #470002;
-    background: #470002 url(images/ui-bg_highlight-soft_33_470002_1x100.png) 50% 50% repeat-x;
+    background: #cd8936;
     font-weight: normal;
-    color: #292929
+    color: #fff;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
 .ui-state-hover a:link,
 .ui-state-hover a:visited {
-    color: #292929;
+    color: #fff;
     text-decoration: none
 }
 .ui-state-active,
 .ui-widget-content .ui-state-active,
-.ui-widget-header
-/* 		
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:
-			Changed colors
-*/
-
-.ui-state-active {
-    border: 1px solid #292929;
-    background: #292929 url(images/ui-bg_highlight-hard_20_b8191e_1x100.png) 50% 50% repeat-x;
+.ui-widget-header .ui-state-active {
+    border: 1px solid #a60000;
+    background: #cb842e url(images/ui-bg_glass_25_cb842e_1x400.png) 50% 50% repeat-x;
     font-weight: normal;
-    color: #292929
+    color: #fff
 }
 .ui-state-active a,
 .ui-state-active a:link,
@@ -842,8 +826,8 @@ body .ui-tooltip {
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
-    border: 1px solid #ccc;
-    background: #292929 url(images/ui-bg_highlight-soft_80_eeeeee_1x100.png) 50% top repeat-x;
+    border: 1px solid #a60000;
+    background: #eee url(images/ui-bg_highlight-soft_80_eeeeee_1x100.png) 50% top repeat-x;
     color: #2e7db2
 }
 .ui-state-highlight a,
@@ -851,19 +835,11 @@ body .ui-tooltip {
 .ui-widget-header .ui-state-highlight a {
     color: #2e7db2
 }
-/* 		
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:
-			Changed image
-*/
-
 .ui-state-error,
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
-    border: 1px solid #fbf9ee;
-    background: #fbf9ee url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;
+    border: 1px solid #ffb73d;
+    background: #cb842e url(images/ui-bg_glass_25_cb842e_1x400.png) 50% 50% repeat-x;
     color: #111
 }
 .ui-state-error a,
@@ -904,35 +880,27 @@ body .ui-tooltip {
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-    background-image: url(images/ui-icons_454545_256x240.png)
+    background-image: url(images/ui-icons_ff7519_256x240.png)
 }
 .ui-widget-header .ui-icon {
-    background-image: url(images/ui-icons_454545_256x240.png)
+    background-image: url(images/ui-icons_ff7519_256x240.png)
 }
 .ui-state-default .ui-icon {
-    background-image: url(images/ui-icons_454545_256x240.png)
+    background-image: url(images/ui-icons_ff7519_256x240.png)
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon {
     background-image: url(images/ui-icons_ffffff_256x240.png)
 }
 .ui-state-active .ui-icon {
-    background-image: url(images/ui-icons_454545_256x240.png)
+    background-image: url(images/ui-icons_ff7519_256x240.png)
 }
 .ui-state-highlight .ui-icon {
     background-image: url(images/ui-icons_4b8e0b_256x240.png)
 }
-/* 		
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:
-			Changed image
-*/
-
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-    background-image: url(images/ui-icons_cd0a0a_256x240.png)
+    background-image: url(images/ui-icons_f35f07_256x240.png)
 }
 .ui-icon-blank {
     background-position: 16px 16px
@@ -1483,31 +1451,15 @@ body .ui-tooltip {
 .ui-corner-br {
     border-bottom-right-radius: 6px
 }
-/* 		
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:
-			Changed image
-*/
-
 .ui-widget-overlay {
-    background: #5c5c5c url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
+    background: #5c5c5c url(images/ui-bg_flat_50_5c5c5c_40x100.png) 50% 50% repeat-x;
     opacity: .8;
     filter: Alpha(Opacity=80)
 }
-/* 		
-		Modified by: Mary Ann Lacerona
-		Date modified: 20150324
-
-		Note:
-			Changed image
-*/
-
 .ui-widget-shadow {
     margin: -7px 0 0 -7px;
     padding: 7px;
-    background: #ccc url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+    background: #aaa url(images/ui-bg_flat_75_aaaaaa_40x100.png) 50% 50% repeat-x;
     opacity: .6;
     filter: Alpha(Opacity=60);
     border-radius: 8px
