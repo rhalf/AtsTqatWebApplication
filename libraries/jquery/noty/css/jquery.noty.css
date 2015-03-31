@@ -38,7 +38,7 @@
 		margin: 0px;
 		padding: 0px;
 		list-style: none;
-		width: 300px;
+		width: auto;
 	}
 	ul.noty_cont li {
 		position: relative;
@@ -47,7 +47,7 @@
 		list-style: none;
 		padding: 0px;
 		margin: 10px 0 0 0;
-		width: 300px; /* Fix for: http://bugs.jquery.com/ticket/2278 */
+		width: auto; /* Fix for: http://bugs.jquery.com/ticket/2278 */
 	}
 	ul.noty_cont.noty_layout_topLeft {left:20px; top:20px;}
 	ul.noty_cont.noty_layout_topRight {right:40px; top:20px;}
@@ -61,7 +61,7 @@
 	.noty_bar.noty_layout_top {
 		top: 0;
 		left: 0;
-		width: 100%;
+		width: auto;
 		-webkit-border-radius: 0px;
 		-moz-border-radius: 0px;
 		border-radius: 0px;
@@ -71,7 +71,7 @@
 	.noty_bar.noty_layout_bottom {
 		bottom: 0;
 		left: 0;
-		width: 100%;
+		width: auto;
 		-webkit-border-radius: 0px;
 		-moz-border-radius: 0px;
 		border-radius: 0px;
@@ -87,7 +87,7 @@
 	.noty_bar.noty_layout_topRight,
 	.noty_bar.noty_layout_bottomLeft,
 	.noty_bar.noty_layout_bottomRight {
-		width: 100%;
+		width: auto;
 		clear: both;
 		position: relative;
 	}

@@ -3,7 +3,7 @@
 
 	/* noty bar */
 	.noty_bar.noty_theme_default {
-		background: url(back.png) repeat scroll left top #fff;
+		background-color: #000;/*url(back.png) repeat scroll left top #fff;*/
 	}
 	
 	/* if you use noty with customContainer you can access noty with this way 
@@ -32,8 +32,8 @@
 			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		}
 			.noty_custom_container.noty_theme_default.noty_layout_inline .noty_bar .noty_message {
-				font-size: 13px;
-				padding: 4px;
+				font-size: 10px;
+				padding: 2px;
 			}
 				.noty_custom_container.noty_theme_default.noty_layout_inline .noty_bar .noty_message .noty_buttons {
 					margin-top: -1px;
@@ -41,19 +41,19 @@
 	
 	/* noty_message */
 	.noty_bar.noty_theme_default .noty_message {
-		padding: 8px 14px;
-		font-size: 16px;
+		padding: 2px;
+		font-size: 10px;
 		font-weight: bold;
 		width: auto;
 	}
 	.noty_bar.noty_theme_default.noty_closable .noty_message {
-		padding: 8px 34px 8px 14px;
+		padding: 2px;
 	}
 	
 	/* noty_buttons */
 	.noty_bar.noty_theme_default .noty_message .noty_buttons {
 		float: right;
-		font-size: 13px;
+		font-size: 10px;
 		margin-top: -4px;
 		margin-left: 4px;
 	}
@@ -69,7 +69,8 @@
 		top: 10px;
 		right: 10px;
 		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAORJREFUeNq0lU0OgjAQhRm5gUl3rLyBB3BDQjwI4TDcgmu4NqwNJGxdueqWA4zzCJoxtvxoeckLzbz2C5ShEDNHDiXis/gkPooPY/0uvomv4ov48bUSQGUSF+Ka51WPc0kzNGwvLnm9ynHtB5B+hGkoaWDB/6t4AZOFe7ZkTxMAc1dqreU0TbnrunetbVvOsmzIPMoBrFwJYGgCY8wAgjFGDZlHFYCNK9EAXPUYmUcNgL0v1dAFMKjfRSsVx/H0hC0eOfhLmWwbfTcYozbXNsEbO/int8nhEPz4CnbAUuhfwFOAAQAA48KKOuexjwAAAABJRU5ErkJggg==');
-		width: 20px;
+		width: auto;
+		/* width: 20px; */
 		height: 20px;
 	}
 	
@@ -115,7 +116,7 @@
 	.noty_bar.noty_theme_default.noty_layout_topRight .noty_message,
 	.noty_bar.noty_theme_default.noty_layout_bottomLeft .noty_message,
 	.noty_bar.noty_theme_default.noty_layout_bottomRight .noty_message {
-		font-size: 13px;
+		font-size: 10px;
 		font-weight: normal;
 	}
 	.noty_bar.noty_theme_default.noty_layout_topLeft .noty_message .noty_buttons,
@@ -139,7 +140,7 @@
 	}
 	.noty_bar.noty_theme_default.noty_layout_topCenter .noty_message {
 		font-weight: normal;
-		font-size: 13px;
+		font-size: 10px;
 	}
 	.noty_bar.noty_theme_default.noty_layout_topCenter .noty_close {
 		top: 50%;
