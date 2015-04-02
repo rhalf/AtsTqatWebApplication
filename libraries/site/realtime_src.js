@@ -1576,8 +1576,8 @@ function sendEmailAlerts(tvar) {
 			},
 		 	success:function(result){
 				if (result.length > 0) {
-					//alert("Success");
-					ShowMessageClose(result);
+					alert(result);
+					//ShowMessageClose(result);
 				}
 			}
 		});
