@@ -7,13 +7,13 @@ $GeoFenceResult = $session->get('geofence');
 <form id="TrackingReplayform" name="TrackingReplayform" method="post">
     <div id="speeddialog" title="<?php echo Settings ?>">
         <div style="width:100px">
-            <div style="float:left;width:100px" align="center"><?php echo ShowSpeed ?></div>
-            <div style="float:left;margin:10px 0px 10px 45px"  id="speedslider"></div>
+            <div style="float:left;width:100px;" align="center"><?php echo ShowSpeed ?></div>
+            <div style="float:left;margin: 0px 0px 10px 45px"  id="speedslider"></div>
             <div style="float:left;width:100px" id="amount" class="trtd"></div>
         </div>
     </div>
 
-    <div id="trackslider" style="margin-top:5px;margin-bottom:5px;margin-left:15px;margin-right:50px;float: left;width:90%"></div><div align="left" id="pos" class="trtd"></div>
+    <div id="trackslider" style="margin-left:15px;float: left;width:90%"></div><div align="left" id="pos" class="trtd"></div>
     <table id="TrackingReplaydata"></table>
     <div id="pagerTrackingReplay"></div>
     <button type="button" name="tr_settings" id="tr_settings"><?php echo Settings ?></button>
@@ -270,7 +270,7 @@ $GeoFenceResult = $session->get('geofence');
             return false;
         });
 
-        $('#t_TrackingReplaydata').css('height', '35px').css('overflow', 'inherit');
+        $('#t_TrackingReplaydata').css('height', '25px').css('overflow', 'inherit');
     });
 
     $('#TrackingReplaydata').setGridHeight($('#trackinggrid').height() - 90);

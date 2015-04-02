@@ -189,18 +189,20 @@ textarea {
 }
 
 .trtd {
+    margin: 5px;
     border:0;
     color:#f6931f;
     font-weight:bold;
     width:100%;
     text-align:center;
+    height: auto;
 }
 
 .ui-jqgrid .ui-jqgrid-hdiv{
     overflow:hidden
 }
 .ui-multiselect input.search {
-    height:20px !important;	
+    height: 20px !important;	
     padding-left: 30px !important;
 }
 
