@@ -114,16 +114,17 @@
 							
 							
 							
-							/*
+							
 							'<table border="1">' .
-							"\tLost Tracker\t\t: " . $sAlarmLost . "\r\n" .
-							"\tUrgent\t\t\t: " . $sAlarmUrgent . "\r\n" .
-							"\tACC\t\t\t: " . $sAlarmAcc . "\r\n" .
-							"\tGeofence\t\t: " . $sAlarmGeofence . "\r\n" .
-							"\tExp. Registration\t: " . $sAlarmExpiration . "\r\n" .
-							"\tOverspeeding\t\t: " . $sAlarmLost . "\r\n\r\n" .
-							'</table>' .
-							*/
+							'<tr><th colspan="2">Tracker Status</th></tr>' .
+							'<tr><td>Lost Tracker</td><td>' . $sAlarmLost . '</td></tr>' .
+							'<tr><td>Urgent</td><td>'. $sAlarmUrgent . '</td></tr>' .
+							'<tr><td>ACC</td><td>'. $sAlarmAcc . '</td></tr>' .
+							/*'<tr><td>Geofence</td><td>'. $sAlarmGeofence . '</td></tr>' . */
+							'<tr><td>Exp. Registration</td><td>' . $sAlarmExpiration . '</td></tr>' .
+							'<tr><td>Overspeeding</td><td>'. $sAlarmLost . '</td></tr>' .
+							'</table><br />' .
+							
 							
 							'<span >Please do not reply to this email.</span><br />' .
 							'<span >This is electronically generated email.</span><br /><br />' .
