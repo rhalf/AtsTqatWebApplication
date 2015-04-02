@@ -48,13 +48,13 @@ var BaseProjection=new OpenLayers.Projection("EPSG:900913");
         fraunhofer = "http://tile.iosb.fraunhofer.de/tiles/osmde/${z}/${x}/${y}.png";
 
         baseOSM = new OpenLayers.Layer.OSM("MapQuest-OSM Tiles", arrayOSM);
-        baseAerial = new OpenLayers.Layer.OSM("MapQuest Open Aerial Tiles", arrayAerial);
+        //baseAerial = new OpenLayers.Layer.OSM("MapQuest Open Aerial Tiles", arrayAerial);
         baseFraunhofer =  new OpenLayers.Layer.OSM("Fraunhofer Map", fraunhofer);
         
         //osmmaps[id].addLayer(baseCycle);
         osmmaps[id].addLayer(new OpenLayers.Layer.OSM("OpenLayers WMS"));
         osmmaps[id].addLayer(baseOSM);
-        osmmaps[id].addLayer(baseAerial);
+        //osmmaps[id].addLayer(baseAerial);
         osmmaps[id].addLayer(baseFraunhofer);
         osmmaps[id].addControl(new OpenLayers.Control.LayerSwitcher());
 		//==================================================================================
