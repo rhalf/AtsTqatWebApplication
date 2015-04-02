@@ -328,7 +328,7 @@ this.Add_osm=function(Lat,Long,TRObject) {
     var tvar=Parse_tvar(TrackingReplayArray[0].Items[i],TrackingReplayArray[0].Obj);	
 	var richMarkerContent =CreateMarker(tvar);
 	
-  var size = new OpenLayers.Size(25,25);
+  var size = new OpenLayers.Size(20,20);
    var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
  var icon = new OpenLayers.Icon(null, size, offset);   
 icon.imageDiv=richMarkerContent.get(0);   
@@ -464,16 +464,16 @@ function CreateMarker(tobj){
 	var arrowImage=$('<img/>', {
 		id: 'arrow'+tobj.gm_unit,
 		src:tobj.img,
-		height:'35px',
-		width:'35px'
+		height:'20px',
+		width:'20px'
 		});
 	
 	if (tobj.alarmimg!="none"){
 		var AlarmImage=$('<img/>', {
 			id: 'alarm'+tobj.gm_unit,
 			src:tobj.alarmimg,
-			height:'35px',
-			width:'35px'
+			height:'20px',
+			width:'20px'
 		}).css(get_alarmImageStyles());
 	}
 
