@@ -126,6 +126,11 @@ $GeoFenceResult = $session->get('geofence');
         var tvar = Parse_tvar(TrackingReplayArray[0].Items[pos], TrackingReplayArray[0].Obj);
         TrackingReply.UpdateMarker(tvar);
 
+        if (MapClass.currMap == 'omap') {
+            osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
+            tvar.gm_address  = osm_code;
+        }
+
         if (GeoFenceViewer.ID.length != 0) {
             setTrackingReplayGridvalue(tvar.pos, tvar.geoFArea);
             TrackingReply.ViewGeoFence(tvar.geoFID, tvar.gm_unit, tvar.geoFAlarm);
@@ -270,13 +275,17 @@ $GeoFenceResult = $session->get('geofence');
             return false;
         });
 
-        $('#t_TrackingReplaydata').css('height', '25px').css('overflow', 'inherit');
+        $('#t_TrackingReplaydata').css('height', '21px').css('overflow', 'inherit').css('padding','3px');
     });
 
+ 
     $('#TrackingReplaydata').setGridHeight($('#trackinggrid').height() - 90);
     $('#TrackingReplaydata').setGridWidth($('#trackinggrid').width());
 
-
+    $( window ).resize(function() {
+        $('#TrackingReplaydata').setGridHeight($('#trackinggrid').height() - 90);
+        $('#TrackingReplaydata').setGridWidth($('#trackinggrid').width());
+    });
 
 
     $("#speeddialog").dialog({
