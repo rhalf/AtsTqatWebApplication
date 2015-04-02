@@ -177,9 +177,11 @@
 			//$mail->addAttachment($_SERVER['DOCUMENT_ROOT'].'/Ats_services_GpsTrackingSystem/libraries/PHPMailer/images/phpmailer_mini.png');
 			$mail->send();
 		} catch (phpmailerException $e) {
-			echo $e->errorMessage(); //Pretty error messages from PHPMailer
+			//echo $e->errorMessage(); //Pretty error messages from PHPMailer
+			echo "Email not sent due to PhpMailerException.";
 		} catch (Exception $e) {
-			echo $e->getMessage(); //Boring error messages from anything else!
+			//echo $e->getMessage(); //Boring error messages from anything else!
+			echo "Email not sent due to Exception.";
 		}
 	}
 ?>
