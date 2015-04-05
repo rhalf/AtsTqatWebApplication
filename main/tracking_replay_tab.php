@@ -126,10 +126,10 @@ $GeoFenceResult = $session->get('geofence');
         var tvar = Parse_tvar(TrackingReplayArray[0].Items[pos], TrackingReplayArray[0].Obj);
         TrackingReply.UpdateMarker(tvar);
 
-        if (MapClass.currMap == 'omap') {
-            osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
-            tvar.gm_address  = osm_code;
-        }
+        // if (MapClass.currMap == 'omap') {
+        //     osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
+        //     tvar.gm_address  = osm_code;
+        // }
 
         if (GeoFenceViewer.ID.length != 0) {
             setTrackingReplayGridvalue(tvar.pos, tvar.geoFArea);
@@ -213,6 +213,7 @@ $GeoFenceResult = $session->get('geofence');
             sortorder: "desc",
             toolbar: [true, "top"],
             ondblClickRow: function(id, iRow, iCol, e) {
+                //alert("replay tab");
                 var ret = trGrid.jqGrid('getRowData', iRow);
                 var unitLat = ret.gm_lat;
                 var unitLng = ret.gm_lng;

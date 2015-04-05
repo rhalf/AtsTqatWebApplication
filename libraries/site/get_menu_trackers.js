@@ -436,7 +436,7 @@ function Parse_tvar(tvar, object, ope) {
         tvar.gm_overspeed = parseFloat(object.SpeedLimit);
         
 
-        tvar.gm_address = "Can't find address.";
+        tvar.gm_address = "Double Click!";
         tvar.gm_speed = parseFloat(tvar.gm_speed);
         //over speed
         tvar.OverSpeedAlarm = false;

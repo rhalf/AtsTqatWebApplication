@@ -358,7 +358,11 @@ function deserialize(str) {
 
 var osm_code;
 function osm_AddressCodeLatLng(lat,lng) {
-	$.getJSON("http://nominatim.openstreetmap.org/reverse?format=json&lat="+lat+'&lon='+lng, function(json) {    
-	osm_code=json.display_name;
+	//$.getJSON("http://nominatim.openstreetmap.org/reverse?format=json&lat="+lat+'&lon='+lng, function(json) {    
+	//osm_code=json.display_name;
+	$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng, function(json) {
+		osm_code=json.results[1].formatted_address;
+		//alert(osm_code);
+	
 	})
 };

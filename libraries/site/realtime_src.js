@@ -406,8 +406,8 @@ this.get_realtimeTracker=function(object, last) {
 
 this.UpdateMarker=function(tvar){
 
-	var oVehicle = tvar;
-	sendEmailAlerts(oVehicle);
+	//var oVehicle = tvar;
+	//sendEmailAlerts(oVehicle);
 
 	var unitName = tvar.gm_unit;
 	var vreg = tvar.tvehiclereg;
@@ -1529,11 +1529,11 @@ function sendEmailAlerts(tvar) {
 			*Remarks
 				-Added an update for Address
 	*/
-	if (MapClass.currMap == 'omap') {
-		osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
-		tvar.gm_address = osm_code;
+	// if (MapClass.currMap == 'omap') {
+	// 	osm_AddressCodeLatLng(tvar.gm_lat, tvar.gm_lng);
+	// 	tvar.gm_address = osm_code;
 
-	}
+	// }
 
 
 	if (tvar.AlarmImg!='none') {
@@ -1576,7 +1576,7 @@ function sendEmailAlerts(tvar) {
 			},
 		 	success:function(result){
 				if (result.length > 0) {
-					alert(result);
+					//alert(result);
 					//ShowMessageClose(result);
 				}
 			}
